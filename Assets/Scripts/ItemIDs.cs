@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemIDs : MonoBehaviour
+public class ItemIDs : Item
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum ItemId
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Suggested Items for now
+        BATTERY,
+        FLASHLIGHT,
+        KEYCARD,
+        MEDKIT
     }
 }
