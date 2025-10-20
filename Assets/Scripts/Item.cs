@@ -9,7 +9,7 @@ public class Item : Interactable
 
     public AudioClip testSound;
 
-    public override void Interact(GameObject player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
         if (testSound != null)
         {

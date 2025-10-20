@@ -7,7 +7,8 @@ public class PlayerInteraction : MonoBehaviour
 
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
-    public Item activeItem;
+
+    public List<ItemId> inventory = new List<ItemId>();
 
     //DEPRECATED
     /*
@@ -41,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && objectToInteract != null)
         {
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
-            objectToInteract.Interact(player, activeItem);
+            objectToInteract.Interact(player.GetComponent<PlayerInteraction>());
         }
     }
 }

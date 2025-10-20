@@ -8,6 +8,8 @@ public class BatteryInteractable : Interactable
 {
 
     public float chargePercent = 0f;
+
+    public int batteryCount;
     
     public GameObject batteryObject;
     
@@ -18,9 +20,9 @@ public class BatteryInteractable : Interactable
         batteryObject = gameObject;
     }
 
-    public override void Interact(GameObject player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
-        Debug.Log(player.name + " is interacting with object " + batteryObject.name);
+        //Debug.Log(player.name + " is interacting with object " + batteryObject.name);
     }
 
 }
