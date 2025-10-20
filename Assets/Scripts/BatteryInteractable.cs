@@ -20,7 +20,7 @@ public class BatteryInteractable : Interactable
 
     public override void Interact(GameObject player, Item activeItem)
     {
-        Debug.Log(player.name + " is interacting with object " + item.name);
+        Debug.Log(player.name + " is interacting with object " + batteryObject.name);
     }
 
 }
