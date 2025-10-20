@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BatteryInteractable : Item
+public class BatteryInteractable : Interactable
 
 
 {
@@ -18,7 +18,7 @@ public class BatteryInteractable : Item
         batteryObject = gameObject;
     }
 
-    public virtual void Interact(GameObject player, Item activeItem)
+    public override void Interact(GameObject player, Item activeItem)
     {
         Debug.Log(player.name + " is interacting with object " + item.name);
     }
