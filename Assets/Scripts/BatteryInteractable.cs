@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BatteryInteractable : Interactable
+public class BatteryInteractable : Item
 
 
 {
 
     public float chargePercent = 0f;
+    
     public GameObject batteryObject;
-    public LayerMask interactableLayer;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        batteryObject = this.gameObject;
+        batteryObject = gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Interact(GameObject player, Item activeItem)
     {
-        
+        Debug.Log(player.name + " is interacting with object " + item.name);
     }
+
 }
