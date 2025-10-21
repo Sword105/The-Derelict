@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+public enum ItemList
+{
+    Battery,
+    Flashlight,
+    BioTracker,
+    Tazer
+
+}
+
 public class Item : Interactable
 {
     // This has not been finished yet
