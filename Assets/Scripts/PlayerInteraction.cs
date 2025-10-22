@@ -8,8 +8,9 @@ public class PlayerInteraction : MonoBehaviour
 
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
+    
 
-    public List<ItemId> inventory = new List<ItemId>();
+    public List<ItemID> inventory = new List<ItemID>();
 
     //DEPRECATED
     /*
@@ -37,6 +38,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50.0f, interactableLayer))
         {
             objectToInteract = hit.collider.GetComponent<Interactable>();
+            
         }
 
         // If an Interactable object was found, interact with it when you press the Interact key
