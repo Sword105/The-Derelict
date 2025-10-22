@@ -2,21 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+public enum ItemID
+{
+    Flashlight,
+    BioTracker,
+    Tazer,
+    BATTERY
+
+}
+
 public class Item : Interactable
 {
-    // This has not been finished yet
-    // This is only here so I can test the PlayerInteraction script
+    
 
     public AudioClip testSound;
+    public ItemID itemID;
 
     public override void Interact(PlayerInteraction player)
     {
-        if (testSound != null)
+        switch (itemID)
         {
-            AudioManager audioManager = AudioManager.instance;
-            audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+            case ItemID.Flashlight:
+                InteractFlashlight(player); break;
+
+            case ItemID.BATTERY:
+                InteractBattery(player); break;
         }
 
-        Debug.Log("Item detected!");
+
+
+    }
+
+    private void InteractFlashlight(PlayerInteraction player)
+    {
+        Debug.Log("ITEM Tazer HAS BEEN INTERACTED WITH");
+        AudioManager audioManager = AudioManager.instance;
+        audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+    }
+
+    private void InteractBattery(PlayerInteraction player)
+    {
+        Debug.Log("ITEM Battery HAS BEEN INTERACTED WITH");
+        AudioManager audioManager = AudioManager.instance;
+        audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
     }
 }
+
+
