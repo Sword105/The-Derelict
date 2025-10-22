@@ -8,7 +8,8 @@ public enum ItemID
 {
     Flashlight,
     BioTracker,
-    Tazer
+    Tazer,
+    BATTERY
 
 }
 
@@ -25,6 +26,9 @@ public class Item : Interactable
         {
             case ItemID.Flashlight:
                 InteractFlashlight(player); break;
+
+            case ItemID.BATTERY:
+                InteractBattery(player); break;
         }
 
 
@@ -34,6 +38,13 @@ public class Item : Interactable
     private void InteractFlashlight(PlayerInteraction player)
     {
         Debug.Log("ITEM Tazer HAS BEEN INTERACTED WITH");
+        AudioManager audioManager = AudioManager.instance;
+        audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+    }
+
+    private void InteractBattery(PlayerInteraction player)
+    {
+        Debug.Log("ITEM Battery HAS BEEN INTERACTED WITH");
         AudioManager audioManager = AudioManager.instance;
         audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
     }
