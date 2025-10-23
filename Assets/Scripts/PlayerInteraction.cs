@@ -1,8 +1,18 @@
 using System;
 using UnityEngine;
 
+// event integration
+using UnityEngine.Events;
+
 public class PlayerInteraction : MonoBehaviour
 {
+    public class HoveredEvent : UnityEvent<Interactable>
+    {
+        
+    }
+
+    public HoveredEvent ObjectHovered;
+    
     //FYI, "NonSerialized" just hides the variable from the inspector
 
     [NonSerialized] public GameObject player;
@@ -35,6 +45,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50.0f, interactableLayer))
         {
             objectToInteract = hit.collider.GetComponent<Interactable>();
+            ObjectHovered.Invoke(objectToInteract);
         }
 
         // If an Interactable object was found, interact with it when you press the Interact key
