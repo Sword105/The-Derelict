@@ -79,7 +79,11 @@ public class Generator : Interactable
 
         foreach (GameObject obj in linkedObjects)
         {
-           // obj.setActive(true);
+            if (obj != null)
+            {
+                obj.SetActive(true);
+            }
+
         }
 
         Debug.Log("Generator has unlocked linked systems!");
