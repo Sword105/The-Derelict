@@ -15,40 +15,9 @@ public abstract class Interactable : MonoBehaviour
         */
     }
 
-    //DEPRECATED - Same reason as above
-    /*
-    public bool UpdateOutline()
-    {
-        bool isANearestInteractable = false;
-        foreach (PlayerInteraction player in PlayerInfo.listOfPlayers())
-        {
-            if (player.nearestInteractable != null && ReferenceEquals(player.nearestInteractable.gameObject, gameObject))
-            {
-                isANearestInteractable = true;
-                break;
-            }
-        }
-
-        if (isANearestInteractable)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    
-
-    private void Update()
-    {
-        UpdateOutline();
-    }
-    */
-
     //Placeholder method
     //This is meant to be overridden by subclasses of Interactable
-    public virtual void Interact(GameObject player, Transform heldItem)
+    public virtual void Interact(GameObject player, Item activeItem)
     {
         //Debug.Log(player.name + " is interacting with object " + item.name);
     }
