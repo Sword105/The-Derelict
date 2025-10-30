@@ -9,10 +9,12 @@ public class NodeManager : MonoBehaviour
     //The sum of the scores of all the
     public int totalScore = 1;
     
-    void Start()
+    void Awake()
     {
         //Find all the Nodes
         getAllNodes();
+        sumScores();
+        calculateNodesProb();
 
         // Every 10 seconds, sums the scores
         InvokeRepeating("sumScores", 5f, 10f);

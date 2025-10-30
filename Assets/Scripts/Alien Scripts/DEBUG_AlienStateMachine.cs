@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-// THIS SCRIPT IS LIKELY TO BE CHANGED OR MERGED WITH ANOTHER SCRIPT
-// This script is made for the sole purpose of setting up a framework for the alien's state machine, which is most likely going to merge with another script.
+// NOTE: There is a high chance that multiple lines of code will be separated from this script and placed into an "AI Brain" script
 
 public enum AlienState
 {
@@ -18,7 +17,9 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
 {
     [Header("Setup")]
     public Transform player;
+    public NodeManager nodeManager;
     public float lineOfSightAngle;
+    public float minimumThreshold;
     //public float chaseRange = 10f;
     //public float stopDistance = 2f;
     public LayerMask viewLayers;
@@ -44,6 +45,9 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
     // Dot product to see if the player is in line of sight
     [SerializeField] private float lineOfSight;
 
+    // Dot product to see if the player is in line of sight
+    [SerializeField] private Node currentNode;
+
     private NavMeshAgent agent;
 
     private void Start()
@@ -51,6 +55,7 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         initTime = 0;
         currentState = AlienState.SCOUT;
+        currentNode = MostLikelyNode();
     }
 
     private void Update()
@@ -90,18 +95,34 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
 
     public void scoutState()
     {
-        initTime += Time.deltaTime;
-        if (initTime >= 10)
+        if (agent.remainingDistance < 1)
+            initTime += Time.deltaTime;
+
+        if (initTime >= 5)
         {
             // If more than one node after the initial node has been scouted (in other words, after you scout your 3rd node)
             if (consecutiveScoutCount > 1) 
             {
                 Debug.Log("Go to any random node on the map");
+
+                currentNode = MostLikelyNode();
+                agent.SetDestination(currentNode.transform.position);
                 consecutiveScoutCount = 0;
             }
             else
             {
-                Debug.Log("Go to a different, nearby node");
+                Debug.Log("Go to a different point within the node's radius");
+
+                Vector3 randomPoint = currentNode.transform.position + (Random.insideUnitSphere * currentNode.range);
+                NavMeshHit hit;
+                while (!NavMesh.SamplePosition(randomPoint, out hit, currentNode.range, 1) 
+                    || Vector3.Distance(agent.transform.position, hit.position) < currentNode.range)
+                {
+                    randomPoint = currentNode.transform.position + (Random.insideUnitSphere * currentNode.range);
+                }
+
+                agent.SetDestination(hit.position);
+
                 consecutiveScoutCount++;
             }
 
@@ -158,9 +179,12 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
         if (initTime > 5)
         {
             Debug.Log("Lost line of sight for more than 5 seconds, returning to scouting");
-            agent.ResetPath();
             initTime = 0;
             currentState = AlienState.SCOUT;
+
+            currentNode = MostLikelyNode();
+            agent.SetDestination(currentNode.transform.position);
+            consecutiveScoutCount = 0;
         }
         else
         {
@@ -168,13 +192,29 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    // Uses the "Roulette Wheel Selection" algorithm to calculate a node to go to
+    // Don't ask me how it works unless you want gaps in your teeth
+    private Node MostLikelyNode()
     {
-        /*
-        // Gizmo for visualizing max distance for the alien to chase the player
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, chaseRange);
-        */
+        List<Node> allNodes = nodeManager.nodeList;
+
+        // Make a new array to set cumulative probability values
+        double[] cumulativeProbabilities = new double[allNodes.Count];
+        cumulativeProbabilities[0] = allNodes[0].nodeProbability;
+        for (int i = 1; i < cumulativeProbabilities.Length; i++)
+        {
+            cumulativeProbabilities[i] = cumulativeProbabilities[i - 1] + allNodes[i].nodeProbability;
+        }
+
+        float valueToFind = Random.Range(0f, 1f);
+
+        for (int i = 0; i < cumulativeProbabilities.Length; i++)
+        {
+            if (valueToFind <= cumulativeProbabilities[i])
+                return nodeManager.nodeList[i];
+        }
+
+        return nodeManager.nodeList[0];
     }
 
     void OnDrawGizmos()
@@ -193,6 +233,9 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
             Gizmos.color = Color.red;
         }
         Gizmos.DrawLine(transform.position, player.transform.position);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(currentNode.transform.position, Vector3.one * 2);
     }
 }
 
