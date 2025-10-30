@@ -25,6 +25,7 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
     //public float chaseRange = 10f;
     //public float stopDistance = 2f;
     public LayerMask viewLayers;
+    public LayerMask nodeLayer;
 
     /*
      * This variable is specifically here to allow you to tweak how much the alien prefers to visit highly probable nodes.
@@ -57,8 +58,11 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
     // Dot product to see if the player is in line of sight
     [SerializeField] private float lineOfSight;
 
-    // Dot product to see if the player is in line of sight
+    // Current node that the alien is exploring
     [SerializeField] private Node currentNode;
+
+    // List of nodes that the alien will ignore during the suspicious state
+    [SerializeField] private List<GameObject> nodesToIgnore;
 
     private NavMeshAgent agent;
 
@@ -103,51 +107,8 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
                 chaseState();
                 break;
         }
-    }
 
-    public void scoutState()
-    {
-        if (agent.remainingDistance < 1)
-            initTime += Time.deltaTime;
-
-        if (initTime >= 5)
-        {
-            // If more than one node after the initial node has been scouted (in other words, after you scout your 3rd node)
-            if (consecutiveScoutCount > 1) 
-            {
-                Debug.Log("Go to any random node on the map");
-
-                currentNode = MostLikelyNode();
-                agent.SetDestination(currentNode.transform.position);
-                consecutiveScoutCount = 0;
-            }
-            else
-            {
-                Debug.Log("Go to a different point within the node's radius");
-
-                Vector3 randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * currentNode.range);
-                NavMeshHit hit;
-                while (!NavMesh.SamplePosition(randomPoint, out hit, currentNode.range, 1) 
-                    || Vector3.Distance(agent.transform.position, hit.position) < currentNode.range)
-                {
-                    randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * currentNode.range);
-                }
-
-                agent.SetDestination(hit.position);
-
-                consecutiveScoutCount++;
-            }
-
-            initTime = 0;
-        }
-
-        if (isSuspicious) // If the alien finds something suspicious (maybe an event) then it will start doing suspicion logic
-        {
-            Debug.Log("Suspicious activity detected, investigating");
-            initTime = 0;
-            currentState = AlienState.SUSPICIOUS;
-        }
-
+        // This will happen in any state, so I am placing this here
         if (canSeePlayer && lineOfSight > lineOfSightAngle)
         {
             Debug.Log("Player within line of sight, now chasing");
@@ -157,15 +118,97 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
         }
     }
 
+    public void scoutState()
+    {
+        /*
+        if (agent.remainingDistance < 1)
+            initTime += Time.deltaTime;
+        
+        if (initTime >= 5)
+        {
+            // If more than one node after the initial node has been scouted (in other words, after you scout your 3rd node)
+            if (consecutiveScoutCount > 1) 
+            {
+                Debug.Log("Go to any random node on the map");
+                currentNode = MostLikelyNode();
+                consecutiveScoutCount = 0;
+            }
+            else
+            {
+                Debug.Log("Go to a different point within the node's radius");
+                consecutiveScoutCount++;
+            }
+
+            agent.SetDestination(RandomPositionAtNode(currentNode));
+            initTime = 0;
+        }
+        */
+
+        if (agent.remainingDistance < 1)
+        {
+            currentNode = MostLikelyNode();
+            agent.SetDestination(RandomPositionAtCurrentNode(currentNode.range));
+            initTime = 0;
+        }
+
+        // NOTE: The Input condition is merely a placeholder
+        if (/*isSuspicious*/ Input.GetKeyDown(KeyCode.F8)) // If the alien finds something suspicious (maybe an event) then it will start doing suspicion logic
+        {
+            Debug.Log("Suspicious activity detected, investigating");
+
+            initTime = 0;
+            currentNode = MostLikelyNode();
+            agent.SetDestination(currentNode.transform.position);
+
+            nodesToIgnore = new List<GameObject>();
+            currentState = AlienState.SUSPICIOUS;
+        }
+    }
+
     public void susState()
     {
         // Get a queue of suspicious activity (this ensures that the alien STAYS in the suspicious state when a different event happens while it is already investigating something
         // If the queue empties, go back to scouting
-        Debug.Log("Observing suspicious activity");
 
         // This is a placeholder for now
         initTime += Time.deltaTime;
-        if (initTime >= 20)
+
+        if (agent.remainingDistance < 1)
+        {
+            // Find an adjacent node that has a higher probability and that you haven't explored yet
+            Collider[] nearbyNodes = Physics.OverlapSphere(currentNode.transform.position, 20f, nodeLayer);
+
+            Node nextNodeToFollow = null;
+            float shortestDistance = 100f;
+            double maxNodeProbability = 0;
+            foreach (Collider collider in nearbyNodes)
+            {
+                Node node = collider.GetComponent<Node>();
+
+                RaycastHit hit;
+                if (!nodesToIgnore.Contains(node.gameObject))
+                {
+                    if (node.nodeProbability > maxNodeProbability)
+                    {
+                        nextNodeToFollow = node;
+                        maxNodeProbability = node.nodeProbability;
+                    }
+                    else if (node.nodeProbability == maxNodeProbability && Vector3.Distance(node.transform.position, agent.transform.position) < shortestDistance)
+                    {
+                        shortestDistance = Vector3.Distance(node.transform.position, agent.transform.position);
+                        nextNodeToFollow = node;
+                        maxNodeProbability = node.nodeProbability;
+                    }
+                }
+            }
+
+            Debug.Log(nextNodeToFollow.name);
+            nodesToIgnore.Add(currentNode.gameObject);
+            currentNode = nextNodeToFollow;
+            agent.SetDestination(currentNode.transform.position);
+        }
+
+        if (initTime >= 30)
         {
             Debug.Log("No more suspicious activity, scouting once again");
             isSuspicious = false;
@@ -229,6 +272,19 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
         return nodeManager.nodeList[0];
     }
 
+    private Vector3 RandomPositionAtCurrentNode(float range)
+    {
+        Vector3 randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * range);
+        NavMeshHit hit;
+        while (!NavMesh.SamplePosition(randomPoint, out hit, range, 1)
+            || Vector3.Distance(agent.transform.position, hit.position) < range)
+        {
+            randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * range);
+        }
+
+        return hit.position;
+    }
+
     void OnDrawGizmos()
     {
         // Gizmo for visualizing the forward vector of the alien
@@ -247,7 +303,8 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
         Gizmos.DrawLine(transform.position, player.transform.position);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(currentNode.transform.position, Vector3.one * 2);
+        if (currentNode != null)
+            Gizmos.DrawCube(currentNode.transform.position, Vector3.one * 2);
 
         /*
         Gizmos.color = Color.blue;
