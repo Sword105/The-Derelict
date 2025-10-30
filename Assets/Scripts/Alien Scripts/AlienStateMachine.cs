@@ -264,7 +264,8 @@ public class AlienStateMachine : MonoBehaviour
         {
             Gizmos.color = Color.red;
         }
-        Gizmos.DrawLine(transform.position, player.transform.position);
+        if (player != null)
+            Gizmos.DrawLine(transform.position, player.transform.position);
 
         Gizmos.color = Color.yellow;
         if (currentNode != null)
