@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,8 +26,18 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
     //public float stopDistance = 2f;
     public LayerMask viewLayers;
 
-    // NOTE: lineOfSightAngle is a range that goes from -1 for completely behind the alien, 0 for perpendicular to the alien, 1 for perfectly in front of the alien, and everything in between
+    /*
+     * This variable is specifically here to allow you to tweak how much the alien prefers to visit highly probable nodes.
+     * A temperature of one means that nodes are chosen specifically on their likelihood.
+     * A temperature of less than one means that higher probabilities get more preferred than lower probabilities.
+     * A temperature of more than one means the lower probabilities get preferred more than high probabilities.
+     * 
+     * This cannot be zero or any number below. It must strictly be a positive number.
+     */
+    [Min(0.001f)]
+    public float temperature = 1f;
 
+    // NOTE: lineOfSightAngle is a range that goes from -1 for completely behind the alien, 0 for perpendicular to the alien, 1 for perfectly in front of the alien, and everything in between
     [Header("DEBUG")]
     public AlienState currentState;
 
@@ -113,12 +125,12 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
             {
                 Debug.Log("Go to a different point within the node's radius");
 
-                Vector3 randomPoint = currentNode.transform.position + (Random.insideUnitSphere * currentNode.range);
+                Vector3 randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * currentNode.range);
                 NavMeshHit hit;
                 while (!NavMesh.SamplePosition(randomPoint, out hit, currentNode.range, 1) 
                     || Vector3.Distance(agent.transform.position, hit.position) < currentNode.range)
                 {
-                    randomPoint = currentNode.transform.position + (Random.insideUnitSphere * currentNode.range);
+                    randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * currentNode.range);
                 }
 
                 agent.SetDestination(hit.position);
@@ -200,13 +212,13 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
 
         // Make a new array to set cumulative probability values
         double[] cumulativeProbabilities = new double[allNodes.Count];
-        cumulativeProbabilities[0] = allNodes[0].nodeProbability;
+        cumulativeProbabilities[0] = Math.Pow(allNodes[0].nodeProbability, 1 / temperature);
         for (int i = 1; i < cumulativeProbabilities.Length; i++)
         {
             cumulativeProbabilities[i] = cumulativeProbabilities[i - 1] + allNodes[i].nodeProbability;
         }
 
-        float valueToFind = Random.Range(0f, 1f);
+        float valueToFind = UnityEngine.Random.Range(0f, 1f);
 
         for (int i = 0; i < cumulativeProbabilities.Length; i++)
         {
@@ -236,6 +248,13 @@ public class DEBUG_AlienStateMachine : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawCube(currentNode.transform.position, Vector3.one * 2);
+
+        /*
+        Gizmos.color = Color.blue;
+        NavMeshHit hit;
+        NavMesh.FindClosestEdge(transform.position, out hit, 1);
+        Gizmos.DrawRay(new Ray(hit.position, hit.normal));
+        */
     }
 }
 
