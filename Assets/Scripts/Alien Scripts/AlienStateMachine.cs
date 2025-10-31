@@ -269,7 +269,10 @@ public class AlienStateMachine : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         if (currentNode != null)
+        {
             Gizmos.DrawCube(currentNode.transform.position, Vector3.one * 2);
+            //Gizmos.DrawWireSphere(currentNode.transform.position, currentNode.range + 10f);
+        }
     }
 }
 

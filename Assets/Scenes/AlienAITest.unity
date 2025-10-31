@@ -5045,7 +5045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8711953140675184443, guid: 6abe496c2b2ccb54084ddce3cda10e35, type: 3}
       propertyPath: range
-      value: 5
+      value: 5.52
       objectReference: {fileID: 0}
     - target: {fileID: 8711953140675184443, guid: 6abe496c2b2ccb54084ddce3cda10e35, type: 3}
       propertyPath: player
