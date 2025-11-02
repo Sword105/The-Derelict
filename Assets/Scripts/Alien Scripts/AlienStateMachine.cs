@@ -36,9 +36,6 @@ public class AlienStateMachine : MonoBehaviour
     [Min(0.001f)]
     public float temperature = 1f;
 
-    // Enable the experimental smoothing algorithm for the pathfinding (WIP)
-    public bool enableExperimentalPathSmoothing = false;
-
     /*********************************************************************************************************************/
 
     private Transform player;
@@ -68,9 +65,6 @@ public class AlienStateMachine : MonoBehaviour
     // List of points that the alien will travel through
     [SerializeField] private Queue<Vector3> pointsToFollow;
 
-    // Point that the alien will move to
-    private Vector3 currentDestination;
-
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -83,6 +77,9 @@ public class AlienStateMachine : MonoBehaviour
 
         nodesToIgnore = new List<GameObject>();
         pointsToFollow = new Queue<Vector3>();
+
+        // This code is to enable manual control as to how the agent visually rotates
+        agent.updateRotation = false;
     }
 
     private void Update()
@@ -114,6 +111,10 @@ public class AlienStateMachine : MonoBehaviour
                 chaseState();
                 break;
         }
+
+        // Manually set the rotation of the alien to its velocity (I didn't like how the NavMeshAgent smooths out the rotation)
+        if (agent.velocity != Vector3.zero)
+            transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(agent.velocity), 20f * Time.deltaTime).eulerAngles.y, 0);
     }
 
     public void scoutState()
@@ -121,7 +122,7 @@ public class AlienStateMachine : MonoBehaviour
         // If the alien reaches its destination, find a new node to explore based on where the player would most likely be
         NavMeshHit hit;
         NavMesh.SamplePosition(agent.transform.position, out hit, 10, 1);
-        if ((enableExperimentalPathSmoothing && (Vector3.Distance(hit.position, currentDestination) <= agent.stoppingDistance || currentDestination.Equals(Vector3.zero))) || (!enableExperimentalPathSmoothing && agent.remainingDistance <= agent.stoppingDistance))
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (pointsToFollow.Count == 0)
             {
@@ -135,26 +136,7 @@ public class AlienStateMachine : MonoBehaviour
             }
             else
             {
-                if (enableExperimentalPathSmoothing)
-                {
-                    currentDestination = pointsToFollow.Dequeue();
-                }
-                else
-                {
-                    agent.SetDestination(pointsToFollow.Dequeue());
-                }
-            }
-
-        }
-        else
-        {
-            if (enableExperimentalPathSmoothing)
-            {
-                agent.Move(transform.forward * Mathf.Lerp(0.5f, agent.speed, Mathf.Clamp01(Vector3.Dot(transform.forward, currentDestination - transform.position))) * Time.deltaTime);
-                // agent.Move(transform.forward * Mathf.Pow(Mathf.Pow(2, Mathf.Clamp01(Vector3.Dot(transform.forward, currentDestination - transform.position))) - 1, 10f) * agent.speed * Time.deltaTime);
-
-                // WHAT DEMON SPAWNED THIS LINE OF CODE
-                agent.transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(currentDestination - transform.position), 5f * Time.deltaTime).eulerAngles.y, 0);
+                agent.SetDestination(pointsToFollow.Dequeue());
             }
         }
 
@@ -183,7 +165,7 @@ public class AlienStateMachine : MonoBehaviour
         // If the alien reaches its destination, find an adjacent node to explore that you haven't visited yet
         NavMeshHit hit;
         NavMesh.SamplePosition(agent.transform.position, out hit, 10, 1);
-        if ((enableExperimentalPathSmoothing && (Vector3.Distance(hit.position, currentDestination) <= agent.stoppingDistance || currentDestination.Equals(Vector3.zero))) || (!enableExperimentalPathSmoothing && agent.remainingDistance <= agent.stoppingDistance))
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (pointsToFollow.Count == 0)
             {
@@ -203,25 +185,7 @@ public class AlienStateMachine : MonoBehaviour
             }
             else
             {
-                if (enableExperimentalPathSmoothing)
-                {
-                    currentDestination = pointsToFollow.Dequeue();
-                }
-                else
-                {
-                    agent.SetDestination(pointsToFollow.Dequeue());
-                }
-            }
-        }
-        else
-        {
-            if (enableExperimentalPathSmoothing)
-            {
-                agent.Move(transform.forward * Mathf.Lerp(0.5f, agent.speed, Mathf.Clamp01(Vector3.Dot(transform.forward, currentDestination - transform.position))) * Time.deltaTime);
-                // agent.Move(transform.forward * Mathf.Pow(Mathf.Pow(2, Mathf.Clamp01(Vector3.Dot(transform.forward, currentDestination - transform.position))) - 1, 10f) * agent.speed * Time.deltaTime);
-
-                // WHAT DEMON SPAWNED THIS LINE OF CODE
-                agent.transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(currentDestination - transform.position), 5f * Time.deltaTime).eulerAngles.y, 0);
+                agent.SetDestination(pointsToFollow.Dequeue());
             }
         }
 
@@ -269,8 +233,7 @@ public class AlienStateMachine : MonoBehaviour
                 pointsToFollow.Enqueue(point);
             }
 
-            agent.ResetPath();
-            currentDestination = pointsToFollow.Dequeue();
+            agent.SetDestination(pointsToFollow.Dequeue());
         }
         else
         {
@@ -319,7 +282,7 @@ public class AlienStateMachine : MonoBehaviour
                     pointsToFollow.Enqueue(point);
                 }
 
-                currentDestination = pointsToFollow.Dequeue();
+                agent.SetDestination(pointsToFollow.Dequeue());
                 currentState = AlienState.SUSPICIOUS;
             }
         }

@@ -919,14 +919,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   temperature: 0.3
-  enableExperimentalPathSmoothing: 0
   currentState: 0
   initTime: 0
   canSeePlayer: 0
   lineOfSight: 0.7
   currentNode: {fileID: 0}
   nodesToIgnore: []
-  currentDestination: {x: 0, y: 0, z: 0}
 --- !u!54 &415131682
 Rigidbody:
   m_ObjectHideFlags: 0
