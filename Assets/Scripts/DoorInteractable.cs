@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class DoorInteractable : Interactable
 {
-    [SerializeField] public GameObject doorObject;
-    [SerializeField] public bool IsOpen = false; 
+    public GameObject doorObject;
+    public bool IsOpen = false;
+    public bool poweredOn = true;
     public override void Interact(GameObject player, Item activeItem)
     {
         Debug.Log(player.name + " is interacting with door " + gameObject.name);
 
-        IsOpen = !IsOpen;
-        GetComponentInChildren<Animator>().SetBool("IsOpen", IsOpen);
+        if (poweredOn)
+        {
+            IsOpen = !IsOpen;
+            GetComponentInChildren<Animator>().SetBool("IsOpen", IsOpen);
+            Debug.Log("The door is powered off and cannot be opened.");
+            return;
+        }
 
         // if (!isClosed)
         // {
