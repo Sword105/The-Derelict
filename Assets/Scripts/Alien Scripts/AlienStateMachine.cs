@@ -62,6 +62,9 @@ public class AlienStateMachine : MonoBehaviour
     // List of nodes that the alien will ignore during the suspicious state
     [SerializeField] private List<GameObject> nodesToIgnore;
 
+    // List of points that the alien will travel through
+    [SerializeField] private Queue<Vector3> pointsToFollow;
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -71,6 +74,12 @@ public class AlienStateMachine : MonoBehaviour
         initTime = 0;
         currentState = AlienState.SCOUT;
         currentNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
+
+        nodesToIgnore = new List<GameObject>();
+        pointsToFollow = new Queue<Vector3>();
+
+        // This code is to enable manual control as to how the agent visually rotates
+        agent.updateRotation = false;
     }
 
     private void Update()
@@ -102,16 +111,33 @@ public class AlienStateMachine : MonoBehaviour
                 chaseState();
                 break;
         }
+
+        // Manually set the rotation of the alien to its velocity (I didn't like how the NavMeshAgent smooths out the rotation)
+        if (agent.velocity != Vector3.zero)
+            transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(agent.velocity), 20f * Time.deltaTime).eulerAngles.y, 0);
     }
 
     public void scoutState()
     {
         // If the alien reaches its destination, find a new node to explore based on where the player would most likely be
+        NavMeshHit hit;
+        NavMesh.SamplePosition(agent.transform.position, out hit, 10, 1);
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            currentNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
-            agent.SetDestination(RandomPositionAtCurrentNode(currentNode.range));
-            initTime = 0;
+            if (pointsToFollow.Count == 0)
+            {
+                currentNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
+                List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+
+                foreach (Vector3 point in newPath)
+                {
+                    pointsToFollow.Enqueue(point);
+                }
+            }
+            else
+            {
+                agent.SetDestination(pointsToFollow.Dequeue());
+            }
         }
 
         // NOTE: The Input condition is merely a placeholder
@@ -122,9 +148,13 @@ public class AlienStateMachine : MonoBehaviour
             initTime = 0;
             currentNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
             agent.SetDestination(currentNode.transform.position);
-
-            nodesToIgnore = new List<GameObject>();
             currentState = AlienState.SUSPICIOUS;
+
+            // Clears all ignored nodes from the previous suspicious state
+            nodesToIgnore.Clear();
+
+            // Clears all nodes from the scout state
+            pointsToFollow.Clear();
         }
     }
 
@@ -133,11 +163,30 @@ public class AlienStateMachine : MonoBehaviour
         initTime += Time.deltaTime;
 
         // If the alien reaches its destination, find an adjacent node to explore that you haven't visited yet
+        NavMeshHit hit;
+        NavMesh.SamplePosition(agent.transform.position, out hit, 10, 1);
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            Node nextNodeToExplore = AlienBrain.PickAdjacentNodeToExplore(currentNode, nodeLayer, nodesToIgnore);
-            currentNode = nextNodeToExplore;
-            agent.SetDestination(currentNode.transform.position);
+            if (pointsToFollow.Count == 0)
+            {
+                Node nextNodeToExplore = AlienBrain.PickAdjacentNodeToExplore(currentNode, nodeLayer, nodesToIgnore);
+                currentNode = nextNodeToExplore;
+                List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+
+                foreach (Vector3 point in newPath)
+                {
+                    pointsToFollow.Enqueue(point);
+                }
+
+                for (int i = 1; i < newPath.Count; i++)
+                {
+                    Debug.DrawLine(newPath[i - 1], newPath[i], Color.red, 10f);
+                }
+            }
+            else
+            {
+                agent.SetDestination(pointsToFollow.Dequeue());
+            }
         }
 
         // If more than 30 seconds pass without the alien finding the player, go back to regular scouting
@@ -146,6 +195,12 @@ public class AlienStateMachine : MonoBehaviour
             Debug.Log("No more suspicious activity, scouting once again");
             initTime = 0;
             currentState = AlienState.SCOUT;
+
+            // Clears all ignored nodes from the previous suspicious state
+            nodesToIgnore.Clear();
+
+            // Clears all nodes from the scout state
+            pointsToFollow.Clear();
         }
     }
 
@@ -169,7 +224,16 @@ public class AlienStateMachine : MonoBehaviour
             currentState = AlienState.SUSPICIOUS;
 
             currentNode = ClosestNodeToPoint(player.position);
-            agent.SetDestination(RandomPositionAtCurrentNode(currentNode.range));
+            nodesToIgnore.Clear();
+            pointsToFollow.Clear();
+
+            List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+            foreach (Vector3 point in newPath)
+            {
+                pointsToFollow.Enqueue(point);
+            }
+
+            agent.SetDestination(pointsToFollow.Dequeue());
         }
         else
         {
@@ -180,12 +244,12 @@ public class AlienStateMachine : MonoBehaviour
     // Returns a random position around a node to keep pathfinding a bit more interesting
     private Vector3 RandomPositionAtCurrentNode(float range)
     {
-        Vector3 randomPoint = currentNode.transform.position + (Random.insideUnitSphere * range);
+        Vector3 randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * range);
         NavMeshHit hit;
         while (!NavMesh.SamplePosition(randomPoint, out hit, range, 1)
             || Vector3.Distance(agent.transform.position, hit.position) < range)
         {
-            randomPoint = currentNode.transform.position + (Random.insideUnitSphere * range);
+            randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * range);
         }
 
         return hit.position;
@@ -197,8 +261,11 @@ public class AlienStateMachine : MonoBehaviour
         // Check that the alien has direct line of sight and isn't currently chasing anyone
         if (canSeePlayer && lineOfSight > lineOfSightThreshold && currentState != AlienState.CHASE)
         {
+            nodesToIgnore.Clear();
+            pointsToFollow.Clear();
+
             initTime = 0;
-            if (Vector3.Distance(transform.position, player.position) < 20f)
+            if (Vector3.Distance(transform.position, player.position) < 15f)
             {
                 // If the player is too close to the player, begin chasing them.
                 Debug.Log("Player was definitely seen. Alien is now chasing.");
@@ -208,9 +275,14 @@ public class AlienStateMachine : MonoBehaviour
             {
                 // Explore the area where the alien thinks the player is
                 currentNode = ClosestNodeToPoint(player.position);
-                agent.SetDestination(currentNode.transform.position);
+                List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
 
-                nodesToIgnore = new List<GameObject>();
+                foreach (Vector3 point in newPath)
+                {
+                    pointsToFollow.Enqueue(point);
+                }
+
+                agent.SetDestination(pointsToFollow.Dequeue());
                 currentState = AlienState.SUSPICIOUS;
             }
         }
@@ -249,6 +321,42 @@ public class AlienStateMachine : MonoBehaviour
         return closestNode;
     }
 
+    private List<Vector3> CalculatePaddedPathToNode(Node currentNode)
+    {
+        // Calculate a regular path to the node
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(RandomPositionAtCurrentNode(currentNode.range), path);
+
+        // Make a copy of that path (since we cannot NavMeshPaths directly)
+        List<Vector3> newPath = new List<Vector3>(path.corners);
+
+        for (int i = 1; i < newPath.Count; i++)
+        {
+            Debug.DrawLine(newPath[i - 1], newPath[i], Color.red, 20f);
+        }
+        newPath.RemoveAt(0);
+
+        // Modify the copy, pushing the points away from the edge of the NavMesh if they are too close
+        for (int i = 0; i < path.corners.Length - 1; i++)
+        {
+            NavMeshHit edge;
+            NavMesh.FindClosestEdge(newPath[i], out edge, 1);
+            bool isBlocked = false; 
+            if (i > 0)
+                NavMesh.Raycast(newPath[i - 1], newPath[i] + (edge.normal * (3f / Mathf.Clamp(Vector3.Distance(edge.position, newPath[i]), 1f, 3f))), out NavMeshHit hit, 1);
+
+            if (Vector3.Distance(edge.position, newPath[i]) < 3f && !isBlocked)
+            {
+                newPath[i] += edge.normal * (3f / Mathf.Clamp(Vector3.Distance(edge.position, newPath[i]), 1f, 3f));
+            }
+
+            if (i > 0)
+                Debug.DrawLine(newPath[i - 1], newPath[i], Color.green, 20f);
+        }
+
+        return newPath;
+    }
+
     void OnDrawGizmos()
     {
         // Gizmo for visualizing the forward vector of the alien
@@ -269,7 +377,10 @@ public class AlienStateMachine : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         if (currentNode != null)
+        {
             Gizmos.DrawCube(currentNode.transform.position, Vector3.one * 2);
+            //Gizmos.DrawWireSphere(currentNode.transform.position, currentNode.range + 10f);
+        }
     }
 }
 
