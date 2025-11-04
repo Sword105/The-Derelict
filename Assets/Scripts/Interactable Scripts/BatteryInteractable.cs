@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BatteryInteractable : Interactable
-
-
 {
+    /*
 
     public float chargePercent = 0f;
 
@@ -76,5 +75,6 @@ public class BatteryInteractable : Interactable
             Debug.Log("No batteries in inventory to use for generator.");
         }
     }
+    */
 
 }

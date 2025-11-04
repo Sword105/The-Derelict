@@ -4,8 +4,12 @@ using UnityEngine;
 
 
 
+
+
 public enum ItemID
 {
+    None,
+    MultiTool,
     Flashlight,
     BioTracker,
     Tazer,
@@ -14,8 +18,11 @@ public enum ItemID
 }
 
 public class Item : Interactable
+
 {
-    
+
+    public PlayerInteraction playerInteraction;
+
 
     public AudioClip testSound;
     public ItemID itemID;
@@ -24,11 +31,17 @@ public class Item : Interactable
     {
         switch (itemID)
         {
+            case ItemID.MultiTool:
+                InteractMultiTool(player); 
+                break;
+
             case ItemID.Flashlight:
                 InteractFlashlight(player); 
                 break;
 
             case ItemID.BioTracker:
+                InteractBioTracker(player); 
+                break;
                 
         }
 
@@ -36,16 +49,23 @@ public class Item : Interactable
 
     }
 
-    private void InteractFlashlight(PlayerInteraction player)
+    private void InteractMultiTool(PlayerInteraction player)
     {
-        Debug.Log("ITEM flashlight HAS BEEN INTERACTED WITH");
-        AudioManager audioManager = AudioManager.instance;
-        audioManager.PlaySoundFX(testSound, transform.position, 1.0f);   
+        Debug.Log("ITEM multitool HAS BEEN INTERACTED WITH");
+        playerInteraction.hasMultiTool = true;
+        Debug.Log("HasMMT set to true");
+        
     }
 
-    private void InteractBattery(PlayerInteraction player)
+    private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true and add to MTT
     {
-        Debug.Log("ITEM Battery HAS BEEN INTERACTED WITH");
+        Debug.Log("ITEM flashlight HAS BEEN INTERACTED WITH");
+        
+    }
+
+    private void InteractBioTracker(PlayerInteraction player)
+    {
+        Debug.Log("ITEM BioTracker HAS BEEN INTERACTED WITH");
         AudioManager audioManager = AudioManager.instance;
         audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
     }
