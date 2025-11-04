@@ -135,9 +135,15 @@ public class AlienStateMachine : MonoBehaviour
         {
             if (pointsToFollow.Count == 0)
             {
-                currentNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
-                List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+                // If you get the same node, try again for a different one
+                Node newNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
+                while (newNode == currentNode)
+                {
+                    newNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
+                }
+                currentNode = newNode;
 
+                List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
                 foreach (Vector3 point in newPath)
                 {
                     pointsToFollow.Enqueue(point);
@@ -147,23 +153,6 @@ public class AlienStateMachine : MonoBehaviour
             {
                 agent.SetDestination(pointsToFollow.Dequeue());
             }
-        }
-
-        // NOTE: The Input condition is merely a placeholder
-        if (Input.GetKeyDown(KeyCode.F8))
-        {
-            Debug.Log("Suspicious activity detected, investigating");
-
-            initTime = 0;
-            currentNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
-            agent.SetDestination(currentNode.transform.position);
-            currentState = AlienState.SUSPICIOUS;
-
-            // Clears all ignored nodes from the previous suspicious state
-            nodesToIgnore.Clear();
-
-            // Clears all nodes from the scout state
-            pointsToFollow.Clear();
         }
     }
 
