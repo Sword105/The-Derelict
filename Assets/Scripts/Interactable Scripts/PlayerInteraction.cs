@@ -13,6 +13,7 @@ public class PlayerInteraction : MonoBehaviour
     public List<ItemID> inventory = new List<ItemID>();
     [SerializeField] public Boolean hasMultiTool = false;
 
+
     //DEPRECATED
     /*
     public void OnInteract(InputAction.CallbackContext context)
@@ -48,10 +49,11 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
             objectToInteract.Interact(player.GetComponent<PlayerInteraction>());
 
-            if(TryGetComponent<Item>(out Item item))
+            if(objectToInteract.TryGetComponent<Item>(out Item item))
             {
                 Debug.Log("TRYING TO DESTROY ITEM");
-                Destroy(objectToInteract);
+                Destroy(objectToInteract.gameObject);
+                
             }
             
         }

@@ -66,8 +66,7 @@ public class Item : Interactable
     private void InteractBioTracker(PlayerInteraction player)
     {
         Debug.Log("ITEM BioTracker HAS BEEN INTERACTED WITH");
-        AudioManager audioManager = AudioManager.instance;
-        audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+        
     }
 
     //:3
