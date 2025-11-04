@@ -37,6 +37,15 @@ public class AlienStateMachine : MonoBehaviour
     public float temperature = 1f;
 
     /*********************************************************************************************************************/
+    
+    [Header("Path Padding")]
+
+    [Min(0f)] 
+    public float maxPathPadding = 3f;
+    [Min(0f)] 
+    public float minPathPadding = 1f;
+
+    /*********************************************************************************************************************/
 
     private Transform player;
     private NodeManager nodeManager;
@@ -341,13 +350,10 @@ public class AlienStateMachine : MonoBehaviour
         {
             NavMeshHit edge;
             NavMesh.FindClosestEdge(newPath[i], out edge, 1);
-            bool isBlocked = false; 
-            if (i > 0)
-                NavMesh.Raycast(newPath[i - 1], newPath[i] + (edge.normal * (3f / Mathf.Clamp(Vector3.Distance(edge.position, newPath[i]), 1f, 3f))), out NavMeshHit hit, 1);
 
-            if (Vector3.Distance(edge.position, newPath[i]) < 3f && !isBlocked)
+            if (Vector3.Distance(edge.position, newPath[i]) < maxPathPadding)
             {
-                newPath[i] += edge.normal * (3f / Mathf.Clamp(Vector3.Distance(edge.position, newPath[i]), 1f, 3f));
+                newPath[i] += edge.normal * (maxPathPadding / Mathf.Clamp(Vector3.Distance(edge.position, newPath[i]), minPathPadding, maxPathPadding));
             }
 
             if (i > 0)

@@ -152,6 +152,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   temperature: 0.3
+  maxPathPadding: 3
+  minPathPadding: 1
   currentState: 0
   initTime: 0
   canSeePlayer: 0
