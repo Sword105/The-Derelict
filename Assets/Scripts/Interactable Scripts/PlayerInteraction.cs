@@ -14,18 +14,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] public Boolean hasMultiTool = false;
 
 
-    //DEPRECATED
-    /*
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isInteracting = true;
-        }
-        //Debug.Log(isInteracting);
-    }
-    */
-
     private void Start()
     {
         player = gameObject;
@@ -53,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 Debug.Log("TRYING TO DESTROY ITEM");
                 Destroy(objectToInteract.gameObject);
-                
+                Debug.Log("Current ItemID added to inv: " + inventory[(inventory.Count - 1)]);
             }
             
         }

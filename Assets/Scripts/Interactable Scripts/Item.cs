@@ -13,7 +13,6 @@ public enum ItemID
     Flashlight,
     BioTracker,
     Tazer,
-    BATTERY,
 
 }
 
@@ -40,9 +39,12 @@ public class Item : Interactable
                 break;
 
             case ItemID.BioTracker:
-                InteractBioTracker(player); 
+                InteractBioTracker(player);
                 break;
-                
+            case ItemID.Tazer:
+                InteractTazer(player);
+                break;
+
         }
 
 
@@ -60,18 +62,28 @@ public class Item : Interactable
     private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true and add to MTT
     {
         Debug.Log("ITEM flashlight HAS BEEN INTERACTED WITH");
+        playerInteraction.inventory.Add(itemID);
         
     }
 
     private void InteractBioTracker(PlayerInteraction player)
     {
         Debug.Log("ITEM BioTracker HAS BEEN INTERACTED WITH");
-        
+        playerInteraction.inventory.Add(itemID);
+
     }
 
+    private void InteractTazer(PlayerInteraction player)
+    {
+        Debug.Log("ITEM Tazer HAS BEEN INTERACTED WITH");
+        playerInteraction.inventory.Add(itemID);
+
+    }
+
+
     //:3
-    
-    
+
+
 }
 
 
