@@ -14,7 +14,7 @@ public class Item : Interactable
         if (testSound != null)
         {
             AudioManager audioManager = AudioManager.instance;
-            audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+            audioManager.PlaySoundFX(testSound, transform.position, 1.0f, false);
         }
 
         Debug.Log("Item detected!");
