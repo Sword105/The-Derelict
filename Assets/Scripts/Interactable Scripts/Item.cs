@@ -59,26 +59,25 @@ public class Item : Interactable
         
     }
 
-    private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true and add to MTT
+    private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true
     {
-        Debug.Log("ITEM flashlight HAS BEEN INTERACTED WITH");
-        player.hasFlashlight = true;
-        inventory.AddItemToMultiTool(itemID);
 
+        player.hasFlashlight = true;
 
     }
 
     private void InteractBioTracker(PlayerInteraction player)
     {
-        Debug.Log("ITEM BioTracker HAS BEEN INTERACTED WITH");
-        inventory.AddItemToMultiTool(itemID);
+        
+        player.hasBiotracker = true;
+        
 
     }
 
     private void InteractTazer(PlayerInteraction player)
     {
-        Debug.Log("ITEM Tazer HAS BEEN INTERACTED WITH");
-        inventory.AddItemToMultiTool(itemID);
+
+        player.hasTazer = true;
 
     }
 

@@ -13,6 +13,8 @@ public class PlayerInteraction : MonoBehaviour
     public List<ItemID> inventory = new List<ItemID>();
     [SerializeField] public Boolean hasMultiTool = false;
     [SerializeField] public Boolean hasFlashlight = false;
+    [SerializeField] public Boolean hasTazer = false;
+    [SerializeField] public Boolean hasBiotracker = false;
 
 
     private void Start()

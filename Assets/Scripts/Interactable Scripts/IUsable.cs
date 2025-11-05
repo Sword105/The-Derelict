@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IUsable
 {
-    void Use(PlayerInteraction player)
+    void Use(ItemID itemID)
     {
 
     }

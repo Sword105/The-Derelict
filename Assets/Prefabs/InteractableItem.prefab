@@ -120,5 +120,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInteraction: {fileID: 0}
   inventory: {fileID: 0}
-  testSound: {fileID: 0}
-  itemID: 2
+  itemID: 0

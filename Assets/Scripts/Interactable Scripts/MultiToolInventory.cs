@@ -8,8 +8,17 @@ public class MultiToolInventory : MonoBehaviour, IUsable
 {
     public PlayerInteraction playerInteraction;
     public ItemID itemID;
-    [SerializeField] private 
+    [SerializeField] private Boolean isItemActive = false;
+    public ItemID activeItem;
 
+    void Start()
+    {
+        // Automatically find the PlayerInteraction script in the scene
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+
+        if (playerInteraction == null)
+            Debug.LogError("PlayerInteraction not found in scene!");
+    }
 
 
     void Update()
@@ -19,41 +28,127 @@ public class MultiToolInventory : MonoBehaviour, IUsable
 
         if (playerInteraction.hasMultiTool)
         {
-            if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight)){
-                if (Input.GetMouseButtonDown(0))
-                {
-                    UseFlashlight(playerInteraction);
-                }
+            if (Input.GetMouseButtonDown(0))
+            {
+                
+                Use(activeItem);
+                
             }
+
+            if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight)){
+                isItemActive = false;
+                activeItem = ItemID.Flashlight;
+                Debug.Log("1 is pressed and active item is: " +  activeItem);
+                
+            }
+
+            else if ((Input.GetKeyDown(KeyCode.Alpha2) && playerInteraction.hasBiotracker))
+            {
+                isItemActive = false;
+                activeItem = ItemID.BioTracker;
+                Debug.Log("2 is pressed and active item is: " + activeItem);
+
+            }
+
+            else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer)) { 
+                isItemActive = false;
+                activeItem = ItemID.Tazer;
+                Debug.Log("3 is pressed and active item is: " + activeItem);
+
+            }
+
             
+
 
 
         }
 
 
     }
-    public void AddItemToMultiTool(ItemID newItem)
+    public void AddItemToMultiTool(ItemID newItem) //kind of redundant 
     {
         playerInteraction.inventory.Add(newItem);
         Debug.Log("Added " + newItem + " to multitool inventory");
     }
 
-    private void Use(PlayerInteraction player)
+    private void Use(ItemID activeItem)
     {
-        switch(itemID)
+        switch(activeItem)
         {
-            case ItemID.None: 
+            case ItemID.None:
+                Debug.Log("you cant use nothing mate");
                 break;
 
             case ItemID.Flashlight:
-                UseFlashlight(player);
+                UseFlashlight(activeItem);
                 break;
+
+            case ItemID.Tazer:
+                UseTazer(activeItem);
+                break;
+
+            case ItemID.BioTracker:
+                UseBiotracker(activeItem);
+                break;
+                
+
         }
     }
 
-    public void UseFlashlight(PlayerInteraction player)
+    private void UseFlashlight(ItemID itemID)
     {
-        Debug.Log("Hey whats up im the FLASHLIGHT being used lmao");
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            if (isItemActive)
+            {
+                isItemActive = false;
+            }
+            else
+            {
+                isItemActive = true;
+            }
+
+            Debug.Log("isActive set to" + isItemActive +  "for FLASHLIGHT");
+        }
+        
+    }
+
+    private void UseTazer(ItemID itemID)
+    {
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (isItemActive)
+            {
+                isItemActive = false;
+            }
+            else
+            {
+                isItemActive = true;
+            }
+
+            Debug.Log("isActive set to" + isItemActive + "for TAZER");
+        }
+
+    }
+
+    private void UseBiotracker(ItemID itemID)
+    {
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (isItemActive)
+            {
+                isItemActive = false;
+}
+            else
+            {
+                isItemActive = true;
+            }
+
+            Debug.Log("isActive set to" + isItemActive + "for BIOTRACKER");
+        }
+
     }
 
 }
