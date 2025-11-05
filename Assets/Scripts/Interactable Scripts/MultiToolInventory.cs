@@ -4,19 +4,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MultiToolInventory : MonoBehaviour
+public class MultiToolInventory : MonoBehaviour, IUsable
 {
     public PlayerInteraction playerInteraction;
+    public ItemID itemID;
+    [SerializeField] private 
 
 
-    void Start()
-    {
-        // Automatically find the PlayerInteraction script in the scene
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
-
-        if (playerInteraction == null)
-            Debug.LogError("PlayerInteraction not found in scene!");
-    }
 
     void Update()
     {
@@ -25,10 +19,41 @@ public class MultiToolInventory : MonoBehaviour
 
         if (playerInteraction.hasMultiTool)
         {
+            if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight)){
+                if (Input.GetMouseButtonDown(0))
+                {
+                    UseFlashlight(playerInteraction);
+                }
+            }
             
+
+
         }
 
 
     }
-
+    public void AddItemToMultiTool(ItemID newItem)
+    {
+        playerInteraction.inventory.Add(newItem);
+        Debug.Log("Added " + newItem + " to multitool inventory");
     }
+
+    private void Use(PlayerInteraction player)
+    {
+        switch(itemID)
+        {
+            case ItemID.None: 
+                break;
+
+            case ItemID.Flashlight:
+                UseFlashlight(player);
+                break;
+        }
+    }
+
+    public void UseFlashlight(PlayerInteraction player)
+    {
+        Debug.Log("Hey whats up im the FLASHLIGHT being used lmao");
+    }
+
+}

@@ -21,10 +21,12 @@ public class Item : Interactable
 {
 
     public PlayerInteraction playerInteraction;
+    public MultiToolInventory inventory;
 
 
-    public AudioClip testSound;
+  
     public ItemID itemID;
+    
 
     public override void Interact(PlayerInteraction player)
     {
@@ -47,14 +49,12 @@ public class Item : Interactable
 
         }
 
-
-
     }
 
     private void InteractMultiTool(PlayerInteraction player)
     {
         Debug.Log("ITEM multitool HAS BEEN INTERACTED WITH");
-        playerInteraction.hasMultiTool = true;
+        player.hasMultiTool = true;
         Debug.Log("HasMMT set to true");
         
     }
@@ -62,21 +62,23 @@ public class Item : Interactable
     private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true and add to MTT
     {
         Debug.Log("ITEM flashlight HAS BEEN INTERACTED WITH");
-        playerInteraction.inventory.Add(itemID);
-        
+        player.hasFlashlight = true;
+        inventory.AddItemToMultiTool(itemID);
+
+
     }
 
     private void InteractBioTracker(PlayerInteraction player)
     {
         Debug.Log("ITEM BioTracker HAS BEEN INTERACTED WITH");
-        playerInteraction.inventory.Add(itemID);
+        inventory.AddItemToMultiTool(itemID);
 
     }
 
     private void InteractTazer(PlayerInteraction player)
     {
         Debug.Log("ITEM Tazer HAS BEEN INTERACTED WITH");
-        playerInteraction.inventory.Add(itemID);
+        inventory.AddItemToMultiTool(itemID);
 
     }
 

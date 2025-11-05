@@ -12,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public List<ItemID> inventory = new List<ItemID>();
     [SerializeField] public Boolean hasMultiTool = false;
+    [SerializeField] public Boolean hasFlashlight = false;
 
 
     private void Start()
@@ -39,9 +40,9 @@ public class PlayerInteraction : MonoBehaviour
 
             if(objectToInteract.TryGetComponent<Item>(out Item item))
             {
-                Debug.Log("TRYING TO DESTROY ITEM");
+            
                 Destroy(objectToInteract.gameObject);
-                Debug.Log("Current ItemID added to inv: " + inventory[(inventory.Count - 1)]);
+                
             }
             
         }
