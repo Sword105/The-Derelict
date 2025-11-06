@@ -26,20 +26,28 @@ public class MultiToolInventory : MonoBehaviour, IUsable
         if (playerInteraction == null)
             return;
 
+        // Logic needed to use batteries on other items, right now just click 4 and it uses it
+        if (playerInteraction.batteryCount > 0 && Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Use(ItemID.BATTERY);
+            Debug.Log("4 is pressed and active item is: " + ItemID.BATTERY);
+        }
+
         if (playerInteraction.hasMultiTool)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                
+
                 Use(activeItem);
-                
+
             }
 
-            if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight)){
+            if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight))
+            {
                 isItemActive = false;
                 activeItem = ItemID.Flashlight;
-                Debug.Log("1 is pressed and active item is: " +  activeItem);
-                
+                Debug.Log("1 is pressed and active item is: " + activeItem);
+
             }
 
             else if ((Input.GetKeyDown(KeyCode.Alpha2) && playerInteraction.hasBiotracker))
@@ -50,14 +58,16 @@ public class MultiToolInventory : MonoBehaviour, IUsable
 
             }
 
-            else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer)) { 
+            else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer))
+            {
                 isItemActive = false;
                 activeItem = ItemID.Tazer;
                 Debug.Log("3 is pressed and active item is: " + activeItem);
 
             }
 
-            
+
+
 
 
 
@@ -89,6 +99,9 @@ public class MultiToolInventory : MonoBehaviour, IUsable
 
             case ItemID.BioTracker:
                 UseBiotracker(activeItem);
+                break;
+            case ItemID.BATTERY:
+                UseBattery(playerInteraction);
                 break;
                 
 
@@ -140,7 +153,7 @@ public class MultiToolInventory : MonoBehaviour, IUsable
             if (isItemActive)
             {
                 isItemActive = false;
-}
+            }
             else
             {
                 isItemActive = true;
@@ -149,6 +162,26 @@ public class MultiToolInventory : MonoBehaviour, IUsable
             Debug.Log("isActive set to" + isItemActive + "for BIOTRACKER");
         }
 
+    }
+
+    //More logic for using batteries here
+    public void UseBattery(PlayerInteraction player)
+    {
+        if (player.inventory.Contains(ItemID.BATTERY))
+        {
+            if (playerInteraction.batteryCount >= 1)
+            {
+                player.inventory.Remove(ItemID.BATTERY);
+                playerInteraction.batteryCount--;
+                Debug.Log("Battery used. Remaining batteries: " + playerInteraction.batteryCount);
+            }
+
+
+        }
+        else
+        {
+            Debug.Log("No batteries in inventory to use.");
+        }
     }
 
 }
