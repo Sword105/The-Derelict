@@ -1,6 +1,8 @@
 using UnityEngine;
 
+/*
 public class DoorInteractable : Interactable
+
 {
     public GameObject doorObject;
     public bool IsOpen = false;
@@ -33,3 +35,4 @@ public class DoorInteractable : Interactable
     }
 
 }
+*/

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class VentObject : Interactable
+
 {
     [SerializeField] private GameObject[] connectedVents; //array in case we want multiple connections somehow
     [SerializeField] private Vector3 ventCenter; //vent center, put down in inspector for ease of testing
@@ -59,3 +61,4 @@ public class VentObject : Interactable
         //inside vent animation
     }
 }
+*/

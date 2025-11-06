@@ -56,6 +56,7 @@ public class Item : Interactable
         Debug.Log("ITEM multitool HAS BEEN INTERACTED WITH");
         player.hasMultiTool = true;
         Debug.Log("HasMMT set to true");
+        Destroy(gameObject);
         
     }
 
