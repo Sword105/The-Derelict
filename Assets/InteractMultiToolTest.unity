@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (8)
@@ -309,6 +313,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (9)
@@ -472,6 +480,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (5)
@@ -610,6 +622,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (6)
@@ -790,6 +806,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (10)
@@ -965,6 +985,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (12)
@@ -1034,6 +1058,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (7)
@@ -1209,6 +1237,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1361592289474617757, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441230538349663883, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
       propertyPath: m_Name
       value: InteractableItem (11)
