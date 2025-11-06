@@ -4,24 +4,43 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public double timeElapsed;
+    [Header("Setup")]
+    public GameObject alienPrefab;
+    public Transform alienSpawnLocation;
+
     [Header("DEBUG")]
+    public double timeElapsed;
     public bool instantStart = false;
     public bool autoSpawnAlien = false;
-
-    void Update()
-    {
-        timeElapsed += Time.deltaTime;
-        Debug.Log(timeElapsed);
-    }
-
+    public GameManager instance;
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         if (instantStart) { StartGame(); }
         if (autoSpawnAlien) { SpawnAlien(); }
     }
 
-    void StartGame() { Debug.Log("Starting game..."); }
-    void SpawnAlien() { Debug.Log("Spawning alien...");  }
-    void WinGame() { Debug.Log("You won!");  }
+    void Update()
+    {
+        timeElapsed += Time.deltaTime;
+    }
+
+    void StartGame() 
+    { 
+        Debug.Log("Starting game..."); 
+    }
+
+    void SpawnAlien()
+    {
+        Instantiate(alienPrefab, alienSpawnLocation);
+    }
+
+    void WinGame() 
+    {
+        Debug.Log("You won!");  
+    }
 }
