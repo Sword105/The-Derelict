@@ -40,13 +40,6 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
             objectToInteract.Interact(player.GetComponent<PlayerInteraction>());
 
-            if(objectToInteract.TryGetComponent<Item>(out Item item))
-            {
-            
-                Destroy(objectToInteract.gameObject);
-                
-            }
-            
         }
     }
 }

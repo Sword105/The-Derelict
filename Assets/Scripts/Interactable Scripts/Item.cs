@@ -63,6 +63,7 @@ public class Item : Interactable
     {
 
         player.hasFlashlight = true;
+        Destroy(gameObject);
 
     }
 
@@ -70,6 +71,8 @@ public class Item : Interactable
     {
         
         player.hasBiotracker = true;
+        Destroy(gameObject);
+        
         
 
     }
@@ -78,6 +81,8 @@ public class Item : Interactable
     {
 
         player.hasTazer = true;
+        Destroy(gameObject);
+        
 
     }
 
