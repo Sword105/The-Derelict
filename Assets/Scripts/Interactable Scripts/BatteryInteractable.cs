@@ -28,7 +28,7 @@ public class BatteryInteractable : Interactable
     public void CollectBattery(PlayerInteraction player)
     {
         //Max battery count can be changed, I just put 6 for testing purposes
-        if (batteryCount >= 6)
+        if (playerInteraction.batteryCount >= 6)
         {
             Debug.Log("Player has maximum of batteries in inventory");
             return;
@@ -45,11 +45,11 @@ public class BatteryInteractable : Interactable
     {
         if (player.inventory.Contains(ItemID.BATTERY))
         {
-            if (batteryCount >= 1)
+            if (playerInteraction.batteryCount >= 1)
             {
                 player.inventory.Remove(ItemID.BATTERY);
                 playerInteraction.batteryCount--;
-                Debug.Log("Battery used. Remaining batteries: " + batteryCount);
+                Debug.Log("Battery used. Remaining batteries: " + playerInteraction.batteryCount);
             }
     
 
@@ -62,7 +62,7 @@ public class BatteryInteractable : Interactable
     
     public void GeneratorBattery(PlayerInteraction player)
     {
-         if (batteryCount == 5)
+         if (playerInteraction.batteryCount == 5)
             {
                 for (int i = 0; i < 6; i++)
                 {
@@ -70,7 +70,7 @@ public class BatteryInteractable : Interactable
                     playerInteraction.batteryCount--;
 
                 }
-                Debug.Log("Batteries used. Remaining batteries: " + batteryCount);
+                Debug.Log("Batteries used. Remaining batteries: " + playerInteraction.batteryCount);
             }
         else
         {
