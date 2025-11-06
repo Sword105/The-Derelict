@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BatteryInteractable : Interactable
 {
-    /*
+
 
     public float chargePercent = 0f;
 
-    public int batteryCount;
+    public PlayerInteraction playerInteraction;
+
     
     public GameObject battery;
     
@@ -34,7 +35,8 @@ public class BatteryInteractable : Interactable
         }
 
         player.inventory.Add(ItemID.BATTERY);
-        batteryCount++;
+        playerInteraction.batteryCount++;
+        Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
         Destroy(battery);
     }
 
@@ -43,10 +45,10 @@ public class BatteryInteractable : Interactable
     {
         if (player.inventory.Contains(ItemID.BATTERY))
         {
-            if (batteryCount == 1)
+            if (batteryCount >= 1)
             {
                 player.inventory.Remove(ItemID.BATTERY);
-                batteryCount--;
+                playerInteraction.batteryCount--;
                 Debug.Log("Battery used. Remaining batteries: " + batteryCount);
             }
     
@@ -65,7 +67,7 @@ public class BatteryInteractable : Interactable
                 for (int i = 0; i < 6; i++)
                 {
                     player.inventory.Remove(ItemID.BATTERY);
-                    batteryCount--;
+                    playerInteraction.batteryCount--;
 
                 }
                 Debug.Log("Batteries used. Remaining batteries: " + batteryCount);
@@ -75,6 +77,6 @@ public class BatteryInteractable : Interactable
             Debug.Log("No batteries in inventory to use for generator.");
         }
     }
-    */
+
 
 }

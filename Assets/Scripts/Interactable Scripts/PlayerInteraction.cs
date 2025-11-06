@@ -8,9 +8,10 @@ public class PlayerInteraction : MonoBehaviour
 
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
-    
+
 
     public List<ItemID> inventory = new List<ItemID>();
+    public int batteryCount;
     [SerializeField] public Boolean hasMultiTool = false;
     [SerializeField] public Boolean hasFlashlight = false;
     [SerializeField] public Boolean hasTazer = false;
