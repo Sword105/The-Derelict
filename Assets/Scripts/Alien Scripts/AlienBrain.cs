@@ -39,7 +39,7 @@ public abstract class AlienBrain : MonoBehaviour
     // Ignores nodes that have already been explored
     public static Node PickAdjacentNodeToExplore(Node currentNode, LayerMask nodeLayer, List<GameObject> nodesToIgnore)
     {
-        Collider[] nearbyNodes = Physics.OverlapSphere(currentNode.transform.position, currentNode.range + 10f, nodeLayer);
+        Collider[] nearbyNodes = Physics.OverlapSphere(currentNode.transform.position, currentNode.range + 15f, nodeLayer);
 
         Node nextNodeToFollow = (nearbyNodes[0].gameObject != currentNode.gameObject) ? nearbyNodes[0].GetComponent<Node>() : nearbyNodes[1].GetComponent<Node>();
         double maxNodeProbability = 0;
@@ -47,9 +47,12 @@ public abstract class AlienBrain : MonoBehaviour
         {
             Node node = collider.GetComponent<Node>();
 
+            RaycastHit hit;
+            Physics.Raycast(currentNode.transform.position, node.transform.position - currentNode.transform.position, out hit, nodeLayer);
+
             if (!nodesToIgnore.Contains(node.gameObject))
             {
-                if (node.nodeProbability >= maxNodeProbability)
+                if (node.nodeProbability >= maxNodeProbability && hit.collider == collider)
                 {
                     nextNodeToFollow = node;
                     maxNodeProbability = node.nodeProbability;
