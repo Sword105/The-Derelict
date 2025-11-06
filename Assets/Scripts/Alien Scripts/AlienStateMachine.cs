@@ -66,13 +66,13 @@ public class AlienStateMachine : MonoBehaviour
     [SerializeField] private float lineOfSight;
 
     // Current node that the alien is exploring
-    [SerializeField] private Node currentNode;
+    [SerializeField] public Node currentNode;
 
     // List of nodes that the alien will ignore during the suspicious state
     [SerializeField] private List<GameObject> nodesToIgnore;
 
     // List of points that the alien will travel through
-    [SerializeField] private Queue<Vector3> pointsToFollow;
+    [SerializeField] public Queue<Vector3> pointsToFollow;
 
     private void Start()
     {
@@ -102,6 +102,15 @@ public class AlienStateMachine : MonoBehaviour
         // These methods check if the player is in view and sets the alien state accordingly
         UpdatePlayerInAlienFOV();
         EvaluateAlienSuspicion();
+        
+        // PURELY DEBUG - scrap this after testing
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            Vector3 eventPosition = AlienBrain.MostLikelyNode(nodeManager, 0.3f).transform.position;
+            InvokeSuspiciousEvent(eventPosition, 999f);
+
+            Debug.DrawLine(eventPosition, transform.position, Color.magenta, 2f);
+        }
 
         // Each method should have a condition that allows the alien to switch states
 
@@ -299,16 +308,16 @@ public class AlienStateMachine : MonoBehaviour
     }
 
     // Gets the closest Node given a specific point
-    private Node ClosestNodeToPoint(Vector3 position)
+    public Node ClosestNodeToPoint(Vector3 position)
     {
-        Collider[] nearbyNodes = Physics.OverlapSphere(player.position, 10f, nodeLayer);
+        Collider[] nearbyNodes = Physics.OverlapSphere(position, 10f, nodeLayer);
         Node closestNode = nearbyNodes[0].GetComponent<Node>();
 
         float currDistance;
-        float shortestDistance = Vector3.Distance(nearbyNodes[0].transform.position, player.position);
+        float shortestDistance = Vector3.Distance(nearbyNodes[0].transform.position, position);
         foreach (Collider collider in nearbyNodes)
         {
-            currDistance = Vector3.Distance(collider.transform.position, player.position);
+            currDistance = Vector3.Distance(collider.transform.position, position);
             if (currDistance < shortestDistance)
             {
                 shortestDistance = currDistance;
@@ -319,7 +328,7 @@ public class AlienStateMachine : MonoBehaviour
         return closestNode;
     }
 
-    private List<Vector3> CalculatePaddedPathToNode(Node currentNode)
+    public List<Vector3> CalculatePaddedPathToNode(Node currentNode)
     {
         // Calculate a regular path to the node
         NavMeshPath path = new NavMeshPath();
@@ -350,6 +359,27 @@ public class AlienStateMachine : MonoBehaviour
         }
 
         return newPath;
+    }
+
+    public void InvokeSuspiciousEvent(Vector3 eventPosition, float audibleRange)
+    {
+        if (Vector3.Distance(transform.position, eventPosition) < audibleRange)
+        {
+            nodesToIgnore.Clear();
+            pointsToFollow.Clear();
+
+            initTime = 0;
+            currentNode = ClosestNodeToPoint(eventPosition);
+            List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+
+            foreach (Vector3 point in newPath)
+            {
+                pointsToFollow.Enqueue(point);
+            }
+
+            agent.SetDestination(pointsToFollow.Dequeue());
+            currentState = AlienState.SUSPICIOUS;
+        }
     }
 
     void OnDrawGizmos()
