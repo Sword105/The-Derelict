@@ -13,6 +13,7 @@ public enum ItemID
     Flashlight,
     BioTracker,
     Tazer,
+    BATTERY
 
 }
 
