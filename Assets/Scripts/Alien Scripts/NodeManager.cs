@@ -5,12 +5,18 @@ using UnityEngine;
 public class NodeManager : MonoBehaviour
 {
     public List<Node> nodeList = new List<Node>();
+    public static NodeManager instance;
 
     //The sum of the scores of all the
     public int totalScore = 1;
     
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         //Find all the Nodes
         getAllNodes();
         sumScores();

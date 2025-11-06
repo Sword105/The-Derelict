@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Node
   - NodeManager
+  - Alien
   layers:
   - Default
   - TransparentFX
