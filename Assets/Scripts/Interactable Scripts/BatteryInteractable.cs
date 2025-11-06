@@ -23,11 +23,7 @@ public class BatteryInteractable : Interactable
     public override void Interact(PlayerInteraction player)
     {
         //Debug.Log(player.name + " is interacting with object " + batteryObject.name);
-    }
-
-    public void CollectBattery(PlayerInteraction player)
-    {
-        //Max battery count can be changed, I just put 6 for testing purposes
+        // //Max battery count can be changed, I just put 6 for testing purposes
         if (playerInteraction.batteryCount >= 6)
         {
             Debug.Log("Player has maximum of batteries in inventory");
@@ -38,6 +34,11 @@ public class BatteryInteractable : Interactable
         playerInteraction.batteryCount++;
         Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
         Destroy(battery);
+    }
+
+    public void CollectBattery(PlayerInteraction player)
+    {
+    
     }
 
     //Would need to be a used method in order to use the battery on items that require it
