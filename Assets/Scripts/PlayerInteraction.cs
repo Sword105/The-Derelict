@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
     public Item activeItem;
+    public ItemType heldItemType = ItemType.None;
 
     //DEPRECATED
     /*
@@ -43,6 +44,17 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
             objectToInteract.Interact(player, activeItem);
         }
+
+        if (objectToInteract != null)
+        {
+            Debug.Log("Looking at: " + objectToInteract.name);
+        }
+        else
+        {
+            Debug.Log("Looking at: nothing");
+        }
+
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 5f, Color.red);
     }
 }
 
