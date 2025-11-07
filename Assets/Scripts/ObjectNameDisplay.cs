@@ -19,7 +19,8 @@ public class ObjectNameDisplay : MonoBehaviour
     
     // assigns object's name i think
     [SerializeField]
-    private TextMeshProUGUI ObjectIdentityText;
+    // MAKE SURE this IT'S NOT THE UGUI VERSION the text is a 3d object so it needs to be TextMeshPro
+    private TextMeshPro ObjectIdentityText;
 
     private Interactable ObjectToInteract;
         
@@ -39,18 +40,42 @@ public class ObjectNameDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Player == null)
+        {
+            Debug.LogError("Player is NULL on " + gameObject.name);
+            return;
+        }
+
+        if (ObjectIdentityText == null)
+        {
+            Debug.LogError("ObjectIdentityText is NULL on " + gameObject.name);
+            return;
+        }
+
+        Debug.Log("ObjectNameDisplay.Start subscribing to Player.ObjectHovered");
         Player.ObjectHovered.AddListener(GetObjectToInteract);
     }
 
     private void GetObjectToInteract(Interactable interactable)
     {
-        Debug.Log("called GetObjectToInteract");
+        Debug.Log("called GetObjectToInteract with: " + (interactable!=null ? interactable.name : "NULL"));
         ObjectToInteract = interactable;
     }
     
     // Update is called once per frame
     void Update()
     {
-        ObjectIdentityText.text = ObjectToInteract.name;
+        if (ObjectToInteract == null)
+        {
+            // Debug.Log("Update(): ObjectToInteract is NULL");
+            // return;
+            ObjectIdentityText.text = "";
+            return;
+        }
+
+        if (ObjectIdentityText != null)
+        {
+            ObjectIdentityText.text = ObjectToInteract.name;
+        }
     }
 }

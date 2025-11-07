@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
         
     }
 
-    public HoveredEvent ObjectHovered;
+    public HoveredEvent ObjectHovered = new HoveredEvent();
     
     //FYI, "NonSerialized" just hides the variable from the inspector
 
@@ -46,6 +46,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             objectToInteract = hit.collider.GetComponent<Interactable>();
             ObjectHovered.Invoke(objectToInteract);
+        }
+        else
+        {
+            // looks like the raycast isn't hitting anything!!
+            ObjectHovered.Invoke(null);
         }
 
         // If an Interactable object was found, interact with it when you press the Interact key
