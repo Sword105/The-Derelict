@@ -52,7 +52,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -144,11 +144,11 @@ MonoBehaviour:
   directBinaural: 1
   interpolation: 0
   perspectiveCorrection: 0
-  distanceAttenuation: 0
-  distanceAttenuationInput: 0
-  distanceAttenuationValue: 1
+  distanceAttenuation: 1
+  distanceAttenuationInput: 1
+  distanceAttenuationValue: 0.082449526
   airAbsorption: 0
-  airAbsorptionInput: 0
+  airAbsorptionInput: 1
   airAbsorptionLow: 1
   airAbsorptionMid: 1
   airAbsorptionHigh: 1
@@ -159,21 +159,21 @@ MonoBehaviour:
   directivityValue: 1
   occlusion: 1
   occlusionInput: 0
-  occlusionType: 0
-  occlusionRadius: 1
+  occlusionType: 1
+  occlusionRadius: 4
   occlusionSamples: 16
   occlusionValue: 1
   transmission: 1
-  transmissionType: 0
-  transmissionInput: 0
+  transmissionType: 1
+  transmissionInput: 1
   transmissionLow: 1
-  transmissionMid: 1
-  transmissionHigh: 1
+  transmissionMid: 0.218
+  transmissionHigh: 0.203
   maxTransmissionSurfaces: 1
   directMixLevel: 1
   reflections: 1
   reflectionsType: 0
-  useDistanceCurveForReflections: 0
+  useDistanceCurveForReflections: 1
   currentBakedSource: {fileID: 0}
   reverbTimeLow: 0
   reverbTimeMid: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   hybridReverbEQMid: 1
   hybridReverbEQHigh: 1
   hybridReverbDelay: 0
-  applyHRTFToReflections: 0
+  applyHRTFToReflections: 1
   reflectionsMixLevel: 1
   pathing: 0
   pathingProbeBatch: {fileID: 0}

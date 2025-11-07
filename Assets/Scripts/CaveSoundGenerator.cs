@@ -6,14 +6,19 @@ using UnityEngine.AI;
 
 public class CaveSoundGenerator : MonoBehaviour
 {
-    public List<AudioClip> caveSoundList = new List<AudioClip>();
-    public double timeSinceLastCaveSoundCheck;
+    [Header("Setup")]
     public Transform player;
-
     public float deadzoneRange = 10f;
     public float maxDistance = 20f;
+    public float minimumTimeForSoundToPlay = 30f;
+    public float chanceForSoundToPlay = 0.1f;
 
-    // Start is called before the first frame update
+    [Header("Sound List")]
+    public List<AudioClip> caveSoundList = new List<AudioClip>();
+
+    [Header("DEBUG")]
+    [SerializeField] private double timeSinceLastCaveSoundCheck;
+    
 
     void Start()
     {
@@ -24,20 +29,22 @@ public class CaveSoundGenerator : MonoBehaviour
     void Update()
     {
         timeSinceLastCaveSoundCheck += Time.deltaTime;
-        if (timeSinceLastCaveSoundCheck > 1)
+        if (timeSinceLastCaveSoundCheck > minimumTimeForSoundToPlay)
         {
             timeSinceLastCaveSoundCheck = 0;
             int randomSoundIndex = Random.Range(0, caveSoundList.Count);
 
-            if (Random.Range(0f, 1f) > 0.9f)
+            if (Random.Range(0f, 1f) >= (1 - chanceForSoundToPlay))
             {
-                Vector3 randomPoint = player.position + (Random.insideUnitSphere * maxDistance);
-                while (Vector3.Distance(randomPoint, player.position) < deadzoneRange)
+                Vector2 randomPoint = Random.insideUnitCircle;
+                Vector3 soundPosition = player.position + (new Vector3(randomPoint.x, player.position.y, randomPoint.y) * maxDistance);
+                while (Vector3.Distance(soundPosition, player.position) < deadzoneRange)
                 {
-                    randomPoint = player.transform.position + (Random.insideUnitSphere * maxDistance);
+                    randomPoint = Random.insideUnitCircle;
+                    soundPosition = player.position + (new Vector3(randomPoint.x, player.position.y, randomPoint.y) * maxDistance);
                 }
 
-                AudioManager.instance.PlaySoundFX(caveSoundList[randomSoundIndex], randomPoint, 1f, true);
+                AudioManager.instance.PlaySoundFX(caveSoundList[randomSoundIndex], soundPosition, 1f, true);
             }
         }
     }
