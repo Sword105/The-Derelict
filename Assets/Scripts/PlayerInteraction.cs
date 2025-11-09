@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
     public Item activeItem;
+    private Interactable currentHovered;
 
     //DEPRECATED
     /*
@@ -47,10 +48,13 @@ public class PlayerInteraction : MonoBehaviour
             objectToInteract = hit.collider.GetComponent<Interactable>();
             ObjectHovered.Invoke(objectToInteract);
         }
-        else
+        if (objectToInteract != currentHovered)
         {
             // looks like the raycast isn't hitting anything!!
-            ObjectHovered.Invoke(null);
+            {
+                currentHovered = objectToInteract;
+                ObjectHovered.Invoke(currentHovered);
+            }
         }
 
         // If an Interactable object was found, interact with it when you press the Interact key

@@ -25,13 +25,15 @@ public class ObjectNameDisplay : MonoBehaviour
     private Interactable ObjectToInteract;
         
 
+    /* I CHANGED THE PlayerInteraction SCRIPT ANYWAY so yeah
+     
     public class HoveredEvent : UnityEvent<Interactable>
     {
         
     }
 
     public HoveredEvent ObjectHovered;
-    
+    */
     
     // to place at end of PlayerInteraction script
     // ObjectHovered.Invoke(objectToInteract);
