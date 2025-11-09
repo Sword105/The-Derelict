@@ -1,13 +1,13 @@
 using UnityEngine;
 
-/*
+
 public class DoorInteractable : Interactable
 
 {
     public GameObject doorObject;
     public bool IsOpen = false;
     public bool poweredOn = true;
-    public override void Interact(GameObject player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
         Debug.Log(player.name + " is interacting with door " + gameObject.name);
 
@@ -35,4 +35,3 @@ public class DoorInteractable : Interactable
     }
 
 }
-*/

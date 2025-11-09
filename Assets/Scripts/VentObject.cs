@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
+
 public class VentObject : Interactable
 
 {
@@ -19,7 +19,7 @@ public class VentObject : Interactable
         
     }
 
-    public override void Interact(GameObject player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
         //VISUAL SCRIPT
         //camera lerps to the front of the vent
@@ -46,7 +46,7 @@ public class VentObject : Interactable
         return playerDestination;
     }
 
-    private void playerVisual(GameObject player)
+    private void playerVisual(PlayerInteraction player)
     {
         Camera playerCamera = player.GetComponent<Camera>(); //get players camera //EDIT: do this with serialize field instead?
         
@@ -61,4 +61,4 @@ public class VentObject : Interactable
         //inside vent animation
     }
 }
-*/
+
