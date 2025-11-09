@@ -42,11 +42,17 @@ public class PlayerMovement : MonoBehaviour
 
 
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, (float)(playerHeight * 0.5 + 0.2f), whatIsGround);
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+        grounded = Physics.Raycast(transform.position, Vector3.down, (float)(playerHeight * 0.5 + 0.2f), whatIsGround);// declare what grounded is by raycasting downwards from player position
+        
+        if (grounded) // check if the player is grounded
+        {
+            Debug.Log("Grounded Sucessfully");
+            
+            if (horizontalInput == 0 && verticalInput == 0) // now we check if the user let go of the movement keys then we apply drag to prevent sliding
+                rb.drag = groundDrag * 10;
+            else
+                rb.drag = 0; // airborne movement
+        }
 
     }
 
@@ -59,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal"); // input from the user
         verticalInput = Input.GetAxisRaw("Vertical");
     }
 
@@ -67,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // calculate movement direction
         Vector3 MoveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        rb.AddForce(MoveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        rb.AddForce(MoveDirection.normalized * (moveSpeed * 10f), ForceMode.Force);
     }
 
     private void SpeedControl()

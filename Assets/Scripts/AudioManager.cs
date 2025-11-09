@@ -6,12 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public AudioSource soundFXObject;
-    // public Queue<AudioClip> musicList;       might bring this back later if necessary
-
-    // private AudioSource audioSource;
-    // private bool isPlaying = false;
-
-    // int currentSongIndex = 0;
 
     private void Awake()
     {
@@ -19,21 +13,8 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
-
-        // audioSource = instance.GetComponent<AudioSource>();
     }
-    /*
-    private void Update()
-    {
-
-        if (musicList.Length > 0 && !isPlaying)
-            PlayMusic();
-
-        if (!musicSource.isPlaying)
-            isPlaying = false;
-    }
-    */
-    public void PlaySoundFX(AudioClip audioClip, Vector3 audioLocation, float volume)
+    public void PlaySoundFX(AudioClip audioClip, Vector3 audioLocation, float volume,  bool isSpatialized)
     {
         // These four lines of code create a new object that plays a sound in a certain location
         // This should be used when playing ANY sound
@@ -41,16 +22,10 @@ public class AudioManager : MonoBehaviour
         AudioSource soundFXSource = Instantiate(soundFXObject, audioLocation, Quaternion.identity);
         soundFXSource.clip = audioClip;
         soundFXSource.volume = volume;
+        soundFXSource.spatialize = isSpatialized;
         soundFXSource.Play();
 
-        // The object that is created will get deleted right after the clip ends
         float clipLength = audioClip.length;
         Destroy(soundFXSource.gameObject, clipLength);
     }
-    /*
-    public void PlayMusic()
-    {
-
-    }
-    */
 }
