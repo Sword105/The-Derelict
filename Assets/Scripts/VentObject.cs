@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using UnityEngine;
 
+
 public class VentObject : Interactable
+
 {
     // [SerializeField] private GameObject[] connectedVents; //array in case we want multiple connections somehow
     [SerializeField] private GameObject ventEntrace;
@@ -23,7 +25,7 @@ public class VentObject : Interactable
         
     }
 
-    public override void Interact(GameObject player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
         //VISUAL SCRIPT
 
@@ -77,7 +79,7 @@ public class VentObject : Interactable
         return playerDestination;
     }
 
-    private void playerVisual(GameObject player)
+    private void playerVisual(PlayerInteraction player)
     {
         Camera playerCamera = player.GetComponentInChildren<Camera>(); //get player's camera 
         
@@ -92,3 +94,4 @@ public class VentObject : Interactable
         //inside vent animation
     }
 }
+

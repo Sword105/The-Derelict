@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -7,19 +8,15 @@ public class PlayerInteraction : MonoBehaviour
 
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
-    public Item activeItem;
 
-    //DEPRECATED
-    /*
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isInteracting = true;
-        }
-        //Debug.Log(isInteracting);
-    }
-    */
+
+    public List<ItemID> inventory = new List<ItemID>();
+    public int batteryCount;
+    [SerializeField] public Boolean hasMultiTool = false;
+    [SerializeField] public Boolean hasFlashlight = false;
+    [SerializeField] public Boolean hasTazer = false;
+    [SerializeField] public Boolean hasBiotracker = false;
+
 
     private void Start()
     {
@@ -35,13 +32,15 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50.0f, interactableLayer))
         {
             objectToInteract = hit.collider.GetComponent<Interactable>();
+            
         }
 
         // If an Interactable object was found, interact with it when you press the Interact key
         if (Input.GetKeyDown(KeyCode.E) && objectToInteract != null)
         {
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
-            objectToInteract.Interact(player, activeItem);
+            objectToInteract.Interact(player.GetComponent<PlayerInteraction>());
+
         }
     }
 }
