@@ -7,6 +7,7 @@ using UnityEngine;
 public class VentObject : Interactable
 
 {
+    /*
     // [SerializeField] private GameObject[] connectedVents; //array in case we want multiple connections somehow
     [SerializeField] private GameObject ventEntrace;
     [SerializeField] private GameObject ventExit;
@@ -59,7 +60,7 @@ public class VentObject : Interactable
         //player is immortal while venting -- player health script not done yet
     }
 
-    private void Teleport(GameObject player, GameObject target, GameObject destination)
+    private void Teleport(PlayerInteraction player, GameObject target, GameObject destination)
     {
         player.SetActive(false);
         player.transform.position = destination.transform.position; // + new Vector3(0,0,1) to do: add offset so player doesn't spawn inside vent object
@@ -93,5 +94,6 @@ public class VentObject : Interactable
         
         //inside vent animation
     }
+    */
 }
 
