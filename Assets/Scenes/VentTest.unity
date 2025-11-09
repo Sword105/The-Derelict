@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -280,10 +280,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7f6c529b8e5e64e82e9c4f5802b3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ventA: {fileID: 667775494}
-  ventB: {fileID: 771467445}
+  ventEntrance: {fileID: 667775494}
+  ventExit: {fileID: 771467445}
+  ventSpawn: {fileID: 0}
   ventCenter: {x: 0, y: 0, z: 0}
-  ventRadius: 0
+  ventRadius: {fileID: 0}
+  ventEnterSpeed: 0
+  playerCamera: {fileID: 0}
 --- !u!64 &667775500
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -354,10 +357,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7f6c529b8e5e64e82e9c4f5802b3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ventA: {fileID: 771467445}
-  ventB: {fileID: 667775494}
+  ventEntrance: {fileID: 0}
+  ventExit: {fileID: 0}
+  ventSpawn: {fileID: 0}
   ventCenter: {x: 0, y: 0, z: 0}
-  ventRadius: 0
+  ventRadius: {fileID: 0}
+  ventEnterSpeed: 0
+  playerCamera: {fileID: 0}
 --- !u!64 &771467448
 MeshCollider:
   m_ObjectHideFlags: 0
