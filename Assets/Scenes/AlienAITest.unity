@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2930,7 +2930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &966997369
 Transform:
   m_ObjectHideFlags: 0
@@ -5003,6 +5003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alienPrefab: {fileID: 6334896714506386481, guid: 8cd65f6b128fc9b46ac276716266bd0e, type: 3}
+  suspiciousNodePrefab: {fileID: 4922758468805513657, guid: e730cd8eef45f33489f98cd939f166b0, type: 3}
   alienSpawnLocation: {fileID: 1997380355}
   timeElapsed: 0
   instantStart: 1
@@ -6094,6 +6095,7 @@ MonoBehaviour:
   player: {fileID: 377544362}
   deadzoneRange: 20
   maxDistance: 30
+  minimumTimeForSoundToPlay: 30
   chanceForSoundToPlay: 0.2
   caveSoundList:
   - {fileID: 8300000, guid: 5a918029232f2dd4da5124b4d34edcc2, type: 3}

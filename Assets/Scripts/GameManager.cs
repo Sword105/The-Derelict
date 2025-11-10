@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Setup")]
     public GameObject alienPrefab;
+    public GameObject suspiciousNodePrefab;
     public Transform alienSpawnLocation;
 
     [Header("DEBUG")]
@@ -42,5 +43,9 @@ public class GameManager : MonoBehaviour
     void WinGame() 
     {
         Debug.Log("You won!");  
+    }
+    public void SpawnSuspiciousNode(Vector3 position)
+    {
+        Instantiate(suspiciousNodePrefab, position, Quaternion.identity);
     }
 }
