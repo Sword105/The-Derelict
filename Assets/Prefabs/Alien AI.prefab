@@ -150,6 +150,9 @@ MonoBehaviour:
   nodeLayer:
     serializedVersion: 2
     m_Bits: 256
+  susNodeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   temperature: 0.3
   maxPathPadding: 2.4
   minPathPadding: 1

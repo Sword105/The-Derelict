@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4770285869901494969}
   - component: {fileID: -4902174153214642160}
+  - component: {fileID: 1118162167217776163}
   m_Layer: 10
   m_Name: SusNode
   m_TagString: Untagged
@@ -53,3 +54,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1118162167217776163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922758468805513657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89e134b190613740a6e6d4738dd07ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impliedObject: {fileID: 0}

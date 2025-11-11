@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool instantStart = false;
     public bool autoSpawnAlien = false;
     public GameManager instance;
+
     void Start()
     {
         if (instance == null)
@@ -44,8 +45,15 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You won!");  
     }
+
     public void SpawnSuspiciousNode(Vector3 position)
     {
         Instantiate(suspiciousNodePrefab, position, Quaternion.identity);
+    }
+
+    public void SpawnSuspiciousNode(Vector3 position, Transform impliedObject)
+    {
+        SuspiciousNodeData newSusNode = Instantiate(suspiciousNodePrefab, position, Quaternion.identity).GetComponent<SuspiciousNodeData>();
+        newSusNode.impliedObject = impliedObject;
     }
 }
