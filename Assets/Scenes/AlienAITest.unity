@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3227,6 +3227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeList: []
   totalScore: 1
+  incMultiplier: 2
+  decMultiplier: 2
 --- !u!4 &1067716456
 Transform:
   m_ObjectHideFlags: 0
@@ -4870,6 +4872,10 @@ PrefabInstance:
       propertyPath: node_manager
       value: 
       objectReference: {fileID: 1067716456}
+    - target: {fileID: 8711953140675184443, guid: 6abe496c2b2ccb54084ddce3cda10e35, type: 3}
+      propertyPath: incMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

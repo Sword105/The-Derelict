@@ -27,18 +27,13 @@ public class Node : MonoBehaviour
     
     //These variables are used to check the last time the player was inside a Node, and Also to reduce the score.
     private bool reducingScore = false;
-    private int lastScore = -1;
-    
-    //These multipliers affect how accurate the alien is when finding the player in scouting. From what I tried, x2.0f is extremely accurate.
-    public float incMultiplier = 2.0f;
-    public float decMultiplier = 2.0f; 
+    private int lastScore = -1; 
     
     
     void Awake(){
         InvokeRepeating("checkLastTimeInside", 15f, 10f);
     }
 
-    
     
     void Start()
     {
@@ -53,19 +48,21 @@ public class Node : MonoBehaviour
 
         if(distance<range){
             reducingScore = false;
-            timeInside += Time.deltaTime * incMultiplier; //Increase the amount of time in the Node
+            timeInside += Time.deltaTime * node_manager.GetComponent<NodeManager>().incMultiplier; //Increase the amount of time in the Node
         }
         //If the bool reduce score is true, and the score is > 1, reduce it
         else if(reducingScore && score>1){
-            timeInside -= Time.deltaTime * decMultiplier;
+            timeInside -= Time.deltaTime * node_manager.GetComponent<NodeManager>().decMultiplier;
         }
 
         score = (int) timeInside;
     }
 
+
     public void calculateProbability(){
         nodeProbability = (1.0* score)/node_manager.GetComponent<NodeManager>().totalScore;
     }
+
 
     //If the last score is equal to the current score, that means that the player has not been in this node, so reducingScore = true
     public void checkLastTimeInside(){
@@ -74,6 +71,15 @@ public class Node : MonoBehaviour
         }
         lastScore = score;
     }
+
+
+    //helper to add the nodes of the rooms that the player unlocks
+    public void changeTag(){
+        if(transform.tag != "Node"){
+            transform.tag = "Node";
+        }
+    }
+
 
     #if UNITY_EDITOR
     //Displays the radious and timeInside
@@ -89,9 +95,7 @@ public class Node : MonoBehaviour
         style.fontSize = 14;                  // Font size
         style.fontStyle = FontStyle.Bold;     // Bold, Italic, etc.
 
-        Handles.Label(transform.position + Vector3.up * 2, "Score: " + score, style);
-
-        
+        Handles.Label(transform.position + Vector3.up * 2, "Score: " + score, style);        
     }
     #endif
     

@@ -9,7 +9,12 @@ public class NodeManager : MonoBehaviour
 
     //The sum of the scores of all the
     public int totalScore = 1;
+
+    //These multipliers affect how accurate the alien is when finding the player in scouting. From what I tried, x2.0f is extremely accurate.
+    public float incMultiplier = 2.0f;
+    public float decMultiplier = 2.0f;
     
+
     void Awake()
     {
         if (instance == null)
@@ -54,6 +59,7 @@ public class NodeManager : MonoBehaviour
             }
         }
     }
+
 
     private void calculateNodesProb(){
         foreach(Node node in nodeList){
