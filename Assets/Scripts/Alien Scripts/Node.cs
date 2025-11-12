@@ -11,6 +11,7 @@ public class Node : MonoBehaviour
     public Transform node_manager;
     public Transform player;
     public float range = 5f;
+
     
     //Calculate the probability that the player is in that Node
     public double nodeProbability;
@@ -21,8 +22,24 @@ public class Node : MonoBehaviour
     that the player is inside the range of that Node.
     */
     public float timeInside = 1f; 
-    public int score = 1; 
+    public int score = 1;
+     
+    
+    //These variables are used to check the last time the player was inside a Node, and Also to reduce the score.
+    private bool reducingScore = false;
+    private int lastScore = -1;
+    
+    //These multipliers affect how accurate the alien is when finding the player in scouting. From what I tried, x2.0f is extremely accurate.
+    public float incMultiplier = 2.0f;
+    public float decMultiplier = 2.0f; 
+    
+    
+    void Awake(){
+        InvokeRepeating("checkLastTimeInside", 15f, 10f);
+    }
 
+    
+    
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -35,7 +52,12 @@ public class Node : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.position);
 
         if(distance<range){
-            timeInside += Time.deltaTime; //Increase the amount of time in the Node
+            reducingScore = false;
+            timeInside += Time.deltaTime * incMultiplier; //Increase the amount of time in the Node
+        }
+        //If the bool reduce score is true, and the score is > 1, reduce it
+        else if(reducingScore && score>1){
+            timeInside -= Time.deltaTime * decMultiplier;
         }
 
         score = (int) timeInside;
@@ -43,6 +65,14 @@ public class Node : MonoBehaviour
 
     public void calculateProbability(){
         nodeProbability = (1.0* score)/node_manager.GetComponent<NodeManager>().totalScore;
+    }
+
+    //If the last score is equal to the current score, that means that the player has not been in this node, so reducingScore = true
+    public void checkLastTimeInside(){
+        if(lastScore == score){
+            reducingScore = true;
+        }
+        lastScore = score;
     }
 
     #if UNITY_EDITOR
