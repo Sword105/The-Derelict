@@ -24,6 +24,7 @@ public class VentObject : Interactable
     private bool playerEntering = false;
     private bool isMovingAlongParabola = true;
     private float playerVisualDestination = 1f;
+    private GameObject player;
     
     void Start()
     {
@@ -51,9 +52,12 @@ public class VentObject : Interactable
             //}
         }
     }
+    
+    public override void Interact(PlayerInteraction playerSource)
 
-    public override void Interact(GameObject player, Item activeItem)
     {
+        player = playerSource.gameObject;
+        
         //VISUAL SCRIPT
 
         //camera lerps to the front of the vent
