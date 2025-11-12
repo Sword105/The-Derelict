@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 public class VentObject : Interactable
+
 {
+    
     // [SerializeField] private GameObject[] connectedVents; //array in case we want multiple connections somehow
-    [FormerlySerializedAs("ventEntrace")] [SerializeField] private GameObject ventEntrance;
+    [FormerlySerializedAs("ventEntrace")][SerializeField] private GameObject ventEntrance;
     [SerializeField] private GameObject ventExit;
     [SerializeField] private GameObject ventSpawn; //spawn point in front of exit vent
     [SerializeField] private Vector3 ventCenter; //vent center, put down in inspector for ease of testing 
@@ -30,6 +32,7 @@ public class VentObject : Interactable
     {
         
     }
+
     void Update()
     {
         if (playerEntering)
@@ -48,10 +51,10 @@ public class VentObject : Interactable
             playerCamera.transform.position = findParabolaPoint(parabolaStart, parabolaControl, parabolaEnd, tSmooth);
             //if (playerHasEntered //WHEN IT REACHES THE MIDPOINT, LERP INTO VENT)
             //{
-               // playerEntering = false;
-            //}
+            // playerEntering = false;
         }
     }
+    
     
     public override void Interact(PlayerInteraction playerSource)
 
@@ -85,6 +88,8 @@ public class VentObject : Interactable
             Debug.Log("Cannot interact with vent");
         }
 
+        //set player position to right in front
+
         //player is immortal while venting -- player health script not done yet //DOESNT MATTER, PLAYERS OVER THERE 
     }
 
@@ -93,7 +98,6 @@ public class VentObject : Interactable
         player.SetActive(false);
         player.transform.position = destination.transform.position; // + new Vector3(0,0,1) to do: add offset so player doesn't spawn inside vent object
         player.SetActive(true);
-        playerVisual(player);
     }
 
     private void findPlayerVisualDestination()
@@ -162,7 +166,6 @@ public class VentObject : Interactable
         parabolaControl = midPoint;
         parabolaEnd = endPoint;
 
-        tCurrent = 0f;
         
         findPlayerVisualDestination();
         

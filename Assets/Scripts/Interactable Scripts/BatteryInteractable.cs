@@ -1,0 +1,83 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BatteryInteractable : Interactable
+{
+
+
+    public float chargePercent = 0f;
+
+    public PlayerInteraction playerInteraction;
+
+    
+    public GameObject battery;
+    
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        battery = gameObject;
+    }
+
+    public override void Interact(PlayerInteraction player)
+    {
+        //Debug.Log(player.name + " is interacting with object " + batteryObject.name);
+        // //Max battery count can be changed, I just put 6 for testing purposes
+        if (playerInteraction.batteryCount >= 6)
+        {
+            Debug.Log("Player has maximum of batteries in inventory");
+            return;
+        }
+
+        player.inventory.Add(ItemID.BATTERY);
+        playerInteraction.batteryCount++;
+        Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
+        Destroy(battery);
+    }
+
+    public void CollectBattery(PlayerInteraction player)
+    {
+    
+    }
+
+    //Would need to be a used method in order to use the battery on items that require it
+    public void UseBattery(PlayerInteraction player)
+    {
+        if (player.inventory.Contains(ItemID.BATTERY))
+        {
+            if (playerInteraction.batteryCount >= 1)
+            {
+                player.inventory.Remove(ItemID.BATTERY);
+                playerInteraction.batteryCount--;
+                Debug.Log("Battery used. Remaining batteries: " + playerInteraction.batteryCount);
+            }
+    
+
+        }
+        else
+        {
+            Debug.Log("No batteries in inventory to use.");
+        }
+    }
+    
+    public void GeneratorBattery(PlayerInteraction player)
+    {
+         if (playerInteraction.batteryCount == 5)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    player.inventory.Remove(ItemID.BATTERY);
+                    playerInteraction.batteryCount--;
+
+                }
+                Debug.Log("Batteries used. Remaining batteries: " + playerInteraction.batteryCount);
+            }
+        else
+        {
+            Debug.Log("No batteries in inventory to use for generator.");
+        }
+    }
+
+
+}
