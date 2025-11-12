@@ -16,6 +16,7 @@ public class AlienStateMachine : MonoBehaviour
     private Transform player;
     private NodeManager nodeManager;
     private NavMeshAgent agent;
+    public static AlienStateMachine instance;
 
     /*********************************************************************************************************************/
 
@@ -61,6 +62,14 @@ public class AlienStateMachine : MonoBehaviour
     [SerializeField] public Queue<Vector3> pointsToFollow;          // Specific to suspicious state
 
     /*********************************************************************************************************************/
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     void Start()
     {
