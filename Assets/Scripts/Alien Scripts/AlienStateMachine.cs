@@ -277,30 +277,35 @@ public class AlienStateMachine : MonoBehaviour
         // TO-DO: There is a bug that allows the alien to see this through walls
         if (nearbySusNodes.Length > 0 && nearbySusNodes[0] != null)
         {
-            ClearStateData();
-            StartCoroutine(HandleStateTransition(1f));
-            currentState = AlienState.SUSPICIOUS;
-
-            Transform impliedObject = nearbySusNodes[0].GetComponent<SuspiciousNodeData>().impliedObject;
-            if (impliedObject != null)
+            RaycastHit hit;
+            Physics.Raycast(transform.position, nearbySusNodes[0].transform.position - transform.position, out hit);
+            if (hit.collider == nearbySusNodes[0])
             {
-                currentNode = ClosestNodeToPoint(impliedObject.position);
-            }
-            else
-            {
-                currentNode = ClosestNodeToPoint(transform.position);
-            }
+                ClearStateData();
+                StartCoroutine(HandleStateTransition(1f));
+                currentState = AlienState.SUSPICIOUS;
 
-            List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+                Transform impliedObject = nearbySusNodes[0].GetComponent<SuspiciousNodeData>().impliedObject;
+                if (impliedObject != null)
+                {
+                    currentNode = ClosestNodeToPoint(impliedObject.position);
+                }
+                else
+                {
+                    currentNode = ClosestNodeToPoint(transform.position);
+                }
 
-            foreach (Vector3 point in newPath)
-            {
-                pointsToFollow.Enqueue(point);
+                List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+
+                foreach (Vector3 point in newPath)
+                {
+                    pointsToFollow.Enqueue(point);
+                }
+
+                agent.SetDestination(pointsToFollow.Dequeue());
+                Destroy(nearbySusNodes[0].gameObject);
+                return;
             }
-
-            agent.SetDestination(pointsToFollow.Dequeue());
-            Destroy(nearbySusNodes[0].gameObject);
-            return;
         }
 
 
