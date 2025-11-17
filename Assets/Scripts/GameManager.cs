@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public double timeElapsed;
     public bool instantStart = false;
     public bool autoSpawnAlien = false;
-    public GameManager instance;
+    public static GameManager instance;
 
     void Start()
     {
