@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -401,6 +402,30 @@ public class AlienStateMachine : MonoBehaviour
         }
 
         return newPath;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        DoorInteractable door = other.GetComponent<DoorInteractable>();
+
+        if (door != null && !door.IsOpen)
+        {
+            StartCoroutine(HandleStateTransition(1f));
+
+            door.IsOpen = !door.IsOpen;
+            door.GetComponentInChildren<Animator>().SetBool("IsOpen", door.IsOpen);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        DoorInteractable door = other.GetComponent<DoorInteractable>();
+
+        if (door != null && door.IsOpen)
+        {
+            door.IsOpen = !door.IsOpen;
+            door.GetComponentInChildren<Animator>().SetBool("IsOpen", door.IsOpen);
+        }
     }
 
     void OnDrawGizmos()
