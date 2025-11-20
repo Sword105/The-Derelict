@@ -18,6 +18,7 @@ public class AlienStateMachine : MonoBehaviour
     private NodeManager nodeManager;
     private NavMeshAgent agent;
     public static AlienStateMachine instance;
+    public bool inServerRoom;
 
     /*********************************************************************************************************************/
 
@@ -87,6 +88,7 @@ public class AlienStateMachine : MonoBehaviour
 
         agent.updateRotation = false;
         agent.isStopped = false;
+        inServerRoom = false;
     }
 
     void Update()
@@ -109,7 +111,10 @@ public class AlienStateMachine : MonoBehaviour
             switch (currentState)
             {
                 case AlienState.SCOUT:
-                    ScoutState();
+                    if (inServerRoom)
+                        ServerRoomState();
+                    else
+                        ScoutState();
                     break;
                 case AlienState.SUSPICIOUS:
                     SuspiciousState();
@@ -218,6 +223,27 @@ public class AlienStateMachine : MonoBehaviour
         else
         {
             agent.SetDestination(player.position);
+        }
+    }
+
+    public void ServerRoomState()
+    {
+        // If the alien reaches its destination, find a new node to explore based on where the player would most likely be
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+
+            Collider serverRoomBounds = ServerRoomStarter.instance.serverRoomBounds;
+            Vector3 randomPosition = new Vector3(Random.Range(serverRoomBounds.bounds.min.x, serverRoomBounds.bounds.max.x), serverRoomBounds.bounds.center.y, Random.Range(serverRoomBounds.bounds.min.z, serverRoomBounds.bounds.max.z));
+
+            NavMeshHit hit;
+            while (!NavMesh.SamplePosition(randomPosition, out hit, 10, 1)) {
+                NavMesh.SamplePosition(randomPosition, out hit, 10, 1);
+
+                randomPosition = new Vector3(Random.Range(serverRoomBounds.bounds.min.x, serverRoomBounds.bounds.max.x), serverRoomBounds.bounds.center.y, Random.Range(serverRoomBounds.bounds.min.z, serverRoomBounds.bounds.max.z));
+            }
+
+            StartCoroutine(HandleStateTransition(1f));
+            agent.SetDestination(randomPosition);
         }
     }
 
