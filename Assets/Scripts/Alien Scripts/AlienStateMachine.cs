@@ -128,6 +128,11 @@ public class AlienStateMachine : MonoBehaviour
         // Manually set the rotation of the alien to its velocity (I didn't like how the NavMeshAgent smooths out the rotation)
         if (agent.velocity != Vector3.zero)
             transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(agent.velocity), 20f * Time.deltaTime).eulerAngles.y, 0);
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            StartCoroutine(Stun(1.75f));
+        }
     }
 
     public void ScoutState()
@@ -172,6 +177,15 @@ public class AlienStateMachine : MonoBehaviour
             if (pointsToFollow.Count == 0)
             {
                 Node nextNodeToExplore = AlienBrain.PickAdjacentNodeToExplore(currentNode, nodeLayer, nodesToIgnore);
+                if (nextNodeToExplore == null)
+                {
+                    Debug.Log("No more nodes to check, exiting suspicious mode early");
+                    ClearStateData();
+                    StartCoroutine(HandleStateTransition(1f));
+                    currentState = AlienState.SCOUT;
+                    return;
+                }
+
                 currentNode = nextNodeToExplore;
                 List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
 
@@ -187,7 +201,6 @@ public class AlienStateMachine : MonoBehaviour
         if (timeInState >= suspiciousStateMaxTimeLength)
         {
             Debug.Log("No more suspicious activity, scouting once again");
-            ClearStateData();
             StartCoroutine(HandleStateTransition(1f));
             currentState = AlienState.SCOUT;
         }
@@ -247,6 +260,9 @@ public class AlienStateMachine : MonoBehaviour
         }
     }
 
+    /*********************************************************************************************************************/
+    // Everything below are meant to be accessed in other classes
+
     public void InvokeSuspiciousEvent(Vector3 eventPosition, float audibleRange)
     {
         if (Vector3.Distance(transform.position, eventPosition) < audibleRange)
@@ -264,6 +280,25 @@ public class AlienStateMachine : MonoBehaviour
             agent.SetDestination(pointsToFollow.Dequeue());
             currentState = AlienState.SUSPICIOUS;
         }
+    }
+
+    public IEnumerator Stun(float stunTime)
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(stunTime);
+        ClearStateData();
+
+        currentState = AlienState.SUSPICIOUS;
+        currentNode = ClosestNodeToPoint(player.position);
+        List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+
+        foreach (Vector3 point in newPath)
+        {
+            pointsToFollow.Enqueue(point);
+        }
+
+        agent.SetDestination(pointsToFollow.Dequeue());
+        agent.isStopped = false;
     }
 
     /*********************************************************************************************************************/
@@ -308,7 +343,6 @@ public class AlienStateMachine : MonoBehaviour
             Physics.Raycast(transform.position, nearbySusNodes[0].transform.position - transform.position, out hit);
             if (hit.collider == nearbySusNodes[0])
             {
-                ClearStateData();
                 StartCoroutine(HandleStateTransition(1f));
                 currentState = AlienState.SUSPICIOUS;
 
