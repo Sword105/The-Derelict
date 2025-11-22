@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // This class is abstract because it is NOT meant to be placed on an object
@@ -39,9 +40,10 @@ public abstract class AlienBrain : MonoBehaviour
     // Ignores nodes that have already been explored
     public static Node PickAdjacentNodeToExplore(Node currentNode, LayerMask nodeLayer, List<GameObject> nodesToIgnore)
     {
-        Collider[] nearbyNodes = Physics.OverlapSphere(currentNode.transform.position, currentNode.range + 15f, nodeLayer);
+        List<Collider> nearbyNodes = Physics.OverlapSphere(currentNode.transform.position, currentNode.range + 15f, nodeLayer).ToList();
+        nearbyNodes.Remove(currentNode.GetComponent<Collider>());
 
-        Node nextNodeToFollow = (nearbyNodes[0].gameObject != currentNode.gameObject) ? nearbyNodes[0].GetComponent<Node>() : nearbyNodes[1].GetComponent<Node>();
+        Node nextNodeToFollow = null;
         double maxNodeProbability = 0;
         foreach (Collider collider in nearbyNodes)
         {

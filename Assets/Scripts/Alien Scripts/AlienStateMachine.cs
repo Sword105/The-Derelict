@@ -18,6 +18,7 @@ public class AlienStateMachine : MonoBehaviour
     private NodeManager nodeManager;
     private NavMeshAgent agent;
     public static AlienStateMachine instance;
+    public bool inServerRoom;
 
     /*********************************************************************************************************************/
 
@@ -87,6 +88,7 @@ public class AlienStateMachine : MonoBehaviour
 
         agent.updateRotation = false;
         agent.isStopped = false;
+        inServerRoom = false;
     }
 
     void Update()
@@ -109,7 +111,10 @@ public class AlienStateMachine : MonoBehaviour
             switch (currentState)
             {
                 case AlienState.SCOUT:
-                    ScoutState();
+                    if (inServerRoom)
+                        ServerRoomState();
+                    else
+                        ScoutState();
                     break;
                 case AlienState.SUSPICIOUS:
                     SuspiciousState();
@@ -123,6 +128,11 @@ public class AlienStateMachine : MonoBehaviour
         // Manually set the rotation of the alien to its velocity (I didn't like how the NavMeshAgent smooths out the rotation)
         if (agent.velocity != Vector3.zero)
             transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(agent.velocity), 20f * Time.deltaTime).eulerAngles.y, 0);
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            StartCoroutine(Stun(1.75f));
+        }
     }
 
     public void ScoutState()
@@ -167,6 +177,15 @@ public class AlienStateMachine : MonoBehaviour
             if (pointsToFollow.Count == 0)
             {
                 Node nextNodeToExplore = AlienBrain.PickAdjacentNodeToExplore(currentNode, nodeLayer, nodesToIgnore);
+                if (nextNodeToExplore == null)
+                {
+                    Debug.Log("No more nodes to check, exiting suspicious mode early");
+                    ClearStateData();
+                    StartCoroutine(HandleStateTransition(1f));
+                    currentState = AlienState.SCOUT;
+                    return;
+                }
+
                 currentNode = nextNodeToExplore;
                 List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
 
@@ -182,7 +201,6 @@ public class AlienStateMachine : MonoBehaviour
         if (timeInState >= suspiciousStateMaxTimeLength)
         {
             Debug.Log("No more suspicious activity, scouting once again");
-            ClearStateData();
             StartCoroutine(HandleStateTransition(1f));
             currentState = AlienState.SCOUT;
         }
@@ -221,6 +239,30 @@ public class AlienStateMachine : MonoBehaviour
         }
     }
 
+    public void ServerRoomState()
+    {
+        // If the alien reaches its destination, find a new node to explore based on where the player would most likely be
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+
+            Collider serverRoomBounds = ServerRoomStarter.instance.serverRoomBounds;
+            Vector3 randomPosition = new Vector3(Random.Range(serverRoomBounds.bounds.min.x, serverRoomBounds.bounds.max.x), serverRoomBounds.bounds.center.y, Random.Range(serverRoomBounds.bounds.min.z, serverRoomBounds.bounds.max.z));
+
+            NavMeshHit hit;
+            while (!NavMesh.SamplePosition(randomPosition, out hit, 10, 1)) {
+                NavMesh.SamplePosition(randomPosition, out hit, 10, 1);
+
+                randomPosition = new Vector3(Random.Range(serverRoomBounds.bounds.min.x, serverRoomBounds.bounds.max.x), serverRoomBounds.bounds.center.y, Random.Range(serverRoomBounds.bounds.min.z, serverRoomBounds.bounds.max.z));
+            }
+
+            StartCoroutine(HandleStateTransition(1f));
+            agent.SetDestination(randomPosition);
+        }
+    }
+
+    /*********************************************************************************************************************/
+    // Everything below are meant to be accessed in other classes
+
     public void InvokeSuspiciousEvent(Vector3 eventPosition, float audibleRange)
     {
         if (Vector3.Distance(transform.position, eventPosition) < audibleRange)
@@ -238,6 +280,25 @@ public class AlienStateMachine : MonoBehaviour
             agent.SetDestination(pointsToFollow.Dequeue());
             currentState = AlienState.SUSPICIOUS;
         }
+    }
+
+    public IEnumerator Stun(float stunTime)
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(stunTime);
+        ClearStateData();
+
+        currentState = AlienState.SUSPICIOUS;
+        currentNode = ClosestNodeToPoint(player.position);
+        List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
+
+        foreach (Vector3 point in newPath)
+        {
+            pointsToFollow.Enqueue(point);
+        }
+
+        agent.SetDestination(pointsToFollow.Dequeue());
+        agent.isStopped = false;
     }
 
     /*********************************************************************************************************************/
@@ -282,7 +343,6 @@ public class AlienStateMachine : MonoBehaviour
             Physics.Raycast(transform.position, nearbySusNodes[0].transform.position - transform.position, out hit);
             if (hit.collider == nearbySusNodes[0])
             {
-                ClearStateData();
                 StartCoroutine(HandleStateTransition(1f));
                 currentState = AlienState.SUSPICIOUS;
 
