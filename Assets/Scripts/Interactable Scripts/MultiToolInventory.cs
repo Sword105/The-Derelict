@@ -13,8 +13,8 @@ public class MultiToolInventory : MonoBehaviour, IUsable
 
     void Start()
     {
-        // Automatically find the PlayerInteraction script in the scene
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        // Automatically find the PlayerInteraction script in the scene
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
 
         if (playerInteraction == null)
             Debug.LogError("PlayerInteraction not found in scene!");
@@ -26,8 +26,8 @@ public class MultiToolInventory : MonoBehaviour, IUsable
         if (playerInteraction == null)
             return;
 
-        // Logic needed to use batteries on other items, right now just click 4 and it uses it
-        if (playerInteraction.batteryCount > 0 && Input.GetKeyDown(KeyCode.Alpha4))
+        // Logic needed to use batteries on other items, right now just click 4 and it uses it
+        if (playerInteraction.batteryCount > 0 && Input.GetKeyDown(KeyCode.Alpha4))
         {
             Use(ItemID.BATTERY);
             Debug.Log("4 is pressed and active item is: " + ItemID.BATTERY);
@@ -75,15 +75,15 @@ public class MultiToolInventory : MonoBehaviour, IUsable
 
 
     }
-    public void AddItemToMultiTool(ItemID newItem) //kind of redundant 
-    {
+    public void AddItemToMultiTool(ItemID newItem) //kind of redundant 
+    {
         playerInteraction.inventory.Add(newItem);
         Debug.Log("Added " + newItem + " to multitool inventory");
     }
 
     private void Use(ItemID activeItem)
     {
-        switch(activeItem)
+        switch (activeItem)
         {
             case ItemID.None:
                 Debug.Log("you cant use nothing mate");
@@ -103,15 +103,16 @@ public class MultiToolInventory : MonoBehaviour, IUsable
             case ItemID.BATTERY:
                 UseBattery(playerInteraction);
                 break;
-                
+
 
         }
     }
 
     private void UseFlashlight(ItemID itemID)
     {
-        
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             if (isItemActive)
             {
                 isItemActive = false;
@@ -121,9 +122,9 @@ public class MultiToolInventory : MonoBehaviour, IUsable
                 isItemActive = true;
             }
 
-            Debug.Log("isActive set to" + isItemActive +  "for FLASHLIGHT");
+            Debug.Log("isActive set to" + isItemActive + "for FLASHLIGHT");
         }
-        
+
     }
 
     private void UseTazer(ItemID itemID)
@@ -164,8 +165,8 @@ public class MultiToolInventory : MonoBehaviour, IUsable
 
     }
 
-    //More logic for using batteries here
-    public void UseBattery(PlayerInteraction player)
+    //More logic for using batteries here
+    public void UseBattery(PlayerInteraction player)
     {
         if (player.inventory.Contains(ItemID.BATTERY))
         {
