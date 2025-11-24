@@ -40,7 +40,7 @@ public class AlienStateMachine : MonoBehaviour
      * This cannot be zero or any number below. It must strictly be a positive number.
      */
     [Min(0.001f)]
-    public float temperature = 1f;
+    public float temperature = 0.01f;
 
     /*********************************************************************************************************************/
     
