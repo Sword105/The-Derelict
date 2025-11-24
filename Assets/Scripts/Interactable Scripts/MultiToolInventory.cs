@@ -1,23 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MultiToolInventory : MonoBehaviour, IUsable
+public class MultiToolInventory : MonoBehaviour 
 {
     public PlayerInteraction playerInteraction;
     public ItemID itemID;
     [SerializeField] private Boolean isItemActive = false;
     public ItemID activeItem;
+    [SerializeField] private Light flashlightSource;
 
     void Start()
     {
-        // Automatically find the PlayerInteraction script in the scene
         playerInteraction = FindObjectOfType<PlayerInteraction>();
 
         if (playerInteraction == null)
             Debug.LogError("PlayerInteraction not found in scene!");
+
+        // Ensure the light starts off 
+        if (flashlightSource != null)
+        {
+            flashlightSource.enabled = false;
+        }
     }
 
 
@@ -37,131 +43,102 @@ public class MultiToolInventory : MonoBehaviour, IUsable
         {
             if (Input.GetMouseButtonDown(0))
             {
-
                 Use(activeItem);
-
             }
 
+            // Flashlight Select
             if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight))
             {
+                // Turn off the active tool immediately if switching
+                if (activeItem != ItemID.Flashlight && flashlightSource != null)
+                {
+                    flashlightSource.enabled = false;
+                }
                 isItemActive = false;
                 activeItem = ItemID.Flashlight;
                 Debug.Log("1 is pressed and active item is: " + activeItem);
-
             }
 
+            // Biotracker Select
             else if ((Input.GetKeyDown(KeyCode.Alpha2) && playerInteraction.hasBiotracker))
             {
+                if (flashlightSource != null) { flashlightSource.enabled = false; }
                 isItemActive = false;
                 activeItem = ItemID.BioTracker;
                 Debug.Log("2 is pressed and active item is: " + activeItem);
-
             }
 
+            // Tazer Select
             else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer))
             {
+                if (flashlightSource != null) { flashlightSource.enabled = false; }
                 isItemActive = false;
                 activeItem = ItemID.Tazer;
                 Debug.Log("3 is pressed and active item is: " + activeItem);
-
             }
-
-
-
-
-
-
         }
-
-
     }
-    public void AddItemToMultiTool(ItemID newItem) //kind of redundant 
+
+    public void AddItemToMultiTool(ItemID newItem) 
     {
         playerInteraction.inventory.Add(newItem);
         Debug.Log("Added " + newItem + " to multitool inventory");
     }
 
-    private void Use(ItemID activeItem)
+    private void Use(ItemID currentActiveItem)
     {
-        switch(activeItem)
+        switch (currentActiveItem)
         {
             case ItemID.None:
                 Debug.Log("you cant use nothing mate");
                 break;
 
             case ItemID.Flashlight:
-                UseFlashlight(activeItem);
+                UseFlashlight(); 
                 break;
 
             case ItemID.Tazer:
-                UseTazer(activeItem);
+                UseTazer(); 
                 break;
 
             case ItemID.BioTracker:
-                UseBiotracker(activeItem);
+                UseBiotracker(); 
                 break;
+
             case ItemID.BATTERY:
                 UseBattery(playerInteraction);
                 break;
-                
-
         }
     }
 
-    private void UseFlashlight(ItemID itemID)
+    private void UseFlashlight() 
     {
-        
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            if (isItemActive)
-            {
-                isItemActive = false;
-            }
-            else
-            {
-                isItemActive = true;
-            }
+        //Toggle the state
+        isItemActive = !isItemActive;
 
-            Debug.Log("isActive set to" + isItemActive +  "for FLASHLIGHT");
-        }
-        
-    }
-
-    private void UseTazer(ItemID itemID)
-    {
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        //Controls the light
+        if (flashlightSource != null)
         {
-            if (isItemActive)
-            {
-                isItemActive = false;
-            }
-            else
-            {
-                isItemActive = true;
-            }
-
-            Debug.Log("isActive set to" + isItemActive + "for TAZER");
+            flashlightSource.enabled = isItemActive;
+        }
+        else
+        {
+            Debug.LogError("CRITICAL ERROR: Flashlight Source is not connected in the Inspector.");
         }
 
+        Debug.Log("Flashlight active state set to: " + isItemActive);
     }
 
-    private void UseBiotracker(ItemID itemID)
+    private void UseTazer() 
     {
+        isItemActive = !isItemActive;
+        Debug.Log("Tazer active state set to: " + isItemActive);
+    }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (isItemActive)
-            {
-                isItemActive = false;
-            }
-            else
-            {
-                isItemActive = true;
-            }
-
-            Debug.Log("isActive set to" + isItemActive + "for BIOTRACKER");
-        }
-
+    private void UseBiotracker() 
+    {
+        isItemActive = !isItemActive;
+        Debug.Log("Biotracker active state set to: " + isItemActive);
     }
 
     //More logic for using batteries here
@@ -183,5 +160,4 @@ public class MultiToolInventory : MonoBehaviour, IUsable
             Debug.Log("No batteries in inventory to use.");
         }
     }
-
 }
