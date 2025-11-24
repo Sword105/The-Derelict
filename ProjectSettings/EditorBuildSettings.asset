@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: d1f134b5cbc3bdb778cce46a8b1ab58e
   - enabled: 1
-    path: Assets/Scenes/InteractableTestScene.unity
-    guid: 783c4fc13ccb70842bb8aeffcf11cee0
+    path: Assets/Scenes/Test Scenes/Test 1.unity
+    guid: 74355b63a9e3acf48b668cd6edf06e89
   m_configObjects: {}
