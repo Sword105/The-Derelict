@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnAlien()
     {
-        Instantiate(alienPrefab, alienSpawnLocation);
+        Instantiate(alienPrefab, alienSpawnLocation.position, Quaternion.identity);
     }
 
     void WinGame() 
