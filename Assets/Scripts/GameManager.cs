@@ -46,6 +46,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("You won!");  
     }
 
+    public void HandlePlayerDeath(GameObject player)
+    {
+        Debug.Log("You died! (PAUSING GAME)");
+        Debug.Break();
+        // TO DO - IMPLEMENT LOSING LOGIC
+    }
+
     public void SpawnSuspiciousNode(Vector3 position)
     {
         Instantiate(suspiciousNodePrefab, position, Quaternion.identity);
