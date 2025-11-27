@@ -8,7 +8,8 @@ public enum AlienState : byte
 {
     SCOUT,
     SUSPICIOUS,
-    CHASE
+    CHASE,
+    ATTACK
 }
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -26,6 +27,7 @@ public class AlienStateMachine : MonoBehaviour
     public float lineOfSightThreshold;
     public float suspiciousStateMaxTimeLength = 20f;
     public float chaseTimeUntilGiveUp = 1f;
+    public float attackRange = 2f;
 
     public LayerMask playerLayer;
     public LayerMask nodeLayer;
@@ -121,6 +123,9 @@ public class AlienStateMachine : MonoBehaviour
                     break;
                 case AlienState.CHASE:
                     ChaseState();
+                    break;
+                case AlienState.ATTACK:
+                    AttackState();
                     break;
             }
         }
@@ -237,6 +242,28 @@ public class AlienStateMachine : MonoBehaviour
         {
             agent.SetDestination(player.position);
         }
+
+        if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+        {
+            ClearStateData();
+            currentState = AlienState.ATTACK;
+            Debug.Log(currentState);
+        }
+    }
+
+    public void AttackState()
+    {
+        Debug.Log("Alien is attacking");
+        timeInState += Time.deltaTime;
+        if (timeInState >= 0.8f)
+        { 
+            if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+                PlayerHPManager.instance.InflictDamage(1f);
+
+            StartCoroutine(HandleStateTransition(1f));
+            ClearStateData();
+            currentState = AlienState.CHASE;
+        }
     }
 
     public void ServerRoomState()
@@ -318,7 +345,6 @@ public class AlienStateMachine : MonoBehaviour
         yield return new WaitForSeconds(timeToTransition);
         agent.isStopped = false;
     }
-
     private Vector3 RandomPositionAtCurrentNode(float range)
     {
         Vector3 randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * range);
@@ -371,7 +397,7 @@ public class AlienStateMachine : MonoBehaviour
 
 
         // Check that the alien has direct line of sight and isn't currently chasing anyone
-        if (canSeePlayer && lineOfSightDotProduct > lineOfSightThreshold && currentState != AlienState.CHASE)
+        if (canSeePlayer && lineOfSightDotProduct > lineOfSightThreshold && currentState != AlienState.CHASE && currentState != AlienState.ATTACK)
         {
             ClearStateData();
 
