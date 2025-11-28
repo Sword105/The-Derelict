@@ -4,13 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class MultiToolInventory : MonoBehaviour 
 {
+    public static Action<bool> OnBiotrackerUse;
     public PlayerInteraction playerInteraction;
     public ItemID itemID;
     [SerializeField] private Boolean isItemActive = false;
     public ItemID activeItem;
+
+    //Tool Configuration
     [SerializeField] private Light flashlightSource;
+    [SerializeField] private GameObject biotrackerVisuals;
+    [SerializeField] private AudioSource biotrackerAudio;
+
 
     void Start()
     {
@@ -19,11 +26,8 @@ public class MultiToolInventory : MonoBehaviour
         if (playerInteraction == null)
             Debug.LogError("PlayerInteraction not found in scene!");
 
-        // Ensure the light starts off 
-        if (flashlightSource != null)
-        {
-            flashlightSource.enabled = false;
-        }
+        //Ensures all tools start off 
+        turnOffAllTools();
     }
 
 
@@ -46,33 +50,36 @@ public class MultiToolInventory : MonoBehaviour
                 Use(activeItem);
             }
 
-            // Flashlight Select
+            //Flashlight Select
             if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight))
             {
-                // Turn off the active tool immediately if switching
+                //Turn off the active tool immediately if switching
                 if (activeItem != ItemID.Flashlight && flashlightSource != null)
                 {
-                    flashlightSource.enabled = false;
+                    //Turns off other tools when switching
+                    turnOffAllTools();
+                    activeItem = ItemID.Flashlight;
+                    Debug.Log("1 is pressed and active item is: " + activeItem);
                 }
-                isItemActive = false;
-                activeItem = ItemID.Flashlight;
-                Debug.Log("1 is pressed and active item is: " + activeItem);
             }
 
-            // Biotracker Select
+            //Biotracker Select
             else if ((Input.GetKeyDown(KeyCode.Alpha2) && playerInteraction.hasBiotracker))
             {
-                if (flashlightSource != null) { flashlightSource.enabled = false; }
-                isItemActive = false;
-                activeItem = ItemID.BioTracker;
-                Debug.Log("2 is pressed and active item is: " + activeItem);
+                if (activeItem != ItemID.BioTracker)
+                {
+                    //Turns off other tools when switching
+                    turnOffAllTools();
+                    activeItem = ItemID.BioTracker;
+                    Debug.Log("2 is pressed and active item is: " + activeItem);
+                }
             }
 
-            // Tazer Select
+            //Tazer Select
             else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer))
             {
-                if (flashlightSource != null) { flashlightSource.enabled = false; }
-                isItemActive = false;
+                //Turns off other tools when switching
+                turnOffAllTools();
                 activeItem = ItemID.Tazer;
                 Debug.Log("3 is pressed and active item is: " + activeItem);
             }
@@ -83,6 +90,26 @@ public class MultiToolInventory : MonoBehaviour
     {
         playerInteraction.inventory.Add(newItem);
         Debug.Log("Added " + newItem + " to multitool inventory");
+    }
+
+    //This makes all tools turned off when switching
+    private void turnOffAllTools()
+    {
+        if (flashlightSource != null)
+        {
+            flashlightSource.enabled = false;
+        }
+
+        if (biotrackerVisuals != null)
+        {
+            biotrackerVisuals.SetActive(false);
+        }
+
+        if (biotrackerAudio != null)
+        {
+            biotrackerAudio.Stop();
+        }
+
     }
 
     private void Use(ItemID currentActiveItem)
@@ -135,11 +162,37 @@ public class MultiToolInventory : MonoBehaviour
         Debug.Log("Tazer active state set to: " + isItemActive);
     }
 
+
+    //UNFINISHED: Biotracker cannot display alien on minimap yet
     private void UseBiotracker() 
     {
         isItemActive = !isItemActive;
+
+        //Play biotracker audio when activated
+        if (isItemActive)
+        {
+            if(biotrackerAudio != null)
+            {
+                biotrackerAudio.Play();
+            }
+            else
+            {
+                Debug.LogError("Audio not detected.");
+            }
+            //Checks if alien can hear the noise
+            OnBiotrackerUse?.Invoke(true);
+        }
+        else
+        {
+            if(biotrackerAudio != null)
+            {
+                biotrackerAudio.Stop();
+            }
+            OnBiotrackerUse?.Invoke(false);
+        }
         Debug.Log("Biotracker active state set to: " + isItemActive);
     }
+
 
     //More logic for using batteries here
     public void UseBattery(PlayerInteraction player)
