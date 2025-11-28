@@ -33,12 +33,13 @@ public class BatteryInteractable : Interactable
         player.inventory.Add(ItemID.BATTERY);
         playerInteraction.batteryCount++;
         Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
+        SuspiciousNodeData snd = battery.GetComponent<SuspiciousNodeData>();
         Destroy(battery);
     }
 
     public void CollectBattery(PlayerInteraction player)
     {
-    
+        
     }
 
     //Would need to be a used method in order to use the battery on items that require it
