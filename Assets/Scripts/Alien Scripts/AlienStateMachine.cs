@@ -25,7 +25,7 @@ public class AlienStateMachine : MonoBehaviour
 
     [Header("Setup")]
     public float lineOfSightThreshold;
-    public float suspiciousStateMaxTimeLength = 20f;
+    public int suspiciousStateMaxNodesChecked = 5;
     public float chaseTimeUntilGiveUp = 1f;
     public float attackRange = 2f;
 
@@ -64,6 +64,7 @@ public class AlienStateMachine : MonoBehaviour
     [SerializeField] public Node currentNode;
     [SerializeField] private List<GameObject> nodesToIgnore;        // Specific to suspicious state
     [SerializeField] public Queue<Vector3> pointsToFollow;          // Specific to suspicious state
+    [SerializeField] public int nodesChecked;                       // Specific to suspicious state
 
     /*********************************************************************************************************************/
 
@@ -179,6 +180,7 @@ public class AlienStateMachine : MonoBehaviour
         NavMesh.SamplePosition(agent.transform.position, out hit, 10f, NavMesh.AllAreas);
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
+            nodesChecked++;
             if (pointsToFollow.Count == 0)
             {
                 Node nextNodeToExplore = AlienBrain.PickAdjacentNodeToExplore(currentNode, nodeLayer, nodesToIgnore);
@@ -203,7 +205,7 @@ public class AlienStateMachine : MonoBehaviour
         }
 
         // If more than 30 seconds pass without the alien finding the player, go back to regular scouting
-        if (timeInState >= suspiciousStateMaxTimeLength)
+        if (nodesChecked >= suspiciousStateMaxNodesChecked)
         {
             Debug.Log("No more suspicious activity, scouting once again");
             StartCoroutine(HandleStateTransition(1f));
@@ -334,6 +336,7 @@ public class AlienStateMachine : MonoBehaviour
     private void ClearStateData()
     {
         timeInState = 0;
+        nodesChecked = 0;
         pointsToFollow.Clear();
         nodesToIgnore.Clear();
         agent.ResetPath();
