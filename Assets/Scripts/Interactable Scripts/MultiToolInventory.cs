@@ -43,6 +43,7 @@ public class MultiToolInventory : MonoBehaviour
             Debug.Log("4 is pressed and active item is: " + ItemID.BATTERY);
         }
 
+        //Only allow tool use if player has the multitool (left click to use)
         if (playerInteraction.hasMultiTool)
         {
             if (Input.GetMouseButtonDown(0))
@@ -86,21 +87,16 @@ public class MultiToolInventory : MonoBehaviour
         }
     }
 
-    public void AddItemToMultiTool(ItemID newItem) 
-    {
-        playerInteraction.inventory.Add(newItem);
-        Debug.Log("Added " + newItem + " to multitool inventory");
-    }
-
     //This makes all tools turned off when switching
     private void turnOffAllTools()
     {
+        //Turns off flashlight components
         if (flashlightSource != null)
         {
             flashlightSource.enabled = false;
         }
 
-
+        //Turns off biotracker components
         if (biotrackerAudio != null)
         {
             biotrackerAudio.Stop();
@@ -114,6 +110,7 @@ public class MultiToolInventory : MonoBehaviour
         isItemActive = false;
     }
 
+    //Logic for using each item
     private void Use(ItemID currentActiveItem)
     {
         switch (currentActiveItem)
@@ -140,6 +137,7 @@ public class MultiToolInventory : MonoBehaviour
         }
     }
 
+    //Logic for using flashlight
     private void UseFlashlight() 
     {
         //Toggle the state
@@ -164,7 +162,7 @@ public class MultiToolInventory : MonoBehaviour
         Debug.Log("Tazer active state set to: " + isItemActive);
     }
 
-
+    //Logic for using biotracker
     private void UseBiotracker() 
     {
         isItemActive = !isItemActive;
@@ -208,8 +206,6 @@ public class MultiToolInventory : MonoBehaviour
                 playerInteraction.batteryCount--;
                 Debug.Log("Battery used. Remaining batteries: " + playerInteraction.batteryCount);
             }
-
-
         }
         else
         {
