@@ -12,10 +12,10 @@ public class MultiToolInventory : MonoBehaviour
     public ItemID itemID;
     [SerializeField] private Boolean isItemActive = false;
     public ItemID activeItem;
+    public SpriteRenderer enemyIconRenderer;
 
     //Tool Configuration
     [SerializeField] private Light flashlightSource;
-    [SerializeField] private GameObject biotrackerVisuals;
     [SerializeField] private AudioSource biotrackerAudio;
 
 
@@ -100,16 +100,18 @@ public class MultiToolInventory : MonoBehaviour
             flashlightSource.enabled = false;
         }
 
-        if (biotrackerVisuals != null)
-        {
-            biotrackerVisuals.SetActive(false);
-        }
 
         if (biotrackerAudio != null)
         {
             biotrackerAudio.Stop();
         }
+        if (enemyIconRenderer != null)
+        {
+            enemyIconRenderer.enabled = false;
+        }
 
+        
+        isItemActive = false;
     }
 
     private void Use(ItemID currentActiveItem)
@@ -163,7 +165,6 @@ public class MultiToolInventory : MonoBehaviour
     }
 
 
-    //UNFINISHED: Biotracker cannot display alien on minimap yet
     private void UseBiotracker() 
     {
         isItemActive = !isItemActive;
@@ -179,16 +180,18 @@ public class MultiToolInventory : MonoBehaviour
             {
                 Debug.LogError("Audio not detected.");
             }
-            //Checks if alien can hear the noise
-            OnBiotrackerUse?.Invoke(true);
+            //***Gotta add logic for alerting aliens of suspicious activity here***
+            //AlienStateMachine.instance.InvokeSuspiciousEvent(playerInteraction.transform.position, 10f);
+        }
+
+        //Allows player to see the alien icons on the minimap
+        if (enemyIconRenderer != null)
+        {
+            enemyIconRenderer.enabled = isItemActive;
         }
         else
         {
-            if(biotrackerAudio != null)
-            {
-                biotrackerAudio.Stop();
-            }
-            OnBiotrackerUse?.Invoke(false);
+            Debug.LogError("Enemy Icon Renderer is not linked in the Inspector!");
         }
         Debug.Log("Biotracker active state set to: " + isItemActive);
     }
