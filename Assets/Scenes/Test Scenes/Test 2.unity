@@ -3527,7 +3527,6 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   interactDistance: 3
   interactableLayer:
-    serializedVersion: 2
     m_Bits: 8
 --- !u!114 &1865554972
 MonoBehaviour:
