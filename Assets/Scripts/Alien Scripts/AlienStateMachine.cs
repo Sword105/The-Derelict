@@ -8,7 +8,8 @@ public enum AlienState : byte
 {
     SCOUT,
     SUSPICIOUS,
-    CHASE
+    CHASE,
+    ATTACK
 }
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -24,8 +25,9 @@ public class AlienStateMachine : MonoBehaviour
 
     [Header("Setup")]
     public float lineOfSightThreshold;
-    public float suspiciousStateMaxTimeLength = 20f;
+    public int suspiciousStateMaxNodesChecked = 5;
     public float chaseTimeUntilGiveUp = 1f;
+    public float attackRange = 2f;
 
     public LayerMask playerLayer;
     public LayerMask nodeLayer;
@@ -62,6 +64,7 @@ public class AlienStateMachine : MonoBehaviour
     [SerializeField] public Node currentNode;
     [SerializeField] private List<GameObject> nodesToIgnore;        // Specific to suspicious state
     [SerializeField] public Queue<Vector3> pointsToFollow;          // Specific to suspicious state
+    [SerializeField] public int nodesChecked;                       // Specific to suspicious state
 
     /*********************************************************************************************************************/
 
@@ -122,6 +125,9 @@ public class AlienStateMachine : MonoBehaviour
                 case AlienState.CHASE:
                     ChaseState();
                     break;
+                case AlienState.ATTACK:
+                    AttackState();
+                    break;
             }
         }
 
@@ -174,6 +180,7 @@ public class AlienStateMachine : MonoBehaviour
         NavMesh.SamplePosition(agent.transform.position, out hit, 10f, NavMesh.AllAreas);
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
+            nodesChecked++;
             if (pointsToFollow.Count == 0)
             {
                 Node nextNodeToExplore = AlienBrain.PickAdjacentNodeToExplore(currentNode, nodeLayer, nodesToIgnore);
@@ -198,7 +205,7 @@ public class AlienStateMachine : MonoBehaviour
         }
 
         // If more than 30 seconds pass without the alien finding the player, go back to regular scouting
-        if (timeInState >= suspiciousStateMaxTimeLength)
+        if (nodesChecked >= suspiciousStateMaxNodesChecked)
         {
             Debug.Log("No more suspicious activity, scouting once again");
             StartCoroutine(HandleStateTransition(1f));
@@ -236,6 +243,28 @@ public class AlienStateMachine : MonoBehaviour
         else
         {
             agent.SetDestination(player.position);
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+        {
+            ClearStateData();
+            currentState = AlienState.ATTACK;
+            Debug.Log(currentState);
+        }
+    }
+
+    public void AttackState()
+    {
+        Debug.Log("Alien is attacking");
+        timeInState += Time.deltaTime;
+        if (timeInState >= 0.8f)
+        { 
+            if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+                PlayerHPManager.instance.InflictDamage(1f);
+
+            StartCoroutine(HandleStateTransition(1f));
+            ClearStateData();
+            currentState = AlienState.CHASE;
         }
     }
 
@@ -307,6 +336,7 @@ public class AlienStateMachine : MonoBehaviour
     private void ClearStateData()
     {
         timeInState = 0;
+        nodesChecked = 0;
         pointsToFollow.Clear();
         nodesToIgnore.Clear();
         agent.ResetPath();
@@ -318,7 +348,6 @@ public class AlienStateMachine : MonoBehaviour
         yield return new WaitForSeconds(timeToTransition);
         agent.isStopped = false;
     }
-
     private Vector3 RandomPositionAtCurrentNode(float range)
     {
         Vector3 randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * range);
@@ -371,7 +400,7 @@ public class AlienStateMachine : MonoBehaviour
 
 
         // Check that the alien has direct line of sight and isn't currently chasing anyone
-        if (canSeePlayer && lineOfSightDotProduct > lineOfSightThreshold && currentState != AlienState.CHASE)
+        if (canSeePlayer && lineOfSightDotProduct > lineOfSightThreshold && currentState != AlienState.CHASE && currentState != AlienState.ATTACK)
         {
             ClearStateData();
 
