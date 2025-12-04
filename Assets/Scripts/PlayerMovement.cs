@@ -9,13 +9,14 @@ public class PlayerMovement : MonoBehaviour
 
     // Movement variables
     public float moveSpeed;
+    public float gravity;
 
     public Transform orientation;
 
     float horizontalInput;
     float verticalInput;
 
-    Rigidbody rb;
+    CharacterController controller;
 
     // Ground check variables
     public float playerHeight;
@@ -23,12 +24,13 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
     public float groundDrag;
 
+    Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        controller = GetComponent<CharacterController>();
+        //controller.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -46,14 +48,21 @@ public class PlayerMovement : MonoBehaviour
         
         if (grounded) // check if the player is grounded
         {
+            velocity.y = 0;
             Debug.Log("Grounded Sucessfully");
             
+            /*
             if (horizontalInput == 0 && verticalInput == 0) // now we check if the user let go of the movement keys then we apply drag to prevent sliding
-                rb.drag = groundDrag * 10;
+                controller.drag = groundDrag * 10;
             else
-                rb.drag = 0; // airborne movement
+                controller.drag = 0; // airborne movement
+            */
         }
-
+        else
+        {
+            velocity.y += gravity * Time.deltaTime * Time.deltaTime;
+            controller.Move(velocity);
+        }
     }
 
     private void FixedUpdate()
@@ -73,18 +82,19 @@ public class PlayerMovement : MonoBehaviour
     {
         // calculate movement direction
         Vector3 MoveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        rb.AddForce(MoveDirection.normalized * (moveSpeed * 10f), ForceMode.Force);
+        //controller.AddForce(MoveDirection.normalized * (moveSpeed * 10f), ForceMode.Force);
+        controller.Move(MoveDirection * moveSpeed * 0.1f);
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVel = new Vector3(controller.velocity.x, 0f, controller.velocity.z);
 
         // limit velocity
         if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed; // max velocity would be
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); // applying limited velocity to player speed
+            //controller.velocity = new Vector3(limitedVel.x, controller.velocity.y, limitedVel.z); // applying limited velocity to player speed
         }
     }
 }

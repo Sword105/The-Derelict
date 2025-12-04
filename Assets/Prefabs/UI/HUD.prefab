@@ -166,8 +166,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 5086744615304288837}
   iconDisplay: {fileID: 4769329199644423488}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &452181458650276535
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,8 +665,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 7084580307587010544}
   iconDisplay: {fileID: 8428292100851474318}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &4454001053359750916
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,8 +849,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 6939724875498298947}
   iconDisplay: {fileID: 3772148218738671939}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &4629559071761668937
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,18 +911,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9528302, g: 0, b: 0.009523522, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.008230209, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: aadc422d075e4f7bead8ca5615eb0304, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1007,6 +1013,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6209529352710203942}
   - component: {fileID: 1516543930425990117}
+  - component: {fileID: 6832928384965125736}
+  - component: {fileID: 4454854002382694118}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -1241,8 +1249,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 4928590112403861665}
   iconDisplay: {fileID: 8581146468989081141}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &6316306161641455995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1412,23 @@ MonoBehaviour:
   - {fileID: 1106420487037281931}
   - {fileID: 1037723029396147961}
   - {fileID: 556485910370848958}
+  itemInHandText: {fileID: 0}
+  allItemDefinitions:
+  - id: 1
+    displayName: Multi Tool
+    icon: {fileID: 21300000, guid: 144d5c35043c7f04193d57dc3c38bbcb, type: 3}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
 --- !u!1001 &4568684896714264854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1580,6 +1607,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8808645194277551108, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808645194277551108, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808645194277551108, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      propertyPath: m_Color.b
+      value: 0.008230209
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808645194277551108, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808645194277551108, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808645194277551108, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9131790961613416005, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
       propertyPath: m_Name
       value: HealthBar
@@ -1587,5 +1638,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9131790961613416005, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6832928384965125736}
+    - targetCorrespondingSourceObject: {fileID: 9131790961613416005, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4454854002382694118}
   m_SourcePrefab: {fileID: 100100000, guid: 5ecfc4378c49c41abadae4f5c15f6179, type: 3}
+--- !u!114 &6832928384965125736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437136638199182403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ae053b8ffe14347a8add0f4f6aad4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  currentHP: 0
+--- !u!114 &4454854002382694118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437136638199182403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97779f9413a7994e09bd6c14513d979e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarFill: {fileID: 7429936097846204004}

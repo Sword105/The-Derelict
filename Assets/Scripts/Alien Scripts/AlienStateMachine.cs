@@ -151,6 +151,8 @@ public class AlienStateMachine : MonoBehaviour
             if (pointsToFollow.Count == 0)
             {
                 // If you get the same node, try again for a different one
+                StartCoroutine(HandleStateTransition(1.5f));
+
                 Node newNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
                 while (newNode == currentNode)
                 {
@@ -348,6 +350,7 @@ public class AlienStateMachine : MonoBehaviour
         yield return new WaitForSeconds(timeToTransition);
         agent.isStopped = false;
     }
+
     private Vector3 RandomPositionAtCurrentNode(float range)
     {
         Vector3 randomPoint = currentNode.transform.position + (UnityEngine.Random.insideUnitSphere * range);
@@ -434,9 +437,10 @@ public class AlienStateMachine : MonoBehaviour
         lineOfSightDotProduct = Vector3.Dot(transform.forward.normalized, (player.transform.position - transform.position).normalized);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, playerLayer))
+        Vector3 dir = player.transform.position - transform.position;
+        if (Physics.Raycast(transform.position, dir, out hit, dir.magnitude, ~nodesChecked, QueryTriggerInteraction.Ignore))
         {
-            canSeePlayer = (hit.collider.gameObject == player.gameObject);
+            canSeePlayer = (hit.collider.gameObject.layer & (1 << playerLayer)) != 0 && hit.collider.gameObject == player.gameObject;
         }
     }
 
@@ -483,7 +487,10 @@ public class AlienStateMachine : MonoBehaviour
 
             if (Vector3.Distance(edge.position, newPath[i]) < maxPathPadding)
             {
-                newPath[i] += edge.normal * (maxPathPadding / Mathf.Clamp(Vector3.Distance(edge.position, newPath[i]), minPathPadding, maxPathPadding));
+                Vector3 newPoint = edge.normal * (maxPathPadding / Mathf.Clamp(Vector3.Distance(edge.position, newPath[i]), minPathPadding, maxPathPadding));
+
+                if (NavMesh.SamplePosition(newPoint, out NavMeshHit hit, 100f, NavMesh.AllAreas))
+                    newPath[i] += newPoint;
             }
 
             if (i > 0)

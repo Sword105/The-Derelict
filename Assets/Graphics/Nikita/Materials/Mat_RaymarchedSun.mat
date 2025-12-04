@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mat_RaymarchedSun
+  m_Shader: {fileID: 4800000, guid: 859ee753a3f60485d85e3249baf7fb88, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Ambient: 0.15
+    - _BackgroundDepthCut: 0.9999
+    - _BandIntensity: 0.8
+    - _BandNoise: 0.35
+    - _BandPitch: 12
+    - _BandSharpness: 2.8
+    - _BandYaw: 0
+    - _BumpScale: 1
+    - _CellScale: 220
+    - _CoronaGain: 1
+    - _CoronaThick: 60
+    - _Cutoff: 0.5
+    - _DebugDepth: 1
+    - _Density: 0.012
+    - _DetailNormalMapScale: 1
+    - _Distance: 1000
+    - _DstBlend: 0
+    - _EdgeSoft: 0.01
+    - _EdgeSoften: 1.2
+    - _Eps: 0.001
+    - _Epsilon: 0.001
+    - _Exposure: 0.1
+    - _ForceDraw: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Glow: 3
+    - _Halo: 15.5
+    - _HaloDeg: 0.1
+    - _Intensity: 2.2
+    - _MaxDist: 100000
+    - _MaxDistance: 100
+    - _MaxMarch: 5000
+    - _MaxSteps: 1000
+    - _Metallic: 0
+    - _Mode: 0
+    - _NebulaBlend: 0.5
+    - _NebulaContrast: 1.2
+    - _NebulaCut: 0.22
+    - _NebulaIntensity: 0.8
+    - _NebulaScale: 1.6
+    - _Noise: 0.2
+    - _NoiseAmt: 0.25
+    - _OcclBias: 5.7
+    - _OcclSoft: 5.6
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Pitch: 35
+    - _Radius: 8
+    - _RadiusDeg: 20.4
+    - _RadiusUnits: 150
+    - _Ring: 1.15
+    - _Rotation: 0
+    - _SizePow: 4
+    - _SmoothnessTextureChannel: 0
+    - _Soft: 1.5
+    - _SoftDeg: 3.4
+    - _SpecPower: 24
+    - _SpecularHighlights: 1
+    - _Speed: 0.25
+    - _SphereDistance: 2
+    - _SphereRadius: 100
+    - _SrcBlend: 1
+    - _Steps: 64
+    - _SunDistance: 2000
+    - _SunRadius: 120
+    - _TimeScale: 0.3
+    - _TwinkleAmt: 0.25
+    - _TwinkleSpeed: 0.6
+    - _Twirl: 2
+    - _UVSec: 0
+    - _Yaw: 48
+    - _ZWrite: 1
+    m_Colors:
+    - _BandColor: {r: 1, g: 0.9, b: 0.8, a: 1}
+    - _BgColor: {r: 0.01, g: 0.01, b: 0.02, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CoronaColor: {r: 4, g: 3.0000002, b: 2, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HaloColor: {r: 2, g: 1.5, b: 1, a: 1}
+    - _NebulaColorA: {r: 0.29999998, g: 0.54999995, b: 1, a: 1}
+    - _NebulaColorB: {r: 1, g: 0.34999996, b: 0.7, a: 1}
+    - _SphereDir: {r: 0, g: 10, b: 100, a: 0}
+    - _SphereDirWS: {r: 0, g: 10, b: 1, a: 0}
+    - _SunColor: {r: 0.7490196, g: 0.41162556, b: 0.28235295, a: 1}
+    - _SunDir: {r: 1.0000001, g: 0, b: -0.00000011920929, a: 0}
+    - _Tint: {r: 1, g: 0, b: 0, a: 0.3}
+    - _TintA: {r: 0.8962264, g: 0.8556923, b: 0.20714669, a: 1}
+    - _TintB: {r: 0.8, g: 0.39999998, b: 0.09999997, a: 1}
+  m_BuildTextureStacks: []
