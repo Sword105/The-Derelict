@@ -24,6 +24,10 @@ public class PlayerHPManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InflictDamage(0.5f);
+        }
         if (currentHP <= 0)
         {
             GameManager.instance.HandlePlayerDeath(gameObject);
