@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,8 +49,8 @@ public class GameManager : MonoBehaviour
 
     public void HandlePlayerDeath(GameObject player)
     {
-        Debug.Log("You died! (PAUSING GAME)");
-        Debug.Break();
+        SceneManager.LoadScene("StartMenu");
+        Cursor.lockState = CursorLockMode.Confined;
         // TO DO - IMPLEMENT LOSING LOGIC
     }
 
