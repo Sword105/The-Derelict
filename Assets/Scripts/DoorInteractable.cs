@@ -1,12 +1,23 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class DoorInteractable : Interactable
-
 {
     public GameObject doorObject;
+    public NavMeshObstacle obstacle;
+
     public bool IsOpen = false;
     public bool poweredOn = true;
+
+    private void Start()
+    {
+        if (!poweredOn)
+            obstacle.gameObject.SetActive(true);
+        else
+            obstacle.gameObject.SetActive(false);
+    }
+
     public override void Interact(PlayerInteraction player)
     {
         Debug.Log(player.name + " is interacting with door " + gameObject.name);
@@ -14,6 +25,7 @@ public class DoorInteractable : Interactable
         if (poweredOn)
         {
             IsOpen = !IsOpen;
+            obstacle.gameObject.SetActive(false);
             GetComponentInChildren<Animator>().SetBool("IsOpen", IsOpen);
             Debug.Log("The door is powered off and cannot be opened.");
             return;
