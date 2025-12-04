@@ -76,7 +76,15 @@ public class MultiToolInventory : MonoBehaviour
                 activeItem = ItemID.Tazer;
                 Debug.Log("3 is pressed and active item is: " + activeItem);
             }
+            //Power Drill Select
         }
+        else if ((Input.GetKeyDown(KeyCode.Alpha4) && playerInteraction.hasPowerDrill))
+            {
+                if (flashlightSource != null) { flashlightSource.enabled = false; }
+                isItemActive = false;
+                activeItem = ItemID.PowerDrill;
+                Debug.Log("4 is pressed and active item is: " + activeItem);
+            }
     }
 
     public void AddItemToMultiTool(ItemID newItem) 
@@ -108,6 +116,9 @@ public class MultiToolInventory : MonoBehaviour
             case ItemID.BATTERY:
                 UseBattery(playerInteraction);
                 break;
+            case ItemID.PowerDrill:
+                UsePowerDrill(playerInteraction);
+                break;
         }
     }
 
@@ -129,9 +140,11 @@ public class MultiToolInventory : MonoBehaviour
         Debug.Log("Flashlight active state set to: " + isItemActive);
     }
 
-    private void UseTazer() 
+    private void UseTazer() //NEEDS TO BE IMPLEMENTED
     {
         isItemActive = !isItemActive;
+
+
         Debug.Log("Tazer active state set to: " + isItemActive);
     }
 
@@ -159,5 +172,12 @@ public class MultiToolInventory : MonoBehaviour
         {
             Debug.Log("No batteries in inventory to use.");
         }
+    }
+
+    public void UsePowerDrill(PlayerInteraction player){
+
+
+
+
     }
 }
