@@ -4,13 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class MultiToolInventory : MonoBehaviour 
 {
+    public static Action<bool> OnBiotrackerUse;
     public PlayerInteraction playerInteraction;
     public ItemID itemID;
     [SerializeField] private Boolean isItemActive = false;
     public ItemID activeItem;
+    public SpriteRenderer enemyIconRenderer;
+
+    //Tool Configuration
     [SerializeField] private Light flashlightSource;
+    [SerializeField] private AudioSource biotrackerAudio;
+
 
     void Start()
     {
@@ -19,11 +26,8 @@ public class MultiToolInventory : MonoBehaviour
         if (playerInteraction == null)
             Debug.LogError("PlayerInteraction not found in scene!");
 
-        // Ensure the light starts off 
-        if (flashlightSource != null)
-        {
-            flashlightSource.enabled = false;
-        }
+        //Ensures all tools start off 
+        turnOffAllTools();
     }
 
 
@@ -39,6 +43,7 @@ public class MultiToolInventory : MonoBehaviour
             Debug.Log("4 is pressed and active item is: " + ItemID.BATTERY);
         }
 
+        //Only allow tool use if player has the multitool (left click to use)
         if (playerInteraction.hasMultiTool)
         {
             if (Input.GetMouseButtonDown(0))
@@ -46,45 +51,66 @@ public class MultiToolInventory : MonoBehaviour
                 Use(activeItem);
             }
 
-            // Flashlight Select
+            //Flashlight Select
             if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight))
             {
-                // Turn off the active tool immediately if switching
+                //Turn off the active tool immediately if switching
                 if (activeItem != ItemID.Flashlight && flashlightSource != null)
                 {
-                    flashlightSource.enabled = false;
+                    //Turns off other tools when switching
+                    turnOffAllTools();
+                    activeItem = ItemID.Flashlight;
+                    Debug.Log("1 is pressed and active item is: " + activeItem);
                 }
-                isItemActive = false;
-                activeItem = ItemID.Flashlight;
-                Debug.Log("1 is pressed and active item is: " + activeItem);
             }
 
-            // Biotracker Select
+            //Biotracker Select
             else if ((Input.GetKeyDown(KeyCode.Alpha2) && playerInteraction.hasBiotracker))
             {
-                if (flashlightSource != null) { flashlightSource.enabled = false; }
-                isItemActive = false;
-                activeItem = ItemID.BioTracker;
-                Debug.Log("2 is pressed and active item is: " + activeItem);
+                if (activeItem != ItemID.BioTracker)
+                {
+                    //Turns off other tools when switching
+                    turnOffAllTools();
+                    activeItem = ItemID.BioTracker;
+                    Debug.Log("2 is pressed and active item is: " + activeItem);
+                }
             }
 
-            // Tazer Select
+            //Tazer Select
             else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer))
             {
-                if (flashlightSource != null) { flashlightSource.enabled = false; }
-                isItemActive = false;
+                //Turns off other tools when switching
+                turnOffAllTools();
                 activeItem = ItemID.Tazer;
                 Debug.Log("3 is pressed and active item is: " + activeItem);
             }
         }
     }
 
-    public void AddItemToMultiTool(ItemID newItem) 
+    //This makes all tools turned off when switching
+    private void turnOffAllTools()
     {
-        playerInteraction.inventory.Add(newItem);
-        Debug.Log("Added " + newItem + " to multitool inventory");
+        //Turns off flashlight components
+        if (flashlightSource != null)
+        {
+            flashlightSource.enabled = false;
+        }
+
+        //Turns off biotracker components
+        if (biotrackerAudio != null)
+        {
+            biotrackerAudio.Stop();
+        }
+        if (enemyIconRenderer != null)
+        {
+            enemyIconRenderer.enabled = false;
+        }
+
+        
+        isItemActive = false;
     }
 
+    //Logic for using each item
     private void Use(ItemID currentActiveItem)
     {
         switch (currentActiveItem)
@@ -111,6 +137,7 @@ public class MultiToolInventory : MonoBehaviour
         }
     }
 
+    //Logic for using flashlight
     private void UseFlashlight() 
     {
         //Toggle the state
@@ -135,11 +162,38 @@ public class MultiToolInventory : MonoBehaviour
         Debug.Log("Tazer active state set to: " + isItemActive);
     }
 
+    //Logic for using biotracker
     private void UseBiotracker() 
     {
         isItemActive = !isItemActive;
+
+        //Play biotracker audio when activated
+        if (isItemActive)
+        {
+            if(biotrackerAudio != null)
+            {
+                biotrackerAudio.Play();
+            }
+            else
+            {
+                Debug.LogError("Audio not detected.");
+            }
+            //***Gotta add logic for alerting aliens of suspicious activity here***
+            //AlienStateMachine.instance.InvokeSuspiciousEvent(playerInteraction.transform.position, 10f);
+        }
+
+        //Allows player to see the alien icons on the minimap
+        if (enemyIconRenderer != null)
+        {
+            enemyIconRenderer.enabled = isItemActive;
+        }
+        else
+        {
+            Debug.LogError("Enemy Icon Renderer is not linked in the Inspector!");
+        }
         Debug.Log("Biotracker active state set to: " + isItemActive);
     }
+
 
     //More logic for using batteries here
     public void UseBattery(PlayerInteraction player)
@@ -152,8 +206,6 @@ public class MultiToolInventory : MonoBehaviour
                 playerInteraction.batteryCount--;
                 Debug.Log("Battery used. Remaining batteries: " + playerInteraction.batteryCount);
             }
-
-
         }
         else
         {
