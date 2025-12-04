@@ -166,8 +166,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 5086744615304288837}
   iconDisplay: {fileID: 4769329199644423488}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &452181458650276535
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,8 +665,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 7084580307587010544}
   iconDisplay: {fileID: 8428292100851474318}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &4454001053359750916
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,8 +849,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 6939724875498298947}
   iconDisplay: {fileID: 3772148218738671939}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &4629559071761668937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,8 +1247,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotBackground: {fileID: 4928590112403861665}
   iconDisplay: {fileID: 8581146468989081141}
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   normalColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  waitBeforeFading: 2
+  fadeDuration: 1
 --- !u!1 &6316306161641455995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1410,23 @@ MonoBehaviour:
   - {fileID: 1106420487037281931}
   - {fileID: 1037723029396147961}
   - {fileID: 556485910370848958}
+  itemInHandText: {fileID: 0}
+  allItemDefinitions:
+  - id: 1
+    displayName: Multi Tool
+    icon: {fileID: 21300000, guid: 144d5c35043c7f04193d57dc3c38bbcb, type: 3}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
+  - id: 0
+    displayName: 
+    icon: {fileID: 0}
 --- !u!1001 &4568684896714264854
 PrefabInstance:
   m_ObjectHideFlags: 0
