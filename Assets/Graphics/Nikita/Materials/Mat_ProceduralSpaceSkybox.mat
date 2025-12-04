@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mat_ProceduralSpaceSkybox
+  m_Shader: {fileID: 4800000, guid: d806006b93d6b4c3793c47e7aad1cc36, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PlanetNormalMap:
+        m_Texture: {fileID: 2800000, guid: a16feab299ddd4d88aa127ff76fdfb08, type: 3}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
+    - _PlanetTex:
+        m_Texture: {fileID: 2800000, guid: 5496c5fe79cb8429fbfafba8ac26e6a1, type: 3}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
+    - _Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Ambient: 0.58
+    - _BandInt: 0.05
+    - _BandIntensity: 0.04
+    - _BandNoise: 0.04
+    - _BandPitch: -42
+    - _BandSharp: 2.6
+    - _BandSharpness: 5
+    - _BandTilt: -27
+    - _BandYaw: 144
+    - _BumpScale: 1
+    - _CellScale: 397.9234
+    - _Cutoff: 0.5
+    - _DbgMul: 1
+    - _DebugDir: 0
+    - _Density: 0.0088
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Exposure: 0.85
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Intensity: 0.19
+    - _LightIntensity: 1.13
+    - _Metallic: 0
+    - _Mode: 0
+    - _NebulaBlend: 0.21
+    - _NebulaContrast: 2.31
+    - _NebulaCtrst: 1.31
+    - _NebulaCut: 0.16
+    - _NebulaInt: 0.03
+    - _NebulaIntensity: 0.53
+    - _NebulaMix: 0
+    - _NebulaScale: 2.4
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _PlanetGlowDeg: 18
+    - _PlanetGlowInt: 0.09
+    - _PlanetRadiusDeg: 70
+    - _PlanetRotDeg: 38
+    - _PlanetSoftDeg: 0.8
+    - _PlanetSpinSpeed: 1
+    - _PlanetUVMode: 1
+    - _PlanetUseNormal: 1
+    - _Rotation: 180
+    - _SizePow: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SpecularInt: 0.53
+    - _SpecularPower: 22
+    - _SrcBlend: 1
+    - _StarDensity: 3
+    - _StarIntensity: 0.5
+    - _StarSize: 5.93
+    - _SunGlowDeg: 0.1
+    - _SunGlowIntensity: 1.87
+    - _SunRadiusDeg: 70
+    - _SunSoftDeg: 0
+    - _TriplanarSharpness: 3.7
+    - _TwinkleAmount: 0.15
+    - _TwinkleAmt: 0.3
+    - _TwinkleSpeed: 2.88
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _BandColor: {r: 0.8490566, g: 0.71488965, b: 0.5807227, a: 1}
+    - _BgColor: {r: 0.01, g: 0.01, b: 0.02, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LightDir: {r: 23.52, g: 14.23, b: 0.85, a: 0}
+    - _NebulaColor: {r: 0.16487186, g: 0.38956523, b: 0.8962264, a: 1}
+    - _NebulaColorA: {r: 0.044944815, g: 0.05804955, b: 0.09433961, a: 1}
+    - _NebulaColorB: {r: 0.11320752, g: 0.036845844, b: 0.09957152, a: 1}
+    - _PlanetDir: {r: 13.6, g: -116.8, b: -76.36, a: 0}
+    - _PlanetTiling: {r: 4, g: 3, b: 1, a: 1}
+    - _SunColorCore: {r: 1, g: 0.9366317, b: 0.8, a: 1}
+    - _SunColorRim: {r: 1, g: 0.5267917, b: 0, a: 1}
+    - _SunDir: {r: 0.22, g: -3.66, b: -1.5, a: 9.24}
+    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+  m_BuildTextureStacks: []
