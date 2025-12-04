@@ -9,7 +9,7 @@ public class VentObject : Interactable
 {
     
     // [SerializeField] private GameObject[] connectedVents; //array in case we want multiple connections somehow
-    [FormerlySerializedAs("ventEntrace")][SerializeField] private GameObject ventEntrance;
+    [SerializeField] private GameObject ventEntrance;
     [SerializeField] private GameObject ventExit;
     [SerializeField] private GameObject ventSpawn; //spawn point in front of exit vent
     [SerializeField] private Vector3 ventCenter; //vent center, put down in inspector for ease of testing 
