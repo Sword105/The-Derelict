@@ -22,7 +22,7 @@ public class Item : Interactable
 {
 
     public PlayerInteraction playerInteraction;
-    public MultiToolInventory inventory;
+   // public MultiToolInventory inventory;
 
 
 
@@ -31,6 +31,13 @@ public class Item : Interactable
 
     public override void Interact(PlayerInteraction player)
     {
+        HotbarManager hud = FindObjectOfType<HotbarManager>();
+
+        if (hud != null)
+        {
+            hud.AddItemToHud(itemID);
+        }
+
         switch (itemID)
         {
             case ItemID.MultiTool:
@@ -100,7 +107,7 @@ public class Item : Interactable
             return;
         }
 
-        player.inventory.Add(ItemID.BATTERY);
+        //player.inventory.Add(ItemID.BATTERY);
         playerInteraction.batteryCount++;
         Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
         Destroy(gameObject);
