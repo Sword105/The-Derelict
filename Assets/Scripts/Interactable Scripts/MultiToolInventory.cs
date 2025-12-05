@@ -28,6 +28,7 @@ public class MultiToolInventory : MonoBehaviour{
 
     void Start()
     {
+        
         playerInteraction = FindObjectOfType<PlayerInteraction>();
 
         if (playerInteraction == null)
