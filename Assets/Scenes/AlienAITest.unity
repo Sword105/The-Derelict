@@ -6061,12 +6061,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066dcd0271e6e8f4691053fbed03b989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alienPrefab: {fileID: 6334896714506386481, guid: 8cd65f6b128fc9b46ac276716266bd0e, type: 3}
+  alienPrefab: {fileID: 3159046896742768686, guid: adc93ecb934fc4d4d9acf0f7d4474e96, type: 3}
   suspiciousNodePrefab: {fileID: 4922758468805513657, guid: e730cd8eef45f33489f98cd939f166b0, type: 3}
   alienSpawnLocation: {fileID: 1997380355}
   timeElapsed: 0
   instantStart: 1
   autoSpawnAlien: 1
+  fadeToBlackScript: {fileID: 0}
 --- !u!4 &1584635077
 Transform:
   m_ObjectHideFlags: 0

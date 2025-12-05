@@ -18,6 +18,7 @@ public class AlienStateMachine : MonoBehaviour
     private Transform player;
     private NodeManager nodeManager;
     private NavMeshAgent agent;
+    private Animator animator;
     public static AlienStateMachine instance;
     public bool inServerRoom;
 
@@ -81,6 +82,7 @@ public class AlienStateMachine : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         nodeManager = NodeManager.instance;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
 
         nodesToIgnore = new List<GameObject>();
         pointsToFollow = new Queue<Vector3>();
@@ -250,6 +252,7 @@ public class AlienStateMachine : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
         {
             ClearStateData();
+            animator.SetTrigger("AttackTrigger");
             currentState = AlienState.ATTACK;
             Debug.Log(currentState);
         }
@@ -259,12 +262,12 @@ public class AlienStateMachine : MonoBehaviour
     {
         Debug.Log("Alien is attacking");
         timeInState += Time.deltaTime;
-        if (timeInState >= 0.8f)
+        if (timeInState >= 1.3f)
         { 
             if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
                 PlayerHPManager.instance.InflictDamage(1f);
 
-            StartCoroutine(HandleStateTransition(1f));
+            StartCoroutine(HandleStateTransition(2f));
             ClearStateData();
             currentState = AlienState.CHASE;
         }
@@ -347,8 +350,10 @@ public class AlienStateMachine : MonoBehaviour
     private IEnumerator HandleStateTransition(float timeToTransition)
     {
         agent.isStopped = true;
+        animator.SetBool("IsWalking", false);
         yield return new WaitForSeconds(timeToTransition);
         agent.isStopped = false;
+        animator.SetBool("IsWalking", true);
     }
 
     private Vector3 RandomPositionAtCurrentNode(float range)
@@ -411,7 +416,8 @@ public class AlienStateMachine : MonoBehaviour
             {
                 // If the player is too close to the player, begin chasing them.
                 Debug.Log("Player was definitely seen. Alien is now chasing.");
-                StartCoroutine(HandleStateTransition(1f));
+                StartCoroutine(HandleStateTransition(2.5f));
+                animator.SetTrigger("RoarTrigger");
                 currentState = AlienState.CHASE;
             }
             else
