@@ -26,7 +26,6 @@ public class Item : Interactable
     // public MultiToolInventory inventory;
 
 
-
     public ItemID itemID = ItemID.None;
     //public ItemType itemType = Item.None;
     public AudioClip testSound;
@@ -98,6 +97,7 @@ public class Item : Interactable
 
     private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true
     {
+        Debug.Log("ITEM: Flashlight - Picked Up");
         player.hasFlashlight = true;
         Destroy(gameObject);
 
@@ -105,7 +105,7 @@ public class Item : Interactable
 
     private void InteractBioTracker(PlayerInteraction player)
     {
-
+        Debug.Log("ITEM: BioTracker - Picked Up");
         player.hasBiotracker = true;
         Destroy(gameObject);
 
@@ -113,6 +113,7 @@ public class Item : Interactable
 
     private void InteractTazer(PlayerInteraction player)
     {
+        Debug.Log("ITEM: Tazer - Picked Up");
         player.hasTazer = true;
         Destroy(gameObject);
     }
