@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public bool autoSpawnAlien = false;
     public static GameManager instance;
 
+    [Header("Death varibles")]
+    public GameObject fadeToBlackScript;
+
     void Start()
     {
         if (instance == null)
@@ -49,9 +52,10 @@ public class GameManager : MonoBehaviour
 
     public void HandlePlayerDeath(GameObject player)
     {
-        SceneManager.LoadScene("StartMenu");
-        Cursor.lockState = CursorLockMode.Confined;
-        // TO DO - IMPLEMENT LOSING LOGIC
+        Debug.Log("Player has died."); // logs death to console
+        Cursor.lockState = CursorLockMode.Confined; // locks cursor
+        fadeToBlackScript.GetComponent<FadeToBlack>().StartFade();
+
     }
 
     public void SpawnSuspiciousNode(Vector3 position)
