@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         Instantiate(alienPrefab, alienSpawnLocation.position, Quaternion.identity);
     }
 
-    void WinGame() 
+    public void WinGame() 
     {
         Debug.Log("You won!");  
     }

@@ -26,6 +26,16 @@ public class FadeToBlack : MonoBehaviour
         
         // game is still running during and after the fade out
     }
+    
+    public void StartFade(float fadeDuration) //StartFade given a duration is simply a black screen
+    {
+        StartCoroutine(FadeIn(fadeDuration));
+    }
+
+    public void StartFade(Image givenImage, float fadeDuration) //StartFade given image and duration is custom
+    {          
+        StartCoroutine(FadeIn(givenImage, fadeDuration));
+    }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)
     {
@@ -37,6 +47,45 @@ public class FadeToBlack : MonoBehaviour
             yield return null;
         }
         cg.alpha = end;
+    }
+    
+    private IEnumerator FadeIn(float fadeDuration)
+    {
+        float elapsedTime = 0f;
+        Color currentColor = fadeImage.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            float currentTime = elapsedTime / fadeDuration;
+            currentColor.a = Mathf.Lerp(0f, 1f, currentTime);
+            fadeImage.color = currentColor;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the image is fully opaque
+        currentColor.a = 1f;
+        fadeImage.color = currentColor;
+        
+    }
+
+    private IEnumerator FadeIn(Image givenImage, float fadeDuration)
+    {
+        float elapsedTime = 0f;
+        Color currentColor = givenImage.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            float currentTime = elapsedTime / fadeDuration;
+            currentColor.a = Mathf.Lerp(0f, 1f, currentTime);
+            givenImage.color = currentColor;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the image is fully opaque
+        currentColor.a = 1f;
+        deathScreenImage.color = currentColor;
     }
 
     private void Start() // called once 

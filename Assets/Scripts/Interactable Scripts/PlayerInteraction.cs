@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
+    public float interactionRange = 5f;
     public Item activeItem;
     public ItemID heldItemType = ItemID.None;
     private Interactable currentHovered;
@@ -26,6 +27,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] public Boolean hasFlashlight = false;
     [SerializeField] public Boolean hasTazer = false;
     [SerializeField] public Boolean hasBiotracker = false;
+    [SerializeField] public Boolean hasPowerDrill = false;
     
    
 
@@ -41,7 +43,7 @@ public class PlayerInteraction : MonoBehaviour
         // All Interactable objects MUST be on the Interactable layer to work
         RaycastHit hit;
         Interactable objectToInteract = null;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50.0f, interactableLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactionRange, interactableLayer))
         {
             objectToInteract = hit.collider.GetComponent<Interactable>();
             
@@ -60,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && objectToInteract != null)
         {
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
-            objectToInteract.Interact(player.GetComponent<PlayerInteraction>(), activeItem);
+            objectToInteract.Interact(player.GetComponent<PlayerInteraction>());
 
         }
     }

@@ -1112,10 +1112,10 @@ GameObject:
   - component: {fileID: 33902685366519108}
   - component: {fileID: 23917896532107134}
   - component: {fileID: 65859792275936030}
-  - component: {fileID: 6199839864262971560}
+  - component: {fileID: 4948476695268768572}
   m_Layer: 0
   m_Name: Floor_main
-  m_TagString: Untagged
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1206,7 +1206,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.4838786, y: 5.520322, z: 0.15004861}
   m_Center: {x: 0.000003874302, y: 0.0000061988844, z: -0.00000007823114}
---- !u!114 &6199839864262971560
+--- !u!114 &4948476695268768572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -200,10 +200,10 @@ GameObject:
   - component: {fileID: 5703083425024910709}
   - component: {fileID: 5703083425025910709}
   - component: {fileID: 2599406370710075664}
-  - component: {fileID: 9080064000361357802}
+  - component: {fileID: 1879291090154795525}
   m_Layer: 8
   m_Name: Tunnel Floor006
-  m_TagString: Untagged
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,7 +294,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.0000024, y: 0.25, z: 6.0000005}
   m_Center: {x: 3.0000098, y: -0.12497161, z: 2.9999945}
---- !u!114 &9080064000361357802
+--- !u!114 &1879291090154795525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   node_manager: {fileID: 0}
   player: {fileID: 0}
-  range: 10
+  range: 7
   nodeProbability: 0
   timeInside: 1
   score: 1
@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 5703083425027810655}
   m_Layer: 0
   m_Name: Corridor Passthrough Windows
-  m_TagString: Untagged
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

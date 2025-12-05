@@ -13,7 +13,8 @@ public enum ItemID
     Flashlight,
     BioTracker,
     Tazer,
-    BATTERY
+    BATTERY,
+    PowerDrill
 
 }
 
@@ -25,38 +26,37 @@ public class Item : Interactable
     // public MultiToolInventory inventory;
 
 
-
     public ItemID itemID = ItemID.None;
     //public ItemType itemType = Item.None;
     public AudioClip testSound;
 
-    public override void Interact(PlayerInteraction player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
-        HotbarManager hud = FindObjectOfType<HotbarManager>();
+        // HotbarManager hud = FindObjectOfType<HotbarManager>();
 
-        //My ItemType Shit
-        Debug.Log("$Picked up an item of type: {itemType }");
-        PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
-        playerInteraction.heldItemType = itemID;
+        // //My ItemType Shit
+        // Debug.Log("$Picked up an item of type: {itemType }");
+        // PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
+        // playerInteraction.heldItemType = itemID;
 
-        /* if (testSound != null)
-        {
-            AudioManager audioManager = AudioManager.instance;
-            audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
-        } */
+        // /* if (testSound != null)
+        // {
+        //     AudioManager audioManager = AudioManager.instance;
+        //     audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+        // } */
 
-        Debug.Log("Item detected!");
+        // Debug.Log("Item detected!");
 
-        //Hides from Game Scene
-        gameObject.SetActive(false);
+        // //Hides from Game Scene
+        // gameObject.SetActive(false);
      
     
 
 
-        if (hud != null)
-        {
-            hud.AddItemToHud(itemID);
-        }
+        // if (hud != null)
+        // {
+        //     hud.AddItemToHud(itemID);
+        // }
 
         switch (itemID)
         {
@@ -77,6 +77,9 @@ public class Item : Interactable
             case ItemID.BATTERY:
                 InteractBattery(player);
                 break;
+            case ItemID.PowerDrill:
+                InteractPowerDrill(player);
+                break;
 
         }
 
@@ -94,7 +97,7 @@ public class Item : Interactable
 
     private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true
     {
-
+        Debug.Log("ITEM: Flashlight - Picked Up");
         player.hasFlashlight = true;
         Destroy(gameObject);
 
@@ -102,21 +105,17 @@ public class Item : Interactable
 
     private void InteractBioTracker(PlayerInteraction player)
     {
-
+        Debug.Log("ITEM: BioTracker - Picked Up");
         player.hasBiotracker = true;
         Destroy(gameObject);
-
-
 
     }
 
     private void InteractTazer(PlayerInteraction player)
     {
-
+        Debug.Log("ITEM: Tazer - Picked Up");
         player.hasTazer = true;
         Destroy(gameObject);
-
-
     }
 
 
@@ -132,6 +131,13 @@ public class Item : Interactable
         playerInteraction.batteryCount++;
         Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
         Destroy(gameObject);
+    }
+
+    private void InteractPowerDrill(PlayerInteraction player){
+        player.hasPowerDrill = true;
+        Debug.Log("Power drill collected");
+        Destroy(gameObject);
+
     }
 
     //:3
