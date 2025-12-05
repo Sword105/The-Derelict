@@ -22,16 +22,36 @@ public class Item : Interactable
 {
 
     public PlayerInteraction playerInteraction;
-   // public MultiToolInventory inventory;
+    // public MultiToolInventory inventory;
 
 
 
-    public ItemID itemID;
+    public ItemID itemID = ItemID.None;
+    //public ItemType itemType = Item.None;
+    public AudioClip testSound;
 
-
-    public override void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction player, Item activeItem)
     {
         HotbarManager hud = FindObjectOfType<HotbarManager>();
+
+        //My ItemType Shit
+        Debug.Log("$Picked up an item of type: {itemType }");
+        PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
+        playerInteraction.heldItemType = itemID;
+
+        /* if (testSound != null)
+        {
+            AudioManager audioManager = AudioManager.instance;
+            audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+        } */
+
+        Debug.Log("Item detected!");
+
+        //Hides from Game Scene
+        gameObject.SetActive(false);
+     
+    
+
 
         if (hud != null)
         {
@@ -59,6 +79,7 @@ public class Item : Interactable
                 break;
 
         }
+
 
     }
 

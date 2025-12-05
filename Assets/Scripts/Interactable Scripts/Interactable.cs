@@ -19,7 +19,7 @@ public abstract class Interactable : MonoBehaviour
 
     //Placeholder method
     //This is meant to be overridden by subclasses of Interactable
-    public virtual void Interact(PlayerInteraction player)
+    public virtual void Interact(PlayerInteraction player, Item activeItem)
     {
         
     }

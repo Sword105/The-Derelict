@@ -12,7 +12,7 @@ public class Panel : Interactable
         hasBattery = false;
     }
 
-    public override void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction player, Item activeItem)
     {
         if (player.batteryCount > 0 && !hasBattery)
         {

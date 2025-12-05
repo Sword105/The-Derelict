@@ -4,80 +4,76 @@ using UnityEngine;
 
 public class BatteryInteractable : Interactable
 {
-
-
-    public float chargePercent = 0f;
+    
+    [Header("Battery Settings")]
+    public ItemID itemID = ItemID.BATTERY;
 
     public PlayerInteraction playerInteraction;
 
-    
-    public GameObject battery;
-    
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        battery = gameObject;
+        if (playerInteraction == null)
+            playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
-    public override void Interact(PlayerInteraction player)
+    // Player picks up the battery
+    public override void Interact(PlayerInteraction player, Item activeItem)
     {
-        //Debug.Log(player.name + " is interacting with object " + batteryObject.name);
-        // //Max battery count can be changed, I just put 6 for testing purposes
-        if (playerInteraction.batteryCount >= 6)
+        PlayerInteraction pi = player.GetComponent<PlayerInteraction>();
+
+        // Prevent overflow
+        if (pi.batteryCount >= 6)
         {
-            Debug.Log("Player has maximum of batteries in inventory");
+            Debug.Log("Player has the maximum number of batteries.");
             return;
         }
 
-        player.inventory.Add(ItemID.BATTERY);
-        playerInteraction.batteryCount++;
-        Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
-        Destroy(battery);
+        // Add battery to player inventory
+        pi.inventory.Add(ItemID.BATTERY);
+        pi.batteryCount++;
+        pi.heldItemType = ItemID.BATTERY;
+
+        Debug.Log($"Battery picked up. Total: {pi.batteryCount}");
+
+        // Hide or destroy object in scene
+        gameObject.SetActive(false);
     }
 
-    public void CollectBattery(PlayerInteraction player)
-    {
-    
-    }
-
-    //Would need to be a used method in order to use the battery on items that require it
+    // Use 1 battery
     public void UseBattery(PlayerInteraction player)
     {
-        if (player.inventory.Contains(ItemID.BATTERY))
-        {
-            if (playerInteraction.batteryCount >= 1)
-            {
-                player.inventory.Remove(ItemID.BATTERY);
-                playerInteraction.batteryCount--;
-                Debug.Log("Battery used. Remaining batteries: " + playerInteraction.batteryCount);
-            }
-    
+        PlayerInteraction pi = player.GetComponent<PlayerInteraction>();
 
+        if (pi.batteryCount > 0)
+        {
+            pi.inventory.Remove(ItemID.BATTERY);
+            pi.batteryCount--;
+            Debug.Log("Battery used. Remaining: " + pi.batteryCount);
         }
         else
         {
-            Debug.Log("No batteries in inventory to use.");
+            Debug.Log("No batteries to use.");
         }
     }
-    
-    public void GeneratorBattery(PlayerInteraction player)
+
+    // Use 6 batteries for a generator (example)
+    public bool ConsumeForGenerator(PlayerInteraction player)
     {
-         if (playerInteraction.batteryCount == 5)
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    player.inventory.Remove(ItemID.BATTERY);
-                    playerInteraction.batteryCount--;
+        PlayerInteraction pi = player.GetComponent<PlayerInteraction>();
 
-                }
-                Debug.Log("Batteries used. Remaining batteries: " + playerInteraction.batteryCount);
-            }
-        else
+        if (pi.batteryCount >= 6)
         {
-            Debug.Log("No batteries in inventory to use for generator.");
+            for (int i = 0; i < 6; i++)
+            {
+                pi.inventory.Remove(ItemID.BATTERY);
+            }
+
+            pi.batteryCount -= 6;
+            Debug.Log("Used 6 batteries for generator.");
+            return true;
         }
+
+        Debug.Log("Not enough batteries for generator.");
+        return false;
     }
-
-
 }
