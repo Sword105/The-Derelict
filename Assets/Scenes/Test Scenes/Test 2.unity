@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -646,6 +646,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &511119718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3216810972692716648, guid: f7d72d49e1990df47ba955b5bb7a9c9c, type: 3}
+  m_PrefabInstance: {fileID: 1682184299}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &511119721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511119718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfba1bcc5dfb22143a77ef67a65be9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInteraction: {fileID: 43099369}
+  itemID: 6
+  testSound: {fileID: 0}
 --- !u!1 &553774574
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +783,7 @@ GameObject:
   - component: {fileID: 643963379}
   - component: {fileID: 643963378}
   - component: {fileID: 643963377}
+  - component: {fileID: 643963381}
   m_Layer: 0
   m_Name: Bio Tracker
   m_TagString: Untagged
@@ -856,6 +877,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643963381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643963376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfba1bcc5dfb22143a77ef67a65be9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInteraction: {fileID: 0}
+  itemID: 2
+  testSound: {fileID: 0}
 --- !u!1 &743711676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,6 +2647,7 @@ GameObject:
   - component: {fileID: 1120120243}
   - component: {fileID: 1120120242}
   - component: {fileID: 1120120241}
+  - component: {fileID: 1120120245}
   m_Layer: 0
   m_Name: Tazer
   m_TagString: Untagged
@@ -2704,6 +2741,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1120120245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120120240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfba1bcc5dfb22143a77ef67a65be9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInteraction: {fileID: 0}
+  itemID: 4
+  testSound: {fileID: 0}
 --- !u!1001 &1124849887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4026,10 +4078,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: powerdrill
       objectReference: {fileID: 0}
+    - target: {fileID: 3216810972692716648, guid: f7d72d49e1990df47ba955b5bb7a9c9c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3216810972692716648, guid: f7d72d49e1990df47ba955b5bb7a9c9c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 511119721}
   m_SourcePrefab: {fileID: 100100000, guid: f7d72d49e1990df47ba955b5bb7a9c9c, type: 3}
 --- !u!1 &1773667236
 GameObject:
