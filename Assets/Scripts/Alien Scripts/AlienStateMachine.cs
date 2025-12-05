@@ -139,6 +139,11 @@ public class AlienStateMachine : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            StartCoroutine(Stun(1.75f));
+        }
+
         // Manually set the rotation of the alien to its velocity (I didn't like how the NavMeshAgent smooths out the rotation)
         if (agent.velocity != Vector3.zero)
             transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(agent.velocity), 20f * Time.deltaTime).eulerAngles.y, 0);
@@ -255,9 +260,9 @@ public class AlienStateMachine : MonoBehaviour
             ClearStateData();
             animator.SetTrigger("AttackTrigger");
             AudioManager.instance.PlaySoundFX(attackSound, transform.position, 0.1f, true);
-            Debug.Log("Playing Sound");
+
+            transform.LookAt(player, player.up);
             currentState = AlienState.ATTACK;
-            Debug.Log(currentState);
         }
     }
 
@@ -321,6 +326,8 @@ public class AlienStateMachine : MonoBehaviour
     public IEnumerator Stun(float stunTime)
     {
         ClearStateData();
+        animator.SetBool("IsWalking", false);
+        animator.SetTrigger("StunTrigger");
         agent.isStopped = true;
         yield return new WaitForSeconds(stunTime);
 
@@ -334,6 +341,8 @@ public class AlienStateMachine : MonoBehaviour
         }
 
         agent.SetDestination(pointsToFollow.Dequeue());
+
+        animator.SetBool("IsWalking", true);
         agent.isStopped = false;
     }
 
