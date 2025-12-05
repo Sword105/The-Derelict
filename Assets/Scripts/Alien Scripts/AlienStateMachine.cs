@@ -262,12 +262,12 @@ public class AlienStateMachine : MonoBehaviour
     {
         Debug.Log("Alien is attacking");
         timeInState += Time.deltaTime;
-        if (timeInState >= 2.0f)
+        if (timeInState >= 1.3f)
         { 
             if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
                 PlayerHPManager.instance.InflictDamage(1f);
 
-            StartCoroutine(HandleStateTransition(1f));
+            StartCoroutine(HandleStateTransition(2f));
             ClearStateData();
             currentState = AlienState.CHASE;
         }
