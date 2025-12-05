@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 9071138013938485204}
   - component: {fileID: 9071138013937517844}
   - component: {fileID: 7605464794607578143}
-  - component: {fileID: 4590110446334577055}
+  - component: {fileID: 862769730421487671}
   m_Layer: 8
   m_Name: Corridor Floor Wide003
   m_TagString: Untagged
@@ -296,7 +296,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300010, guid: 6824b60acb70ef24fa40f9f9537a81cb, type: 3}
---- !u!114 &4590110446334577055
+--- !u!114 &862769730421487671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

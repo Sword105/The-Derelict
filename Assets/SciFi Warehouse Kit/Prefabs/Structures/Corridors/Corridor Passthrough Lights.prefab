@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 2553481404176905102}
   - component: {fileID: 2553481404177903950}
   - component: {fileID: 8439504584143664725}
-  - component: {fileID: 7696550495362800010}
+  - component: {fileID: 5595017409629732684}
   m_Layer: 8
   m_Name: Tunnel Floor
   m_TagString: Untagged
@@ -458,7 +458,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.0000024, y: 0.25, z: 6.0000005}
   m_Center: {x: 3.0000098, y: -0.12497161, z: 2.9999945}
---- !u!114 &7696550495362800010
+--- !u!114 &5595017409629732684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
