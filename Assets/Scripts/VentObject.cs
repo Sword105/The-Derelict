@@ -42,7 +42,7 @@ public class VentObject : Interactable
     }
     
     
-    public override void Interact(PlayerInteraction playerSource, Item activeItem)
+    public override void Interact(PlayerInteraction playerSource)
 
     {
         player = playerSource.gameObject;

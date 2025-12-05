@@ -62,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && objectToInteract != null)
         {
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
-            objectToInteract.Interact(player.GetComponent<PlayerInteraction>(), activeItem);
+            objectToInteract.Interact(player.GetComponent<PlayerInteraction>());
 
         }
     }

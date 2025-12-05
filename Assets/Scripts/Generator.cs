@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Generator : Interactable
 {
+    /*
     //The Variables to the Generator/Batteries check System
     public int requiredBatteries = 3; //Total batteries needed, can change anytime
     public float chargeTime = 5f; //How long the player must hold to fully charge
@@ -16,6 +17,7 @@ public class Generator : Interactable
 
     public override void Interact(PlayerInteraction player, Item activeItem)
     {
+        
         // Stop if already powered
         if (isUnlocked)
         {
@@ -102,4 +104,5 @@ public class Generator : Interactable
 
         Debug.Log("Generator powered! Linked systems activated.");
     }
+    */
 }
