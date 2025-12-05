@@ -209,40 +209,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86bcc4bb59b8d5543a9f346e138e11d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInteraction: {fileID: 337938631}
+  playerInteraction: {fileID: 0}
   itemID: 0
   activeItem: 0
   enemyIconRenderer: {fileID: 1001435800}
   flashlightSource: {fileID: 1917248427}
   biotrackerAudio: {fileID: 1810293769}
+  powerDrillAudio: {fileID: 0}
   powerDrillHeldTime: 0
   timeHeld: 0
   hasPowerDrillBeenFired: 0
---- !u!114 &337938631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337938629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17bf8944e662d434cb8a2ddcaac17a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  interactionRange: 5
-  activeItem: {fileID: 0}
-  heldItemType: 0
-  inventory: 
-  batteryCount: 0
-  hasMultiTool: 0
-  hasFlashlight: 0
-  hasTazer: 0
-  hasBiotracker: 0
-  hasPowerDrill: 0
 --- !u!4 &337938635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7240540283523470726, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
@@ -2092,9 +2068,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1917248428}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8400794865991913166, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 337938631}
     - targetCorrespondingSourceObject: {fileID: 8400794865991913166, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
       insertIndex: -1
       addedObject: {fileID: 337938630}
