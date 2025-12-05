@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
+    public float interactionRange = 5f;
     public Item activeItem;
     public ItemID heldItemType = ItemID.None;
     private Interactable currentHovered;
@@ -41,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
         // All Interactable objects MUST be on the Interactable layer to work
         RaycastHit hit;
         Interactable objectToInteract = null;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50.0f, interactableLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactionRange, interactableLayer))
         {
             objectToInteract = hit.collider.GetComponent<Interactable>();
             
