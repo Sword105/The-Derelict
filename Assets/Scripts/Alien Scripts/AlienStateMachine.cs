@@ -18,6 +18,7 @@ public class AlienStateMachine : MonoBehaviour
     private Transform player;
     private NodeManager nodeManager;
     private NavMeshAgent agent;
+    private Animator animator;
     public static AlienStateMachine instance;
     public bool inServerRoom;
 
@@ -45,7 +46,13 @@ public class AlienStateMachine : MonoBehaviour
     public float temperature = 0.01f;
 
     /*********************************************************************************************************************/
-    
+
+    [Header("Audio")]
+    public AudioClip roarSound;
+    public AudioClip attackSound;
+
+    /*********************************************************************************************************************/
+
     [Header("Path Padding")]
 
     [Min(0f)] 
@@ -81,6 +88,7 @@ public class AlienStateMachine : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         nodeManager = NodeManager.instance;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
 
         nodesToIgnore = new List<GameObject>();
         pointsToFollow = new Queue<Vector3>();
@@ -134,11 +142,6 @@ public class AlienStateMachine : MonoBehaviour
         // Manually set the rotation of the alien to its velocity (I didn't like how the NavMeshAgent smooths out the rotation)
         if (agent.velocity != Vector3.zero)
             transform.rotation = Quaternion.Euler(0, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(agent.velocity), 20f * Time.deltaTime).eulerAngles.y, 0);
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            StartCoroutine(Stun(1.75f));
-        }
     }
 
     public void ScoutState()
@@ -250,6 +253,9 @@ public class AlienStateMachine : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
         {
             ClearStateData();
+            animator.SetTrigger("AttackTrigger");
+            AudioManager.instance.PlaySoundFX(attackSound, transform.position, 0.1f, true);
+            Debug.Log("Playing Sound");
             currentState = AlienState.ATTACK;
             Debug.Log(currentState);
         }
@@ -257,15 +263,14 @@ public class AlienStateMachine : MonoBehaviour
 
     public void AttackState()
     {
-        Debug.Log("Alien is attacking");
         timeInState += Time.deltaTime;
-        if (timeInState >= 0.8f)
+        if (timeInState >= 1.0f)
         { 
-            if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+            if (Vector3.Distance(transform.position, player.transform.position) < attackRange * 1.5f)
                 PlayerHPManager.instance.InflictDamage(1f);
 
-            StartCoroutine(HandleStateTransition(1f));
             ClearStateData();
+            StartCoroutine(HandleStateTransition(1.5f));
             currentState = AlienState.CHASE;
         }
     }
@@ -315,9 +320,9 @@ public class AlienStateMachine : MonoBehaviour
 
     public IEnumerator Stun(float stunTime)
     {
+        ClearStateData();
         agent.isStopped = true;
         yield return new WaitForSeconds(stunTime);
-        ClearStateData();
 
         currentState = AlienState.SUSPICIOUS;
         currentNode = ClosestNodeToPoint(player.position);
@@ -347,8 +352,10 @@ public class AlienStateMachine : MonoBehaviour
     private IEnumerator HandleStateTransition(float timeToTransition)
     {
         agent.isStopped = true;
+        animator.SetBool("IsWalking", false);
         yield return new WaitForSeconds(timeToTransition);
         agent.isStopped = false;
+        animator.SetBool("IsWalking", true);
     }
 
     private Vector3 RandomPositionAtCurrentNode(float range)
@@ -405,18 +412,19 @@ public class AlienStateMachine : MonoBehaviour
         // Check that the alien has direct line of sight and isn't currently chasing anyone
         if (canSeePlayer && lineOfSightDotProduct > lineOfSightThreshold && currentState != AlienState.CHASE && currentState != AlienState.ATTACK)
         {
-            ClearStateData();
-
             if (Vector3.Distance(transform.position, player.position) < 15f)
             {
                 // If the player is too close to the player, begin chasing them.
                 Debug.Log("Player was definitely seen. Alien is now chasing.");
-                StartCoroutine(HandleStateTransition(1f));
+                StartCoroutine(HandleStateTransition(3f));
+                animator.SetTrigger("RoarTrigger");
+                AudioManager.instance.PlaySoundFX(roarSound, transform.position, 0.1f, true);
                 currentState = AlienState.CHASE;
             }
             else
             {
                 // Explore the area where the alien thinks the player is
+                ClearStateData();
                 currentNode = ClosestNodeToPoint(player.position);
                 List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
 
@@ -426,7 +434,6 @@ public class AlienStateMachine : MonoBehaviour
                 }
 
                 agent.SetDestination(pointsToFollow.Dequeue());
-                StartCoroutine(HandleStateTransition(1f));
                 currentState = AlienState.SUSPICIOUS;
             }
         }

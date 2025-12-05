@@ -26,7 +26,7 @@ public class FootStepContoller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // How far the player has moved this frame
         float distanceMoved = Vector3.Distance(transform.position, lastPosition);

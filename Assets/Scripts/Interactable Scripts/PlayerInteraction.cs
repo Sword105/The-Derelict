@@ -16,7 +16,9 @@ public class PlayerInteraction : MonoBehaviour
 
     [NonSerialized] public GameObject player;
     public LayerMask interactableLayer;
-
+    public Item activeItem;
+    public ItemID heldItemType = ItemID.None;
+    private Interactable currentHovered;
 
     public List<ItemID> inventory = new List<ItemID>();
     public int batteryCount;
@@ -24,9 +26,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] public Boolean hasFlashlight = false;
     [SerializeField] public Boolean hasTazer = false;
     [SerializeField] public Boolean hasBiotracker = false;
-    [SerializeField] public Boolean hasPowerDrill = false;
-
-    private Interactable currentHovered;
+    
+   
 
 
     private void Start()
@@ -59,7 +60,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && objectToInteract != null)
         {
             Debug.Log("Interactable detected as " + objectToInteract.name + ", trying interaction");
-            objectToInteract.Interact(player.GetComponent<PlayerInteraction>());
+            objectToInteract.Interact(player.GetComponent<PlayerInteraction>(), activeItem);
 
         }
     }
