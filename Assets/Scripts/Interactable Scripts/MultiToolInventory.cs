@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MultiToolInventory : MonoBehaviour{
 
+    public LayerMask alienLayer;
+
     public static Action<bool> OnBiotrackerUse;
     public PlayerInteraction playerInteraction;
     public ItemID itemID;
@@ -26,13 +28,14 @@ public class MultiToolInventory : MonoBehaviour{
 
     void Start()
     {
+        
         playerInteraction = FindObjectOfType<PlayerInteraction>();
 
         if (playerInteraction == null)
             Debug.LogError("PlayerInteraction not found in scene!");
 
         //Ensures all tools start off 
-        powerDrillHeldTime = 6.5f;      //Literally only works if you set its value at Start()
+        powerDrillHeldTime = 3f;      //Literally only works if you set its value at Start()
         turnOffAllTools();
     }
 
@@ -43,7 +46,7 @@ public class MultiToolInventory : MonoBehaviour{
             return;
         }
 
-        //  Power Drill SELECT -------------------------------
+        //  Power Drill SELECT
         if ((Input.GetKeyDown(KeyCode.Alpha4) && playerInteraction.hasPowerDrill))
         {
             turnOffAllTools();
@@ -56,7 +59,7 @@ public class MultiToolInventory : MonoBehaviour{
         // ONLY call Use() for CLICK-based tools ========================================
         if (playerInteraction.hasMultiTool)
         {
-            
+            // CLICK-based tools (Flashlight, Tazer, Biotracker)
             if (activeItem != ItemID.PowerDrill)
             {
                 if (Input.GetMouseButtonDown(0))
@@ -96,20 +99,13 @@ public class MultiToolInventory : MonoBehaviour{
             }
         }
 
-        //Power Drill logic ==================================
+        //Power Drill logic ---------------
         if (activeItem == ItemID.PowerDrill)
         {
             // If button is held
             if (Input.GetMouseButton(0)){
                 
-                    if (powerDrillAudio != null)
-                    {
-                        powerDrillAudio.Play();
-                    }
-                    else
-                    {
-                        Debug.LogError("Audio not detected.");
-                    }
+                    
                 
                 timeHeld += Time.deltaTime;
                 //Debug.Log("timeHeld = " + timeHeld + ", powerDrillHeldTime = " + powerDrillHeldTime);
@@ -265,9 +261,28 @@ public class MultiToolInventory : MonoBehaviour{
     }
 
     private void FirePowerDrill()
-    {
-        Debug.Log("DRILL FIRED!");
-    }
+
     
+    {
+
+        Debug.Log("POWER DRILL FIRED");
+        AlienStateMachine.instance.InflictDamage(3);
+        // RaycastHit hit;
+
+        
+        
+        // if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, alienLayer))
+        // {
+        //     AlienStateMachine alien = hit.collider.GetComponent<AlienStateMachine>();
+
+        //     if(alien!=null){
+        //         AlienStateMachine.instance.InflictDamage(3);
+        //     }
+
+            
+    
+        
+        // }
+    }
 }
 

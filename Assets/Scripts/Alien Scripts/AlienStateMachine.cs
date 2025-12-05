@@ -19,7 +19,7 @@ public class AlienStateMachine : MonoBehaviour
     private NodeManager nodeManager;
     private NavMeshAgent agent;
     private Animator animator;
-    private float currentHP;
+    [SerializeField] private float currentHP;
 
     public static AlienStateMachine instance;
     public bool inServerRoom;
@@ -103,6 +103,7 @@ public class AlienStateMachine : MonoBehaviour
         agent.updateRotation = false;
         agent.isStopped = false;
         inServerRoom = false;
+        maxHP = 3f;
         currentHP = maxHP;
     }
 

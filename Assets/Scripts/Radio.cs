@@ -12,7 +12,7 @@ public class Radio : Interactable
         isPlaying = false;
     }
 
-    public override void Interact(PlayerInteraction player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
         if (!isPlaying)
         {
