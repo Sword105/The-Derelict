@@ -81,7 +81,7 @@ public class FadeToBlack : MonoBehaviour
         {
             float currentTime = elapsedTime / fadeDuration;
             currentColor.a = Mathf.Lerp(0f, 1f, currentTime);
-            deathScreenImage.color = currentColor;
+            givenImage.color = currentColor;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -89,9 +89,6 @@ public class FadeToBlack : MonoBehaviour
         // Ensure the image is fully opaque
         currentColor.a = 1f;
         deathScreenImage.color = currentColor;
-
-        // Show the death UI after fade completes
-        deathscreenUI.SetActive(true);
     }
 
 }
