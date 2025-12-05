@@ -30840,8 +30840,8 @@ MonoBehaviour:
   nodeList:
   - {fileID: 0}
   totalScore: 1
-  incMultiplier: 2
-  decMultiplier: 2
+  incMultiplier: 8
+  decMultiplier: 8
 --- !u!4 &1423395318
 Transform:
   m_ObjectHideFlags: 0
