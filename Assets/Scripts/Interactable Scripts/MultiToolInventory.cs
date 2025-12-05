@@ -152,6 +152,7 @@ public class MultiToolInventory : MonoBehaviour
                 Debug.Log("Tazer hit the alien!");
                 nextTazerTime = Time.time + tazerCooldown;
                 AlienStateMachine.instance.Stun(1.5f);
+                // StartCoroutine(AlienStateMachine.instance.Stun(1.5f));
             }
             else
             {
