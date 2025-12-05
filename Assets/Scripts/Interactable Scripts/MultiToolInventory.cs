@@ -19,7 +19,7 @@ public class MultiToolInventory : MonoBehaviour
     [SerializeField] private AudioSource biotrackerAudio;
 
     //Power Drill timers
-    [SerializeField] private float powerDrillHeldTime = 0.0f;
+    [SerializeField] private float powerDrillHeldTime = 5.0f;
     [SerializeField] private float timeHeld = 0.0f;
     private bool hasPowerDrillBeenFired = false;
 
@@ -232,24 +232,46 @@ public class MultiToolInventory : MonoBehaviour
     public void UsePowerDrill(PlayerInteraction player)
     {
         // Holding the button
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)) // Mouse button is held down
         {
-            timeHeld += Time.deltaTime;
-            Debug.Log("CHARGING");
+            timeHeld += Time.deltaTime;  // Track the duration of the button hold
+            Debug.Log("CHARGING... Time Held: " + timeHeld);
 
-            if (!hasPowerDrillBeenFired && timeHeld >= powerDrillHeldTime)
+            if (timeHeld >= powerDrillHeldTime && !hasPowerDrillBeenFired)
             {
-                Debug.Log("The key LMB has been held for more than " + powerDrillHeldTime + " seconds!");
+                // Firing the drill when the time threshold is reached
+                
+                Debug.Log("Power drill activated! Held for " + timeHeld + " seconds.");
+                FirePowerDrill();
                 hasPowerDrillBeenFired = true;
+
+                // No need to reset timeHeld here, it's reset when mouse is released
             }
         }
-
-        // Button released
-        if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0)) // Mouse button released
         {
-            Debug.Log("The key LMB was released.");
-            timeHeld = 0.0f;
-            hasPowerDrillBeenFired = false;
+            // Resetting flags and timer when the button is released
+            if (hasPowerDrillBeenFired)
+            {
+                Debug.Log("The key LMB was released after firing the drill.");
+                hasPowerDrillBeenFired = false; // Reset the fired state
+            }
+
+            timeHeld = 0f; // Reset the time when the button is released
         }
     }
+
+
+
+    private void FirePowerDrill()
+    {
+        // Do the actual firing logic here (animation, sound, etc.)
+        Debug.Log("Power Drill Fired!");
+    }
+
+
+
+
+
 }
+
