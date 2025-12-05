@@ -48157,7 +48157,6 @@ SceneRoots:
   - {fileID: 213499911}
   - {fileID: 686641339}
   - {fileID: 831448453}
-<<<<<<< HEAD
   - {fileID: 1625726835}
   - {fileID: 2071448793}
   - {fileID: 1636524606}
@@ -48263,8 +48262,7 @@ SceneRoots:
   - {fileID: 1586126782}
   - {fileID: 1403988418}
   - {fileID: 450838758}
-=======
   - {fileID: 2076804986}
   - {fileID: 648448785}
   - {fileID: 34287620}
->>>>>>> 7c4056af7f9a54313cafab4df296cfca013ab4a8
+
