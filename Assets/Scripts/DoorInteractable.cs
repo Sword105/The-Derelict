@@ -18,7 +18,7 @@ public class DoorInteractable : Interactable
             obstacle.gameObject.SetActive(false);
     }
 
-    public override void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction player, Item activeItem)
     {
         Debug.Log(player.name + " is interacting with door " + gameObject.name);
 

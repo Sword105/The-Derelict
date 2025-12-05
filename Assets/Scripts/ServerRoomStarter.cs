@@ -29,7 +29,7 @@ public class ServerRoomStarter : Interactable
         eventStarted = false;
     }
 
-    public override void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction player, Item activeItem)
     {
         if (!eventCompleted && !eventStarted)
         {
