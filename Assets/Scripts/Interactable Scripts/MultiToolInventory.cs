@@ -41,7 +41,7 @@ public class MultiToolInventory : MonoBehaviour
             return;
         }
 
-        //  Power Drill SELECT
+        //  Power Drill SELECT -------------------------------
         if ((Input.GetKeyDown(KeyCode.Alpha4) && playerInteraction.hasPowerDrill))
         {
             turnOffAllTools();
@@ -54,7 +54,7 @@ public class MultiToolInventory : MonoBehaviour
         // ONLY call Use() for CLICK-based tools ========================================
         if (playerInteraction.hasMultiTool)
         {
-            // CLICK-based tools (Flashlight, Tazer, Biotracker)
+            
             if (activeItem != ItemID.PowerDrill)
             {
                 if (Input.GetMouseButtonDown(0))
@@ -94,7 +94,7 @@ public class MultiToolInventory : MonoBehaviour
             }
         }
 
-        //Power Drill logic ---------------
+        //Power Drill logic ==================================
         if (activeItem == ItemID.PowerDrill)
         {
             // If button is held
