@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BatteryInteractable : Interactable
-
 {
-    /*
     
     [Header("Battery Settings")]
     public ItemID itemID = ItemID.BATTERY;
@@ -14,12 +12,13 @@ public class BatteryInteractable : Interactable
 
     private void Start()
     {
+        
         if (playerInteraction == null)
             playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     // Player picks up the battery
-    public override void Interact(PlayerInteraction player, Item activeItem)
+    public void Interact(PlayerInteraction player, Item activeItem)
     {
         PlayerInteraction pi = player.GetComponent<PlayerInteraction>();
 
@@ -78,5 +77,4 @@ public class BatteryInteractable : Interactable
         Debug.Log("Not enough batteries for generator.");
         return false;
     }
-    */
 }
