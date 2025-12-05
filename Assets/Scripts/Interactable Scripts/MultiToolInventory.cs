@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class MultiToolInventory : MonoBehaviour 
+public class MultiToolInventory : MonoBehaviour
 {
     public static Action<bool> OnBiotrackerUse;
     public PlayerInteraction playerInteraction;
@@ -19,9 +18,9 @@ public class MultiToolInventory : MonoBehaviour
     [SerializeField] private AudioSource biotrackerAudio;
 
     //Power Drill timers
-    [SerializeField] private float powerDrillHeldTime = 10.0f;
-    [SerializeField] private float timeHeld = 0.0f;
-    private bool hasPowerDrillBeenFired = false;
+    [SerializeField] private float powerDrillHeldTime = 3.0f; // Hold time to fire
+    [SerializeField] private float timeHeld = 0.0f; // Timer for drill hold
+    [SerializeField] private bool hasPowerDrillBeenFired = false; // Flag to prevent double fire
 
     void Start()
     {
@@ -31,12 +30,14 @@ public class MultiToolInventory : MonoBehaviour
             Debug.LogError("PlayerInteraction not found in scene!");
 
         //Ensures all tools start off 
+        powerDrillHeldTime = 3.0f;
         turnOffAllTools();
     }
 
     void Update()
     {
-        if (playerInteraction == null){
+        if (playerInteraction == null)
+        {
             return;
         }
 
@@ -45,6 +46,8 @@ public class MultiToolInventory : MonoBehaviour
         {
             turnOffAllTools();
             activeItem = ItemID.PowerDrill;
+            timeHeld = 0f;
+            hasPowerDrillBeenFired = false;
             Debug.Log("4 is pressed and active item is: " + activeItem);
         }
 
@@ -52,9 +55,12 @@ public class MultiToolInventory : MonoBehaviour
         if (playerInteraction.hasMultiTool)
         {
             // CLICK-based tools (Flashlight, Tazer, Biotracker)
-            if (Input.GetMouseButtonDown(0) && activeItem != ItemID.PowerDrill)
+            if (activeItem != ItemID.PowerDrill)
             {
-                Use(activeItem);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Use(activeItem);
+                }
             }
 
             //Flashlight Select -------------------
@@ -88,14 +94,14 @@ public class MultiToolInventory : MonoBehaviour
             }
         }
 
-
+        //Power Drill logic ---------------
         if (activeItem == ItemID.PowerDrill)
         {
             // If button is held
             if (Input.GetMouseButton(0))
             {
                 timeHeld += Time.deltaTime;
-                Debug.Log("time held: " + timeHeld);
+                //Debug.Log("timeHeld = " + timeHeld + ", powerDrillHeldTime = " + powerDrillHeldTime);
 
                 if (!hasPowerDrillBeenFired && timeHeld >= powerDrillHeldTime)
                 {
@@ -118,7 +124,7 @@ public class MultiToolInventory : MonoBehaviour
             Use(ItemID.BATTERY);
             Debug.Log("5 is pressed and active item is: " + ItemID.BATTERY);
         }
-    }
+    } //end UPDATE
 
     //This makes all tools turned off when switching
     private void turnOffAllTools()
@@ -156,15 +162,15 @@ public class MultiToolInventory : MonoBehaviour
                 break;
 
             case ItemID.Flashlight:
-                UseFlashlight(); 
+                UseFlashlight();
                 break;
 
             case ItemID.Tazer:
-                UseTazer(); 
+                UseTazer();
                 break;
 
             case ItemID.BioTracker:
-                UseBiotracker(); 
+                UseBiotracker();
                 break;
 
             case ItemID.BATTERY:
@@ -174,7 +180,7 @@ public class MultiToolInventory : MonoBehaviour
     }
 
     //Logic for using flashlight
-    private void UseFlashlight() 
+    private void UseFlashlight()
     {
         //Toggle the state
         isItemActive = !isItemActive;
@@ -199,14 +205,14 @@ public class MultiToolInventory : MonoBehaviour
     }
 
     //Logic for using biotracker
-    private void UseBiotracker() 
+    private void UseBiotracker()
     {
         isItemActive = !isItemActive;
 
         //Play biotracker audio when activated
         if (isItemActive)
         {
-            if(biotrackerAudio != null)
+            if (biotrackerAudio != null)
             {
                 biotrackerAudio.Play();
             }
@@ -247,14 +253,6 @@ public class MultiToolInventory : MonoBehaviour
 
     private void FirePowerDrill()
     {
-        Debug.Log("DRILL FIRED!!!");
+        Debug.Log("DRILL FIRED!");
     }
-
-
-
-
-
-
-
 }
-
