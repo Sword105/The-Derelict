@@ -16,6 +16,10 @@ public class MultiToolInventory : MonoBehaviour{
     //Tool Configuration
     [SerializeField] private Light flashlightSource;
     [SerializeField] private AudioSource biotrackerAudio;
+
+    //Tazer timers
+    [SerializeField] private float tazerCooldown = 5f;
+    private float nextTazerTime = 0f;
     [SerializeField] private AudioSource powerDrillAudio;
 
 
@@ -215,10 +219,8 @@ public class MultiToolInventory : MonoBehaviour{
         Debug.Log("Flashlight active state set to: " + isItemActive);
     }
 
-    private void UseTazer() //NEEDS TO BE IMPLEMENTED
+    private void UseTazer() 
     {
-        float nextTazerTime = 0f;
-        float tazerCooldown = 5f;
 
         if (Time.time < nextTazerTime)
         {
@@ -233,8 +235,8 @@ public class MultiToolInventory : MonoBehaviour{
             {
                 Debug.Log("Tazer hit the alien!");
                 nextTazerTime = Time.time + tazerCooldown;
-                AlienStateMachine.instance.Stun(1.5f);
-                // StartCoroutine(AlienStateMachine.instance.Stun(1.5f));
+                // AlienStateMachine.instance.Stun(1.5f);
+                StartCoroutine(AlienStateMachine.instance.Stun(1.5f));
             }
             else
             {
@@ -246,7 +248,7 @@ public class MultiToolInventory : MonoBehaviour{
         {
             Debug.Log("Tazer missed.");
             return;
-        }
+        }  
 
         isItemActive = !isItemActive;
         Debug.Log("Tazer active state set to: " + isItemActive);
@@ -254,6 +256,15 @@ public class MultiToolInventory : MonoBehaviour{
         // AlienStateMachine.instance.Stun(1.5f);
         
     }
+
+    // Property to check if Tazer is cooling down
+    public bool IsCoolingDown 
+    {
+        get 
+        { 
+            return Time.time < nextTazerTime; 
+        }
+    } 
 
     //Logic for using biotracker
     private void UseBiotracker()
