@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731707, g: 0.13414726, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &170008960
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667408111981555848, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939263458663462979, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: m_Name
+      value: InteractableItem (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684362920533450708, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: itemID
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684362920533450708, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684362920533450708, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d7f43af3cc79fe540b2b3f059c2ed825, type: 3}
 --- !u!1 &337938629 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8400794865991913166, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
@@ -142,11 +211,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInteraction: {fileID: 337938631}
   itemID: 0
-  isItemActive: 0
   activeItem: 0
   enemyIconRenderer: {fileID: 1001435800}
   flashlightSource: {fileID: 1917248427}
   biotrackerAudio: {fileID: 1810293769}
+  powerDrillHeldTime: 0
+  timeHeld: 0
 --- !u!114 &337938631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +238,7 @@ MonoBehaviour:
   hasFlashlight: 0
   hasTazer: 0
   hasBiotracker: 0
+  hasPowerDrill: 0
 --- !u!4 &337938635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7240540283523470726, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
@@ -2286,6 +2357,7 @@ SceneRoots:
   - {fileID: 1207854483}
   - {fileID: 2044822708}
   - {fileID: 584920889}
+  - {fileID: 170008960}
   - {fileID: 2306064544515603577}
   - {fileID: 1513339013}
   - {fileID: 1014650684}

@@ -10,7 +10,7 @@ public class MultiToolInventory : MonoBehaviour
     public static Action<bool> OnBiotrackerUse;
     public PlayerInteraction playerInteraction;
     public ItemID itemID;
-    [SerializeField] private Boolean isItemActive = false;
+    private bool isItemActive = false;
     public ItemID activeItem;
     public SpriteRenderer enemyIconRenderer;
 
@@ -18,6 +18,10 @@ public class MultiToolInventory : MonoBehaviour
     [SerializeField] private Light flashlightSource;
     [SerializeField] private AudioSource biotrackerAudio;
 
+    //Power Drill timers
+    [SerializeField] private float powerDrillHeldTime = 0.0f;
+    [SerializeField] private float timeHeld = 0.0f;
+    private bool hasPowerDrillBeenFired = false;
 
     void Start()
     {
@@ -30,23 +34,25 @@ public class MultiToolInventory : MonoBehaviour
         turnOffAllTools();
     }
 
-
     void Update()
     {
-        if (playerInteraction == null)
+        if (playerInteraction == null){
             return;
-
-        // Logic needed to use batteries on other items, right now just click 4 and it uses it
-        if (playerInteraction.batteryCount > 0 && Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Use(ItemID.BATTERY);
-            Debug.Log("4 is pressed and active item is: " + ItemID.BATTERY);
         }
 
-        //Only allow tool use if player has the multitool (left click to use)
+        // POWER DRILL SELECT
+        if ((Input.GetKeyDown(KeyCode.Alpha4) && playerInteraction.hasPowerDrill))
+        {
+            turnOffAllTools();
+            activeItem = ItemID.PowerDrill;
+            Debug.Log("4 is pressed and active item is: " + activeItem);
+        }
+
+        // ONLY call Use() for click-based tools
         if (playerInteraction.hasMultiTool)
         {
-            if (Input.GetMouseButtonDown(0))
+            // CLICK-based tools (Flashlight, Tazer, Biotracker)
+            if (Input.GetMouseButtonDown(0) && activeItem != ItemID.PowerDrill)
             {
                 Use(activeItem);
             }
@@ -54,10 +60,8 @@ public class MultiToolInventory : MonoBehaviour
             //Flashlight Select
             if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight))
             {
-                //Turn off the active tool immediately if switching
                 if (activeItem != ItemID.Flashlight && flashlightSource != null)
                 {
-                    //Turns off other tools when switching
                     turnOffAllTools();
                     activeItem = ItemID.Flashlight;
                     Debug.Log("1 is pressed and active item is: " + activeItem);
@@ -69,7 +73,6 @@ public class MultiToolInventory : MonoBehaviour
             {
                 if (activeItem != ItemID.BioTracker)
                 {
-                    //Turns off other tools when switching
                     turnOffAllTools();
                     activeItem = ItemID.BioTracker;
                     Debug.Log("2 is pressed and active item is: " + activeItem);
@@ -79,20 +82,22 @@ public class MultiToolInventory : MonoBehaviour
             //Tazer Select
             else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer))
             {
-                //Turns off other tools when switching
                 turnOffAllTools();
                 activeItem = ItemID.Tazer;
                 Debug.Log("3 is pressed and active item is: " + activeItem);
             }
-            //Power Drill Select
         }
-        else if ((Input.GetKeyDown(KeyCode.Alpha4) && playerInteraction.hasPowerDrill))
-            {
-                if (flashlightSource != null) { flashlightSource.enabled = false; }
-                isItemActive = false;
-                activeItem = ItemID.PowerDrill;
-                Debug.Log("4 is pressed and active item is: " + activeItem);
-            }
+        else if (playerInteraction.batteryCount > 0 && Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Use(ItemID.BATTERY);
+            Debug.Log("5 is pressed and active item is: " + ItemID.BATTERY);
+        }
+
+        // HOLD-based tool (PowerDrill) — must run every frame
+        if (activeItem == ItemID.PowerDrill)
+        {
+            UsePowerDrill(playerInteraction);
+        }
     }
 
     //This makes all tools turned off when switching
@@ -114,8 +119,11 @@ public class MultiToolInventory : MonoBehaviour
             enemyIconRenderer.enabled = false;
         }
 
-        
         isItemActive = false;
+
+        // Reset drill when switching tools
+        timeHeld = 0f;
+        hasPowerDrillBeenFired = false;
     }
 
     //Logic for using each item
@@ -142,8 +150,9 @@ public class MultiToolInventory : MonoBehaviour
             case ItemID.BATTERY:
                 UseBattery(playerInteraction);
                 break;
+
             case ItemID.PowerDrill:
-                UsePowerDrill(playerInteraction);
+                // PowerDrill handled separately because it requires continuous input
                 break;
         }
     }
@@ -170,8 +179,6 @@ public class MultiToolInventory : MonoBehaviour
     private void UseTazer() //NEEDS TO BE IMPLEMENTED
     {
         isItemActive = !isItemActive;
-
-
         Debug.Log("Tazer active state set to: " + isItemActive);
     }
 
@@ -191,11 +198,8 @@ public class MultiToolInventory : MonoBehaviour
             {
                 Debug.LogError("Audio not detected.");
             }
-            //***Gotta add logic for alerting aliens of suspicious activity here***
-            //AlienStateMachine.instance.InvokeSuspiciousEvent(playerInteraction.transform.position, 10f);
         }
 
-        //Allows player to see the alien icons on the minimap
         if (enemyIconRenderer != null)
         {
             enemyIconRenderer.enabled = isItemActive;
@@ -206,7 +210,6 @@ public class MultiToolInventory : MonoBehaviour
         }
         Debug.Log("Biotracker active state set to: " + isItemActive);
     }
-
 
     //More logic for using batteries here
     public void UseBattery(PlayerInteraction player)
@@ -226,10 +229,27 @@ public class MultiToolInventory : MonoBehaviour
         }
     }
 
-    public void UsePowerDrill(PlayerInteraction player){
+    public void UsePowerDrill(PlayerInteraction player)
+    {
+        // Holding the button
+        if (Input.GetMouseButton(0))
+        {
+            timeHeld += Time.deltaTime;
+            Debug.Log("CHARGING");
 
+            if (!hasPowerDrillBeenFired && timeHeld >= powerDrillHeldTime)
+            {
+                Debug.Log("The key LMB has been held for more than " + powerDrillHeldTime + " seconds!");
+                hasPowerDrillBeenFired = true;
+            }
+        }
 
-
-
+        // Button released
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("The key LMB was released.");
+            timeHeld = 0.0f;
+            hasPowerDrillBeenFired = false;
+        }
     }
 }
