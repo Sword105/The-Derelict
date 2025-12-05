@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -76,8 +77,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Player has died."); // logs death to console
         Cursor.lockState = CursorLockMode.Confined; // locks cursor
-
+        
+        StartCoroutine(PauseGameAfterDelay());
         fadeToBlackScript.FadeOut(); // start the fade
+
 
         // the fade is still going but we need to pause the game once completed
         // thats why we have the public PausedGameAfter()
