@@ -15,16 +15,16 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.7509433, g: 0.5743571, b: 0.4859878, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.015
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 515a38cc6d11f404190607873332c212, type: 2}
   m_HaloStrength: 0.5
@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.09051083, g: 0.03797005, b: 0.016881444, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -197,7 +197,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8524310926642028947, guid: ad6aae32dd3eb844fa75e2a156bbe34f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -614,7 +615,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (76)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1009,7 +1011,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (102)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1078,7 +1081,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (37)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1266,7 +1270,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (9)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1335,7 +1340,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (91)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1706,7 +1712,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (12)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2135,7 +2142,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2434,7 +2442,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (34)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2690,7 +2699,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (11)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3228,7 +3238,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (71)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3301,7 +3312,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3580,7 +3592,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (93)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3711,7 +3724,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (100)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3794,7 +3808,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4645,6 +4660,134 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a65198f3cbcab345bc0b33f23a45e76, type: 3}
+--- !u!1 &213499909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213499911}
+  - component: {fileID: 213499910}
+  m_Layer: 0
+  m_Name: Ambience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &213499910
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213499909}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 6243386054177971291, guid: c4bc01c843e97484ea90ff0c8a72626d, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 0619a5b674a58e743b6af8f9ac734332, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &213499911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213499909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.823242, y: -18.043768, z: 188.05904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &214404461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5725000371507048362, guid: b2452a5c2cd649a4db9eebcd16f7b155, type: 3}
@@ -4719,7 +4862,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (38)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5015,7 +5159,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5084,7 +5229,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (24)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5379,7 +5525,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4519915857946330775, guid: 5ceb30273fce6374fadb842df014e681, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4804555236838018394, guid: 5ceb30273fce6374fadb842df014e681, type: 3}
     - {fileID: 4804555236838018392, guid: 5ceb30273fce6374fadb842df014e681, type: 3}
@@ -5757,7 +5904,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5831,7 +5979,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (32)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6172,7 +6321,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (31)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6335,7 +6485,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (51)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7069,7 +7220,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (74)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7138,7 +7290,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (53)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7426,7 +7579,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (69)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7671,7 +7825,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (103)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7911,7 +8066,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8041,7 +8197,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8167,7 +8324,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (97)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8355,7 +8513,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (92)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8481,7 +8640,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (23)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8622,7 +8782,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8849,7 +9010,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (68)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9064,7 +9226,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (57)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9133,7 +9296,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (48)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9207,7 +9371,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (41)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9405,7 +9570,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (31)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9796,7 +9962,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9869,7 +10036,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10012,7 +10180,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (16)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10208,7 +10377,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10684,7 +10854,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10815,7 +10986,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (61)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10950,7 +11122,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (82)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11080,7 +11253,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Corner Lights (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8708767180787296223, guid: 0d9d85399f9310e458b966faa3d36bdb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11154,7 +11328,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (25)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11223,7 +11398,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (72)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11302,7 +11478,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11643,7 +11820,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (66)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11717,7 +11895,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11855,7 +12034,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (50)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11872,9 +12052,13 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1212901576}
+    - target: {fileID: 5944021096887432600, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
+      propertyPath: bobAmount
+      value: 8.18
+      objectReference: {fileID: 0}
     - target: {fileID: 6568684599770085265, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7240540283523470726, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
       propertyPath: m_LocalScale.x
@@ -11933,6 +12117,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7337885402151666994, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
+      propertyPath: m_Volume
+      value: 0.347
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337885402151666994, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
       propertyPath: Spatialize
       value: 1
       objectReference: {fileID: 0}
@@ -11940,10 +12128,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5944021096887432600, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8800717893195601118, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2104195699}
   m_SourcePrefab: {fileID: 100100000, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
 --- !u!4 &627483803 stripped
 Transform:
@@ -12019,7 +12211,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (35)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12219,7 +12412,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (26)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12375,7 +12569,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Corner Lights (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8708767180787296223, guid: 0d9d85399f9310e458b966faa3d36bdb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12800,7 +12995,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (78)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12994,7 +13190,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (90)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13063,7 +13260,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (81)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13206,7 +13404,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (49)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13275,7 +13474,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13349,7 +13549,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4519915857946330775, guid: 5ceb30273fce6374fadb842df014e681, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13903,7 +14104,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13982,7 +14184,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14560,7 +14763,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (21)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14629,7 +14833,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14833,7 +15038,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (65)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14906,7 +15112,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15918,7 +16125,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15992,7 +16200,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (77)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16086,7 +16295,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (30)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16420,7 +16630,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (19)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16494,7 +16705,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4519915857946330775, guid: 5ceb30273fce6374fadb842df014e681, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16563,7 +16775,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Corner Lights (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8708767180787296223, guid: 0d9d85399f9310e458b966faa3d36bdb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16636,7 +16849,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16705,7 +16919,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (29)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16841,7 +17056,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16971,7 +17187,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (27)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17314,7 +17531,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17864,7 +18082,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17990,7 +18209,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8524310926642028947, guid: ad6aae32dd3eb844fa75e2a156bbe34f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18230,7 +18450,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18568,7 +18789,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (30)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18647,7 +18869,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19218,7 +19441,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (36)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19536,7 +19760,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (26)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20380,7 +20605,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (43)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20454,7 +20680,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (18)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20523,7 +20750,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20592,7 +20820,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (73)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21354,7 +21583,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21428,7 +21658,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (27)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21650,7 +21881,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (63)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21724,7 +21956,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Corner Lights (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8708767180787296223, guid: 0d9d85399f9310e458b966faa3d36bdb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21798,7 +22031,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (86)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21867,7 +22101,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (52)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22050,7 +22285,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (70)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22326,7 +22562,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (59)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22395,7 +22632,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22548,7 +22786,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (45)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22639,7 +22878,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.9924528, g: 0.7806267, b: 0.61232466, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -22932,7 +23171,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23006,7 +23246,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (24)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23403,7 +23644,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Corner Lights
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8708767180787296223, guid: 0d9d85399f9310e458b966faa3d36bdb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23556,7 +23798,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (75)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -23980,7 +24223,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24064,7 +24308,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (28)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24138,7 +24383,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24725,7 +24971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c57a6b60f859543b98735cc24a81d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeList: []
+  nodeList:
+  - {fileID: 0}
   totalScore: 1
   incMultiplier: 2
   decMultiplier: 2
@@ -24818,7 +25065,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (99)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24959,7 +25207,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (22)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25085,7 +25334,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (29)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25169,7 +25419,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8524310926642028947, guid: ad6aae32dd3eb844fa75e2a156bbe34f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25307,7 +25558,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25655,7 +25907,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (42)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25920,7 +26173,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (47)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25989,7 +26243,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26677,7 +26932,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (80)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -26854,7 +27110,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (15)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27151,7 +27408,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27220,7 +27478,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27289,7 +27548,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (40)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27614,7 +27874,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (46)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27993,7 +28254,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28077,7 +28339,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (20)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28230,7 +28493,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (101)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28514,7 +28778,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (83)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28640,7 +28905,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (23)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -28778,7 +29044,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (25)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29119,7 +29386,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (107)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29250,7 +29518,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29594,7 +29863,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (17)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30040,7 +30310,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (67)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30641,7 +30912,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4590110446334577055, guid: 01c384aacd76e1742a420e899cfbca6a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30887,7 +31159,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (94)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30961,7 +31234,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (33)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31153,7 +31427,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (64)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31558,7 +31833,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (105)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31705,7 +31981,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -31841,7 +32118,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (88)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -32055,7 +32333,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (85)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -32138,7 +32417,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -32563,7 +32843,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor Tile 04 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -32637,7 +32918,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -33718,7 +34000,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (44)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -34035,7 +34318,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (106)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -34109,7 +34393,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8524310926642028947, guid: ad6aae32dd3eb844fa75e2a156bbe34f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -34371,7 +34656,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6199839864262971560, guid: ea84852a336434c449c91728ea00f017, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -34445,7 +34731,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (108)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -34518,7 +34805,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2258666410970163651, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -34654,7 +34942,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -35070,7 +35359,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -35475,7 +35765,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (10)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -35554,7 +35845,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (87)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -36324,7 +36616,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (60)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -36477,7 +36770,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (104)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -36625,7 +36919,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -36760,7 +37055,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Windows (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9080064000361357802, guid: 91b8fa9065e2bc041ba30dded191b2a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37241,7 +37537,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (39)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37461,7 +37758,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (28)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37471,6 +37769,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5725000371507048362, guid: b2452a5c2cd649a4db9eebcd16f7b155, type: 3}
   m_PrefabInstance: {fileID: 289507974}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2104195694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8800717893195601118, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
+  m_PrefabInstance: {fileID: 626679801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2104195699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104195694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48bdacc24c0e440758ccffe73530cb60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobSpeed: 12
+  bobAmount: 0.05
+  smooth: 8
 --- !u!4 &2105433806 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1554161176115921225, guid: f9e1a0158e9f7a545a16fa7c2aa7be4e, type: 3}
@@ -37614,7 +37932,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (98)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37972,7 +38291,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (62)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38179,7 +38499,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor Passthrough Lights (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7696550495362800010, guid: eb2cfde91ad31bf4bad84b2c70e9816e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -38209,3 +38530,4 @@ SceneRoots:
   - {fileID: 1484488797}
   - {fileID: 1365251320}
   - {fileID: 626679801}
+  - {fileID: 213499911}
