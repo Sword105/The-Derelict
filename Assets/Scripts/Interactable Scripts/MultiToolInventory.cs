@@ -40,7 +40,7 @@ public class MultiToolInventory : MonoBehaviour
             return;
         }
 
-        // POWER DRILL SELECT
+        //  Power Drill SELECT
         if ((Input.GetKeyDown(KeyCode.Alpha4) && playerInteraction.hasPowerDrill))
         {
             turnOffAllTools();
@@ -48,7 +48,7 @@ public class MultiToolInventory : MonoBehaviour
             Debug.Log("4 is pressed and active item is: " + activeItem);
         }
 
-        // ONLY call Use() for click-based tools
+        // ONLY call Use() for CLICK-based tools ========================================
         if (playerInteraction.hasMultiTool)
         {
             // CLICK-based tools (Flashlight, Tazer, Biotracker)
@@ -57,7 +57,7 @@ public class MultiToolInventory : MonoBehaviour
                 Use(activeItem);
             }
 
-            //Flashlight Select ============================
+            //Flashlight Select -------------------
             if ((Input.GetKeyDown(KeyCode.Alpha1) && playerInteraction.hasFlashlight))
             {
                 if (activeItem != ItemID.Flashlight && flashlightSource != null)
@@ -68,7 +68,7 @@ public class MultiToolInventory : MonoBehaviour
                 }
             }
 
-            //Biotracker Select =========================
+            //Biotracker Select -------------------
             else if ((Input.GetKeyDown(KeyCode.Alpha2) && playerInteraction.hasBiotracker))
             {
                 if (activeItem != ItemID.BioTracker)
@@ -79,7 +79,7 @@ public class MultiToolInventory : MonoBehaviour
                 }
             }
 
-            //Tazer Select =============================
+            //Tazer Select -------------------
             else if ((Input.GetKeyDown(KeyCode.Alpha3) && playerInteraction.hasTazer))
             {
                 turnOffAllTools();
@@ -91,17 +91,28 @@ public class MultiToolInventory : MonoBehaviour
 
         if (activeItem == ItemID.PowerDrill)
         {
-            if ( Input.GetMouseButtonDown(0))
-            timeHeld += Time.deltaTime;
-            Debug.Log("time held: " + timeHeld);
-            if (timeHeld>=powerDrillHeldTime) {
+            // If button is held
+            if (Input.GetMouseButton(0))
+            {
+                timeHeld += Time.deltaTime;
+                Debug.Log("time held: " + timeHeld);
 
-                Debug.Log("THIS SHOULD FUCKING WORK????");
+                if (!hasPowerDrillBeenFired && timeHeld >= powerDrillHeldTime)
+                {
+                    hasPowerDrillBeenFired = true;
+                    FirePowerDrill();
+                }
+            }
 
-                
-            
+            // If button is released
+            if (Input.GetMouseButtonUp(0))
+            {
+                timeHeld = 0f;
+                hasPowerDrillBeenFired = false;
+                Debug.Log("The key LMB was released.");
             }
         }
+
         else if (playerInteraction.batteryCount > 0 && Input.GetKeyDown(KeyCode.Alpha5))
         {
             Use(ItemID.BATTERY);
@@ -158,10 +169,6 @@ public class MultiToolInventory : MonoBehaviour
 
             case ItemID.BATTERY:
                 UseBattery(playerInteraction);
-                break;
-
-            case ItemID.PowerDrill:
-                UsePowerDrill(playerInteraction);
                 break;
         }
     }
@@ -238,13 +245,9 @@ public class MultiToolInventory : MonoBehaviour
         }
     }
 
-    public void UsePowerDrill(PlayerInteraction player)
-    {
-        
-    }
-
     private void FirePowerDrill()
     {
+        Debug.Log("DRILL FIRED!!!");
     }
 
 
