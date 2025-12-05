@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 5298708386702337011}
   m_Layer: 7
   m_Name: FinalAlien
-  m_TagString: Untagged
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
