@@ -5,45 +5,50 @@ using UnityEngine.UI;
 
 public class FadeToBlack : MonoBehaviour
 {
-    public Image deathScreenImage;
-    public GameObject deathscreenUI;
-    public float fadeDuration = 2f;
 
-    private void Start()
+    [SerializeField] private CanvasGroup canvasGroup; // the deathScreen canvas
+    [SerializeField] public float fadeDuration = 5.0f; // time duration in inspedtor
+    [SerializeField] Canvas hudCanvas; // reference to HUD canvas
+
+    public void FadeIn() // starts balck to clear
     {
-        Color c = deathScreenImage.color;
-        c.a = 0f;
-        deathScreenImage.color = c;
-
-        // Hide the death UI unntil fade completes
-        deathscreenUI.SetActive(false);
+        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0, fadeDuration));
     }
 
-    public void StartFade()
+    public void FadeOut() // fades to black
     {
-        StartCoroutine(FadeIn());
+        Debug.Log("Fading to black...");
+
+        // since the HUD canvas still shows over the death screen, we need to disable it
+        hudCanvas.enabled = false;
+        
+        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 1, fadeDuration));
+        
+        // game is still running during and after the fade out
     }
 
-    private IEnumerator FadeIn()
+    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)
     {
-        float elapsedTime = 0f;
-        Color c = deathScreenImage.color;
-
-        while (elapsedTime < fadeDuration)
+        float elapsedTime = 0.0f;
+        while (elapsedTime < duration)
         {
-            float t = elapsedTime / fadeDuration;
-            c.a = Mathf.Lerp(0f, 1f, t);
-            deathScreenImage.color = c;
             elapsedTime += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(start, end, elapsedTime / duration);
             yield return null;
         }
-
-        // Ensure the image is fully opaque
-        c.a = 1f;
-        deathScreenImage.color = c;
-
-        // Show the death UI after fade completes
-        deathscreenUI.SetActive(true);
+        cg.alpha = end;
     }
+
+    private void Start() // called once 
+    {
+        //FadeOut();
+    }
+
+    private void Update() // called every frame
+    {
+        
+    }
+
+
 
 }

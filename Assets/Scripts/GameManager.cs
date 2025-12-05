@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,11 +18,18 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Death varibles")]
-    public GameObject fadeToBlackScript;
+    public FadeToBlack fadeToBlackScript;
+
+    [Header("Button Variables")]
+
+    public Button mainMenuButton;
 
     
     void Start()
     {
+
+        fadeToBlackScript = FindObjectOfType<FadeToBlack>();// get reference to fade to black script
+
         if (instance == null)
         {
             instance = this;
@@ -34,11 +42,24 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timeElapsed += Time.deltaTime;
+        
     }
 
     void StartGame() 
     { 
         Debug.Log("Starting game..."); 
+    }
+
+    public void goMainMenu()
+    {
+        //TODO: fix this 
+        Debug.Log("Main Menu button pressed.");
+        
+        Time.timeScale = 1f; // ensure time scale is normal
+
+        SceneManager.LoadScene("StartMenu");
+
+        Debug.Log("Loading StartMenu scene...");
     }
 
     void SpawnAlien()
@@ -55,9 +76,29 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Player has died."); // logs death to console
         Cursor.lockState = CursorLockMode.Confined; // locks cursor
-       
-        fadeToBlackScript.GetComponent<FadeToBlack>().StartFade();
+
+        fadeToBlackScript.FadeOut(); // start the fade
+
+        // the fade is still going but we need to pause the game once completed
+        // thats why we have the public PausedGameAfter()
+
         
+
+    }
+
+    public void PauseGameAfter()
+    {
+        StartCoroutine(PauseGameAfterDelay());
+    }
+
+    private IEnumerator PauseGameAfterDelay()
+    {
+
+       float delay = fadeToBlackScript.fadeDuration;
+
+        yield return new WaitForSecondsRealtime(delay);
+        Time.timeScale = 0f;
+        Debug.Log("Game Paused!");
     }
 
     public void SpawnSuspiciousNode(Vector3 position)

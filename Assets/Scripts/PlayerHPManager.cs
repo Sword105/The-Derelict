@@ -27,6 +27,7 @@ public class PlayerHPManager : MonoBehaviour
         if (currentHP <= 0)
         {
             GameManager.instance.HandlePlayerDeath(gameObject);
+            //GameManager.instance.PauseGameAfter();
         }
     }
 
