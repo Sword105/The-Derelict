@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1787757169939970677}
   m_Layer: 8
   m_Name: Tunnel Floor002
-  m_TagString: Untagged
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

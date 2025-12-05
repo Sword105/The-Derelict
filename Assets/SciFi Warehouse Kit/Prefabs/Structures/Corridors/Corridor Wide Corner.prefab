@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 862769730421487671}
   m_Layer: 8
   m_Name: Corridor Floor Wide003
-  m_TagString: Untagged
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
