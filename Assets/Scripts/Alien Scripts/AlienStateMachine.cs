@@ -46,7 +46,13 @@ public class AlienStateMachine : MonoBehaviour
     public float temperature = 0.01f;
 
     /*********************************************************************************************************************/
-    
+
+    [Header("Audio")]
+    public AudioClip roarSound;
+    public AudioClip attackSound;
+
+    /*********************************************************************************************************************/
+
     [Header("Path Padding")]
 
     [Min(0f)] 
@@ -253,6 +259,8 @@ public class AlienStateMachine : MonoBehaviour
         {
             ClearStateData();
             animator.SetTrigger("AttackTrigger");
+            AudioManager.instance.PlaySoundFX(attackSound, transform.position, 0.1f, true);
+            Debug.Log("Playing Sound");
             currentState = AlienState.ATTACK;
             Debug.Log(currentState);
         }
@@ -260,9 +268,8 @@ public class AlienStateMachine : MonoBehaviour
 
     public void AttackState()
     {
-        Debug.Log("Alien is attacking");
         timeInState += Time.deltaTime;
-        if (timeInState >= 1.3f)
+        if (timeInState >= 1.0f)
         { 
             if (Vector3.Distance(transform.position, player.transform.position) < attackRange * 1.5f)
                 PlayerHPManager.instance.InflictDamage(1f);
@@ -416,6 +423,7 @@ public class AlienStateMachine : MonoBehaviour
                 Debug.Log("Player was definitely seen. Alien is now chasing.");
                 StartCoroutine(HandleStateTransition(3f));
                 animator.SetTrigger("RoarTrigger");
+                AudioManager.instance.PlaySoundFX(roarSound, transform.position, 0.1f, true);
                 currentState = AlienState.CHASE;
             }
             else
