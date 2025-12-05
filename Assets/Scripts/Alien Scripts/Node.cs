@@ -10,7 +10,8 @@ public class Node : MonoBehaviour
 {
     public Transform node_manager;
     public Transform player;
-    public float range = 5f;
+    public float range = 20f;
+    private Renderer cachedRenderer;
 
     
     //Calculate the probability that the player is in that Node
@@ -29,10 +30,23 @@ public class Node : MonoBehaviour
     private bool reducingScore = false;
     private int lastScore = -1; 
     
+    void OnValidate()
+    {
+        CacheRenderer();
+    }
     
     void Awake(){
+        CacheRenderer();
         InvokeRepeating("checkLastTimeInside", 15f, 10f);
     }
+
+    //fixing the center
+    void CacheRenderer()
+    {
+        if (cachedRenderer == null)
+            cachedRenderer = GetComponentInChildren<Renderer>();
+    }
+
 
     
     void Start()
@@ -44,7 +58,11 @@ public class Node : MonoBehaviour
 
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        CacheRenderer();
+        if (cachedRenderer == null) return;
+
+        Vector3 center = cachedRenderer.bounds.center;
+        float distance = Vector3.Distance(center, player.position);
 
         if(distance<range){
             reducingScore = false;
@@ -85,9 +103,14 @@ public class Node : MonoBehaviour
     //Displays the radious and timeInside
     void OnDrawGizmos()
     {
+        CacheRenderer();
+        if (cachedRenderer == null) return;
+
+        Vector3 center = cachedRenderer.bounds.center;
+
         //Display the range of the Node
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(center, range);
 
         //Display the timeInside variable
         GUIStyle style = new GUIStyle();
@@ -95,7 +118,7 @@ public class Node : MonoBehaviour
         style.fontSize = 14;                  // Font size
         style.fontStyle = FontStyle.Bold;     // Bold, Italic, etc.
 
-        Handles.Label(transform.position + Vector3.up * 2, "Score: " + score, style);        
+        Handles.Label(center + Vector3.up * 2, "Score: " + score, style);        
     }
     #endif
     
