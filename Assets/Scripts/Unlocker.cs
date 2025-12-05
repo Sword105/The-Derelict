@@ -6,7 +6,7 @@ public class Unlocker : Interactable
 {
     public DoorInteractable linkedDoor;
 
-    public override void Interact(PlayerInteraction player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
         linkedDoor.poweredOn = true;
     }
