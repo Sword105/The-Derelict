@@ -164,6 +164,7 @@ public class AlienStateMachine : MonoBehaviour
             if (pointsToFollow.Count == 0)
             {
                 // If you get the same node, try again for a different one
+                StopCoroutine("HandleStateTransition");
                 StartCoroutine(HandleStateTransition(1.5f));
 
                 Node newNode = AlienBrain.MostLikelyNode(nodeManager, temperature);
@@ -203,6 +204,7 @@ public class AlienStateMachine : MonoBehaviour
                 {
                     Debug.Log("No more nodes to check, exiting suspicious mode early");
                     ClearStateData();
+                    StopCoroutine("HandleStateTransition");
                     StartCoroutine(HandleStateTransition(1f));
                     currentState = AlienState.SCOUT;
                     return;
@@ -223,6 +225,7 @@ public class AlienStateMachine : MonoBehaviour
         if (nodesChecked >= suspiciousStateMaxNodesChecked)
         {
             Debug.Log("No more suspicious activity, scouting once again");
+            StopCoroutine("HandleStateTransition");
             StartCoroutine(HandleStateTransition(1f));
             currentState = AlienState.SCOUT;
         }
@@ -280,6 +283,7 @@ public class AlienStateMachine : MonoBehaviour
                 PlayerHPManager.instance.InflictDamage(1f);
 
             ClearStateData();
+            StopCoroutine("HandleStateTransition");
             StartCoroutine(HandleStateTransition(1.5f));
             currentState = AlienState.CHASE;
         }
@@ -301,6 +305,7 @@ public class AlienStateMachine : MonoBehaviour
                 randomPosition = new Vector3(Random.Range(serverRoomBounds.bounds.min.x, serverRoomBounds.bounds.max.x), serverRoomBounds.bounds.center.y, Random.Range(serverRoomBounds.bounds.min.z, serverRoomBounds.bounds.max.z));
             }
 
+            StopCoroutine("HandleStateTransition");
             StartCoroutine(HandleStateTransition(1f));
             agent.SetDestination(randomPosition);
         }
@@ -401,6 +406,7 @@ public class AlienStateMachine : MonoBehaviour
             Physics.Raycast(transform.position, nearbySusNodes[0].transform.position - transform.position, out hit);
             if (hit.collider == nearbySusNodes[0])
             {
+                StopCoroutine("HandleStateTransition");
                 StartCoroutine(HandleStateTransition(1f));
                 currentState = AlienState.SUSPICIOUS;
 
@@ -435,6 +441,7 @@ public class AlienStateMachine : MonoBehaviour
             {
                 // If the player is too close to the player, begin chasing them.
                 Debug.Log("Player was definitely seen. Alien is now chasing.");
+                StopCoroutine("HandleStateTransition");
                 StartCoroutine(HandleStateTransition(3f));
                 animator.SetTrigger("RoarTrigger");
                 AudioManager.instance.PlaySoundFX(roarSound, transform.position, 0.1f, true);
@@ -532,6 +539,7 @@ public class AlienStateMachine : MonoBehaviour
 
         if (door != null && !door.IsOpen)
         {
+            StopCoroutine("HandleStateTransition");
             StartCoroutine(HandleStateTransition(1f));
 
             door.IsOpen = !door.IsOpen;
