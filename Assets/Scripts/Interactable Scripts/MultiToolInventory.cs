@@ -16,6 +16,10 @@ public class MultiToolInventory : MonoBehaviour
     {
         playerInteraction = FindObjectOfType<PlayerInteraction>();
 
+        Debug.Log("here we go" + playerInteraction.hasMultiTool);
+        playerInteraction.hasMultiTool = true; //TESTING TALE OUJT
+        Debug.Log("here we go" + playerInteraction.hasMultiTool);
+
         if (playerInteraction == null)
             Debug.LogError("PlayerInteraction not found in scene!");
 
@@ -131,8 +135,41 @@ public class MultiToolInventory : MonoBehaviour
 
     private void UseTazer() 
     {
+        float nextTazerTime = 0f;
+        float tazerCooldown = 5f;
+
+        if (Time.time < nextTazerTime)
+        {
+            Debug.Log("Tazer is recharging, please wait.");
+            return;
+        }
+
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, ~0, QueryTriggerInteraction.Ignore))
+        {
+            if (hitInfo.collider.CompareTag("Alien"))
+            {
+                Debug.Log("Tazer hit the alien!");
+                nextTazerTime = Time.time + tazerCooldown;
+                AlienStateMachine.instance.Stun(1.5f);
+            }
+            else
+            {
+                Debug.Log("Tazer missed.");
+                return;
+            }
+        }
+        else
+        {
+            Debug.Log("Tazer missed.");
+            return;
+        }
+
         isItemActive = !isItemActive;
         Debug.Log("Tazer active state set to: " + isItemActive);
+
+        // AlienStateMachine.instance.Stun(1.5f);
+        
     }
 
     private void UseBiotracker() 
