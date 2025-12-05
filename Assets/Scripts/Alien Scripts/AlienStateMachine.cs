@@ -19,6 +19,8 @@ public class AlienStateMachine : MonoBehaviour
     private NodeManager nodeManager;
     private NavMeshAgent agent;
     private Animator animator;
+    private float currentHP;
+
     public static AlienStateMachine instance;
     public bool inServerRoom;
 
@@ -29,6 +31,7 @@ public class AlienStateMachine : MonoBehaviour
     public int suspiciousStateMaxNodesChecked = 5;
     public float chaseTimeUntilGiveUp = 1f;
     public float attackRange = 2f;
+    public float maxHP = 3f;
 
     public LayerMask playerLayer;
     public LayerMask nodeLayer;
@@ -100,6 +103,7 @@ public class AlienStateMachine : MonoBehaviour
         agent.updateRotation = false;
         agent.isStopped = false;
         inServerRoom = false;
+        currentHP = maxHP;
     }
 
     void Update()
@@ -137,6 +141,12 @@ public class AlienStateMachine : MonoBehaviour
                     AttackState();
                     break;
             }
+        }
+
+        if (currentHP <= 0)
+        {
+            GameManager.instance.WinGame();
+            Destroy(this.gameObject);
         }
 
         // Manually set the rotation of the alien to its velocity (I didn't like how the NavMeshAgent smooths out the rotation)
@@ -255,9 +265,9 @@ public class AlienStateMachine : MonoBehaviour
             ClearStateData();
             animator.SetTrigger("AttackTrigger");
             AudioManager.instance.PlaySoundFX(attackSound, transform.position, 0.1f, true);
-            Debug.Log("Playing Sound");
+
+            transform.LookAt(player, player.up);
             currentState = AlienState.ATTACK;
-            Debug.Log(currentState);
         }
     }
 
@@ -321,6 +331,8 @@ public class AlienStateMachine : MonoBehaviour
     public IEnumerator Stun(float stunTime)
     {
         ClearStateData();
+        animator.SetBool("IsWalking", false);
+        animator.SetTrigger("StunTrigger");
         agent.isStopped = true;
         yield return new WaitForSeconds(stunTime);
 
@@ -334,7 +346,14 @@ public class AlienStateMachine : MonoBehaviour
         }
 
         agent.SetDestination(pointsToFollow.Dequeue());
+
+        animator.SetBool("IsWalking", true);
         agent.isStopped = false;
+    }
+
+    public void InflictDamage(float damage)
+    {
+        currentHP -= damage;
     }
 
     /*********************************************************************************************************************/
