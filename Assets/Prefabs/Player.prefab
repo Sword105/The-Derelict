@@ -206,6 +206,9 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 4294967295
+  interactionRange: 2
+  activeItem: {fileID: 0}
+  heldItemType: 0
   inventory: 
   batteryCount: 1
   hasMultiTool: 0
@@ -233,7 +236,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8400794865991913166}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48bdacc24c0e440758ccffe73530cb60, type: 3}
   m_Name: 
@@ -271,11 +274,11 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7355011931402793841, guid: c4bc01c843e97484ea90ff0c8a72626d, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.101
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 1
+  Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1

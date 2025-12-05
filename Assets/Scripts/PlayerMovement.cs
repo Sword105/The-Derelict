@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
         if (grounded) // check if the player is grounded
         {
             velocity.y = 0;
-            Debug.Log("Grounded Sucessfully");
             
             /*
             if (horizontalInput == 0 && verticalInput == 0) // now we check if the user let go of the movement keys then we apply drag to prevent sliding

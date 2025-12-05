@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4505,7 +4505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1071175243
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4781,6 +4781,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5944021096887432600, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7197036227401439495, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
+      propertyPath: interactionRange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7240540283523470726, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.73
@@ -4820,6 +4828,10 @@ PrefabInstance:
     - target: {fileID: 7240540283523470726, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337885402151666994, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
+      propertyPath: m_Volume
+      value: 0.101
       objectReference: {fileID: 0}
     - target: {fileID: 7337885402151666994, guid: 6b4a59f1d9a4456429787fcca6b9f434, type: 3}
       propertyPath: Spatialize
@@ -5034,8 +5046,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8173b2a8dbe2d2d48995bb2ba9a49ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asset: {fileID: 11400000, guid: 853694efc38d43d44837679479c97ffa, type: 2}
-  sceneNameWhenExported: Test 2
+  asset: {fileID: 11400000, guid: f96d744bc3e8be2418080e1def68c574, type: 2}
+  sceneNameWhenExported: AlienAITest
 --- !u!4 &1344727935
 Transform:
   m_ObjectHideFlags: 0
@@ -6061,12 +6073,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066dcd0271e6e8f4691053fbed03b989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alienPrefab: {fileID: 6334896714506386481, guid: 8cd65f6b128fc9b46ac276716266bd0e, type: 3}
+  alienPrefab: {fileID: 3159046896742768686, guid: adc93ecb934fc4d4d9acf0f7d4474e96, type: 3}
   suspiciousNodePrefab: {fileID: 4922758468805513657, guid: e730cd8eef45f33489f98cd939f166b0, type: 3}
   alienSpawnLocation: {fileID: 1997380355}
   timeElapsed: 0
   instantStart: 1
   autoSpawnAlien: 1
+  fadeToBlackScript: {fileID: 0}
 --- !u!4 &1584635077
 Transform:
   m_ObjectHideFlags: 0
@@ -7280,9 +7293,9 @@ MonoBehaviour:
   minimumTimeForSoundToPlay: 30
   chanceForSoundToPlay: 0.2
   caveSoundList:
-  - {fileID: 8300000, guid: 5a918029232f2dd4da5124b4d34edcc2, type: 3}
-  - {fileID: 8300000, guid: db654fbc521a866429f1826def8a88d3, type: 3}
-  - {fileID: 8300000, guid: 6c7cd4f86c966c848985ab732ae09b18, type: 3}
+  - {fileID: 8300000, guid: d718b42cff14fd640bb8bd350625c9e7, type: 3}
+  - {fileID: 8300000, guid: 7291e34c6a9736f45ab5dc02339e0f81, type: 3}
+  - {fileID: 8300000, guid: 28fd76226a3d75749a1e1f3ae021fb65, type: 3}
   timeSinceLastCaveSoundCheck: 30
 --- !u!4 &1909755554
 Transform:

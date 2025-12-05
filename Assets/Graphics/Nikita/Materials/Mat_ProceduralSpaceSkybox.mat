@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _PlanetTex:
-        m_Texture: {fileID: 2800000, guid: 5496c5fe79cb8429fbfafba8ac26e6a1, type: 3}
+        m_Texture: {fileID: 2800000, guid: b5231f01fe1464b6d8127c796d33eda8, type: 3}
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _Tex:
@@ -114,6 +114,8 @@ Material:
     - _PlanetRotDeg: 38
     - _PlanetSoftDeg: 0.8
     - _PlanetSpinSpeed: 1
+    - _PlanetSpinSpeedX: 0
+    - _PlanetSpinSpeedY: 0
     - _PlanetUVMode: 1
     - _PlanetUseNormal: 1
     - _Rotation: 180

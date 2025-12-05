@@ -14,7 +14,7 @@ public class StaticInteractable : Interactable
 {
     public StaticItemList staticItems;
 
-    public override void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction player, Item activeItem)
     {
         switch (staticItems)
         {
