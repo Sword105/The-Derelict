@@ -264,11 +264,11 @@ public class AlienStateMachine : MonoBehaviour
         timeInState += Time.deltaTime;
         if (timeInState >= 1.3f)
         { 
-            if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+            if (Vector3.Distance(transform.position, player.transform.position) < attackRange * 1.5f)
                 PlayerHPManager.instance.InflictDamage(1f);
 
-            StartCoroutine(HandleStateTransition(2f));
             ClearStateData();
+            StartCoroutine(HandleStateTransition(1.5f));
             currentState = AlienState.CHASE;
         }
     }
@@ -410,19 +410,18 @@ public class AlienStateMachine : MonoBehaviour
         // Check that the alien has direct line of sight and isn't currently chasing anyone
         if (canSeePlayer && lineOfSightDotProduct > lineOfSightThreshold && currentState != AlienState.CHASE && currentState != AlienState.ATTACK)
         {
-            ClearStateData();
-
             if (Vector3.Distance(transform.position, player.position) < 15f)
             {
                 // If the player is too close to the player, begin chasing them.
                 Debug.Log("Player was definitely seen. Alien is now chasing.");
-                StartCoroutine(HandleStateTransition(2.5f));
+                StartCoroutine(HandleStateTransition(3f));
                 animator.SetTrigger("RoarTrigger");
                 currentState = AlienState.CHASE;
             }
             else
             {
                 // Explore the area where the alien thinks the player is
+                ClearStateData();
                 currentNode = ClosestNodeToPoint(player.position);
                 List<Vector3> newPath = CalculatePaddedPathToNode(currentNode);
 
@@ -432,7 +431,6 @@ public class AlienStateMachine : MonoBehaviour
                 }
 
                 agent.SetDestination(pointsToFollow.Dequeue());
-                StartCoroutine(HandleStateTransition(1f));
                 currentState = AlienState.SUSPICIOUS;
             }
         }
