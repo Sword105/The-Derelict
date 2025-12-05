@@ -56,7 +56,10 @@ public class HotbarManager : MonoBehaviour
             {
                 slot.UnlockItem();
 
-                if (slots[selectedSlotIndex] == slot) UpdateTopText();
+                if (selectedSlotIndex >= 0 && slots[selectedSlotIndex] == slot)
+                {
+                    UpdateTopText();
+                }
 
                 return true;
             }

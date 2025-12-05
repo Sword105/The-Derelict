@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BatteryInteractable : Interactable
+
 {
+    /*
     
     [Header("Battery Settings")]
     public ItemID itemID = ItemID.BATTERY;
@@ -76,4 +78,5 @@ public class BatteryInteractable : Interactable
         Debug.Log("Not enough batteries for generator.");
         return false;
     }
+    */
 }

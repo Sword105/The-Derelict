@@ -30,33 +30,33 @@ public class Item : Interactable
     //public ItemType itemType = Item.None;
     public AudioClip testSound;
 
-    public override void Interact(PlayerInteraction player, Item activeItem)
+    public override void Interact(PlayerInteraction player)
     {
-        HotbarManager hud = FindObjectOfType<HotbarManager>();
+        // HotbarManager hud = FindObjectOfType<HotbarManager>();
 
-        //My ItemType Shit
-        Debug.Log("$Picked up an item of type: {itemType }");
-        PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
-        playerInteraction.heldItemType = itemID;
+        // //My ItemType Shit
+        // Debug.Log("$Picked up an item of type: {itemType }");
+        // PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
+        // playerInteraction.heldItemType = itemID;
 
-        /* if (testSound != null)
-        {
-            AudioManager audioManager = AudioManager.instance;
-            audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
-        } */
+        // /* if (testSound != null)
+        // {
+        //     AudioManager audioManager = AudioManager.instance;
+        //     audioManager.PlaySoundFX(testSound, transform.position, 1.0f);
+        // } */
 
-        Debug.Log("Item detected!");
+        // Debug.Log("Item detected!");
 
-        //Hides from Game Scene
-        gameObject.SetActive(false);
+        // //Hides from Game Scene
+        // gameObject.SetActive(false);
      
     
 
 
-        if (hud != null)
-        {
-            hud.AddItemToHud(itemID);
-        }
+        // if (hud != null)
+        // {
+        //     hud.AddItemToHud(itemID);
+        // }
 
         switch (itemID)
         {
