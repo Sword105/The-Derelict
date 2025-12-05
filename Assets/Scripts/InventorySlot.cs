@@ -1,78 +1,59 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections; 
+using TMPro;
+
 public class InventorySlot : MonoBehaviour
 {
-    public Image slotBackground;
-    public Image iconDisplay;
-    public Color selectedColor = Color.white;
-    public Color normalColor = new Color(0.3f, 0.3f, 0.3f, 1f); 
-    public float waitBeforeFading = 2.0f; 
-    public float fadeDuration = 1.0f;   
+    [Header("Settings")]
+    public ItemID assignedItemType;
+    public string displayName;
 
-    private Coroutine activeFadeRoutine;
+    [Header("References")]
+    public Image slotBackground;
+    public TextMeshProUGUI labelText;
+
+    [Header("Colors")]
+    public Color selectedBgColor = new Color(1f, 1f, 1f, 0.2f);
+    public Color normalBgColor = new Color(0f, 0f, 0f, 0.5f);
+
+    public Color ownedTextColor = Color.white;
+    public Color unownedTextColor = Color.gray;
+    public float unownedAlpha = 0.3f;
+
+    private bool isOwned = false;
 
     void Start()
     {
-        if (slotBackground != null)
+        if (labelText != null)
         {
-            slotBackground.color = normalColor;
+            labelText.text = displayName;
+            labelText.color = unownedTextColor;
+            labelText.alpha = unownedAlpha;
         }
-        
-        if (iconDisplay != null)
+
+        if (slotBackground != null) slotBackground.color = normalBgColor;
+    }
+
+    public void UnlockItem()
+    {
+        isOwned = true;
+        if (labelText != null)
         {
-            var tempColor = iconDisplay.color;
-            tempColor.a = 0f;
-            iconDisplay.color = tempColor;
+            labelText.color = ownedTextColor;
+            labelText.alpha = 1f;
         }
     }
 
     public void SetSelected(bool isSelected)
     {
-        if (slotBackground == null) return;
-
-        
-        if (activeFadeRoutine != null) StopCoroutine(activeFadeRoutine);
-
-        if (isSelected)
+        if (slotBackground != null)
         {
-             slotBackground.color = selectedColor;
-            
-            
-            activeFadeRoutine = StartCoroutine(FadeOutRoutine());
-        }
-        else
-        {
-            slotBackground.color = normalColor;
+            slotBackground.color = isSelected ? selectedBgColor : normalBgColor;
         }
     }
 
-    IEnumerator FadeOutRoutine()
+    public bool HasItem()
     {
-        yield return new WaitForSeconds(waitBeforeFading);
-
-        float elapsedTime = 0f;
-        Color startColor = slotBackground.color;
-
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float percentComplete = elapsedTime / fadeDuration;
-
-            slotBackground.color = Color.Lerp(startColor, normalColor, percentComplete);
-
-            yield return null;
-        }
-        
-        slotBackground.color = normalColor;
-    }
-
-    public void AddItem(Sprite newItem)
-    {
-        iconDisplay.sprite = newItem;
-        iconDisplay.enabled = true;
-        var tempColor = iconDisplay.color;
-        tempColor.a = 1f;
-        iconDisplay.color = tempColor;
+        return isOwned;
     }
 }
