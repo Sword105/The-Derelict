@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MultiToolInventory : MonoBehaviour
-{
+public class MultiToolInventory : MonoBehaviour{
+
     public static Action<bool> OnBiotrackerUse;
     public PlayerInteraction playerInteraction;
     public ItemID itemID;
@@ -16,9 +16,11 @@ public class MultiToolInventory : MonoBehaviour
     //Tool Configuration
     [SerializeField] private Light flashlightSource;
     [SerializeField] private AudioSource biotrackerAudio;
+    [SerializeField] private AudioSource powerDrillAudio;
+
 
     //Power Drill timers
-    [SerializeField] private float powerDrillHeldTime = 3.0f; // Hold time to fire
+    [SerializeField] private float powerDrillHeldTime; // Hold time to fire
     [SerializeField] private float timeHeld = 0.0f; // Timer for drill hold
     [SerializeField] private bool hasPowerDrillBeenFired = false; // Flag to prevent double fire
 
@@ -30,7 +32,7 @@ public class MultiToolInventory : MonoBehaviour
             Debug.LogError("PlayerInteraction not found in scene!");
 
         //Ensures all tools start off 
-        powerDrillHeldTime = 3.0f;
+        powerDrillHeldTime = 6.5f;      //Literally only works if you set its value at Start()
         turnOffAllTools();
     }
 
@@ -98,8 +100,17 @@ public class MultiToolInventory : MonoBehaviour
         if (activeItem == ItemID.PowerDrill)
         {
             // If button is held
-            if (Input.GetMouseButton(0))
-            {
+            if (Input.GetMouseButton(0)){
+                
+                    if (powerDrillAudio != null)
+                    {
+                        powerDrillAudio.Play();
+                    }
+                    else
+                    {
+                        Debug.LogError("Audio not detected.");
+                    }
+                
                 timeHeld += Time.deltaTime;
                 //Debug.Log("timeHeld = " + timeHeld + ", powerDrillHeldTime = " + powerDrillHeldTime);
 
@@ -124,7 +135,9 @@ public class MultiToolInventory : MonoBehaviour
             Use(ItemID.BATTERY);
             Debug.Log("5 is pressed and active item is: " + ItemID.BATTERY);
         }
-    } //end UPDATE
+    } //end UPDATE()
+    
+    // ============================ Turn off all Tools & Use functions ===========================
 
     //This makes all tools turned off when switching
     private void turnOffAllTools()
@@ -255,4 +268,6 @@ public class MultiToolInventory : MonoBehaviour
     {
         Debug.Log("DRILL FIRED!");
     }
+    
 }
+
