@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [Header("Death varibles")]
     public GameObject fadeToBlackScript;
 
+    
     void Start()
     {
         if (instance == null)
@@ -54,8 +55,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Player has died."); // logs death to console
         Cursor.lockState = CursorLockMode.Confined; // locks cursor
+       
         fadeToBlackScript.GetComponent<FadeToBlack>().StartFade();
-
+        
     }
 
     public void SpawnSuspiciousNode(Vector3 position)
