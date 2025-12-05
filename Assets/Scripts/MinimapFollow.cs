@@ -5,6 +5,8 @@ public class MinimapFollow : MonoBehaviour
     //Looks for player and places camera above them
     public Transform player;
     public float height = 50f;
+    [SerializeField] private Canvas enemyTarget;
+
 
     // Updates every frame
     void LateUpdate()
@@ -17,8 +19,9 @@ public class MinimapFollow : MonoBehaviour
         newPos.y += height;
         transform.position = newPos;
 
-
         //Moves the minimap to face where the player is facing
         transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+
+
     }
 }

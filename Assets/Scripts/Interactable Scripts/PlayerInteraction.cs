@@ -27,6 +27,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] public Boolean hasFlashlight = false;
     [SerializeField] public Boolean hasTazer = false;
     [SerializeField] public Boolean hasBiotracker = false;
+    [SerializeField] public Boolean hasPowerDrill = false;
     
    
 

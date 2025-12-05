@@ -13,7 +13,8 @@ public enum ItemID
     Flashlight,
     BioTracker,
     Tazer,
-    BATTERY
+    BATTERY,
+    PowerDrill
 
 }
 
@@ -23,7 +24,6 @@ public class Item : Interactable
 
     public PlayerInteraction playerInteraction;
     // public MultiToolInventory inventory;
-
 
 
     public ItemID itemID = ItemID.None;
@@ -77,6 +77,9 @@ public class Item : Interactable
             case ItemID.BATTERY:
                 InteractBattery(player);
                 break;
+            case ItemID.PowerDrill:
+                InteractPowerDrill(player);
+                break;
 
         }
 
@@ -94,7 +97,7 @@ public class Item : Interactable
 
     private void InteractFlashlight(PlayerInteraction player) // Will set the hasFlashlight bool to true
     {
-
+        Debug.Log("ITEM: Flashlight - Picked Up");
         player.hasFlashlight = true;
         Destroy(gameObject);
 
@@ -102,21 +105,17 @@ public class Item : Interactable
 
     private void InteractBioTracker(PlayerInteraction player)
     {
-
+        Debug.Log("ITEM: BioTracker - Picked Up");
         player.hasBiotracker = true;
         Destroy(gameObject);
-
-
 
     }
 
     private void InteractTazer(PlayerInteraction player)
     {
-
+        Debug.Log("ITEM: Tazer - Picked Up");
         player.hasTazer = true;
         Destroy(gameObject);
-
-
     }
 
 
@@ -132,6 +131,13 @@ public class Item : Interactable
         playerInteraction.batteryCount++;
         Debug.Log("Battery collected. Total batteries: " + playerInteraction.batteryCount);
         Destroy(gameObject);
+    }
+
+    private void InteractPowerDrill(PlayerInteraction player){
+        player.hasPowerDrill = true;
+        Debug.Log("Power drill collected");
+        Destroy(gameObject);
+
     }
 
     //:3
